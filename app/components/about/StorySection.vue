@@ -17,7 +17,7 @@
               <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
             </svg>
           </span>
-          <span>با عشق برای کودکان</span>
+          <span>با عشق برای سلامت شما</span>
         </span>
       </div>
     </div>
@@ -61,7 +61,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 const props = defineProps({
   title: { type: String, default: "" },
@@ -80,11 +80,18 @@ const onImageError = (e) => {
     e.target.src = props.fallbackSrc;
   }
 };
+
+// داستان اختصاصی داروخانه
+const paragraphs = computed(() => [
+  "داروخانه دکتر اسماعیلی در سال ۱۳۹۵ با هدفی ساده اما بزرگ شکل گرفت: دسترسی آسان مردم به دارو، محصولات سلامت و زیبایی با اصالت و قیمت مناسب. در آن روزها، دکتر اسماعیلی با سال‌ها تجربه در حوزه داروسازی، تصمیم گرفت فضایی بسازد که مردم بدون نگرانی از تقلبی بودن محصولات، خرید خود را انجام دهند.",
+  "از همان ابتدا، اعتماد مشتریان اصلی‌ترین سرمایه ما بود. به همین دلیل، تمام محصولات را تنها از توزیع‌کنندگان معتبر و شرکت‌های دارویی رسمی تهیه می‌کنیم و برای هر قلم کالا، اصالت و تاریخ انقضای آن را به دقت بررسی می‌کنیم.",
+  "امروز، فروشگاه آنلاین دکتر اسماعیلی با مجموعه‌ای گسترده از مکمل‌های غذایی، محصولات مراقبت از پوست و مو، لوازم بهداشتی و داروهای بدون نسخه، در کنار هزاران خانواده ایرانی است. ما همچنان به همان تعهد روز اول پایبندیم: سلامت شما، امانت ماست."
+]);
 </script>
 
 <style scoped>
 /* =========================================================
-   Story بخش داستان ما - تم پودری
+   Story بخش داستان ما - تم سبز لوکس
    ========================================================= */
 
 .jb-about-story {
@@ -94,9 +101,9 @@ const onImageError = (e) => {
   margin-top: 60px;
   padding: 40px 32px;
   background: rgba(255, 255, 255, 0.95);
-  border: 2px solid var(--jb-pink-200);
+  border: 2px solid rgba(14, 90, 58, 0.1);
   border-radius: 32px;
-  box-shadow: 0 15px 40px rgba(214, 51, 132, 0.12);
+  box-shadow: 0 15px 40px rgba(14, 90, 58, 0.08);
   position: relative;
   overflow: hidden;
 }
@@ -124,9 +131,9 @@ const onImageError = (e) => {
   max-width: 320px;
   padding: 20px;
   border-radius: 32px;
-  background: linear-gradient(135deg, #fff8fb, #ffeaf2);
-  border: 2px dashed var(--jb-pink-300);
-  box-shadow: 0 20px 45px rgba(214, 51, 132, 0.15);
+  background: linear-gradient(135deg, #f8fcf9, #e8f3ec);
+  border: 2px dashed rgba(140, 198, 63, 0.5);
+  box-shadow: 0 20px 45px rgba(14, 90, 58, 0.12);
   animation: jbStoryFloat 4.5s ease-in-out infinite;
 }
 
@@ -151,12 +158,12 @@ const onImageError = (e) => {
   align-items: center;
   gap: 8px;
   padding: 10px 16px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #1a7a50);
   color: #fff;
   font-size: 0.75rem;
   font-weight: 900;
   border-radius: 999px;
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.45);
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.4);
   border: 3px solid #fff;
   z-index: 3;
 }
@@ -193,9 +200,9 @@ const onImageError = (e) => {
   width: 42px;
   height: 42px;
   border-radius: 14px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
-  box-shadow: 0 8px 20px rgba(214, 51, 132, 0.35);
+  box-shadow: 0 8px 20px rgba(14, 90, 58, 0.3);
   border: 2px solid #fff;
   flex-shrink: 0;
 }
@@ -203,12 +210,12 @@ const onImageError = (e) => {
 .jb-about-story-title {
   font-size: 1.4rem;
   font-weight: 900;
-  color: var(--jb-text);
+  color: #1a202c;
   letter-spacing: -0.5px;
 }
 
 .jb-about-story-title-strong {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -225,8 +232,8 @@ const onImageError = (e) => {
   width: 90px;
   height: 3px;
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--jb-pink-500), var(--jb-fuchsia), transparent);
-  box-shadow: 0 2px 8px rgba(214, 51, 132, 0.25);
+  background: linear-gradient(90deg, #0e5a3a, #8cc63f, transparent);
+  box-shadow: 0 2px 8px rgba(14, 90, 58, 0.2);
   margin-bottom: 8px;
 }
 
@@ -240,7 +247,7 @@ const onImageError = (e) => {
 .jb-about-story-paragraph {
   font-size: 0.92rem;
   line-height: 2.15;
-  color: var(--jb-text-soft);
+  color: #4a5568;
   font-weight: 600;
   text-align: justify;
   padding-right: 16px;
@@ -255,8 +262,8 @@ const onImageError = (e) => {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
-  box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.15);
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
+  box-shadow: 0 0 0 3px rgba(140, 198, 63, 0.15);
 }
 
 /* هایلایت */
@@ -264,17 +271,17 @@ const onImageError = (e) => {
   position: relative;
   margin-top: 8px;
   padding: 20px 22px 20px 20px;
-  background: linear-gradient(135deg, #fff8fb, #ffeaf2);
+  background: linear-gradient(135deg, #f8fcf9, #e8f3ec);
   border-radius: 18px;
   border-right: 4px solid transparent;
-  border-image: linear-gradient(180deg, var(--jb-pink-500), var(--jb-fuchsia)) 1;
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.1);
+  border-image: linear-gradient(180deg, #0e5a3a, #8cc63f) 1;
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.08);
 }
 
 .jb-about-story-highlight p {
   font-size: 0.88rem;
   line-height: 2.1;
-  color: var(--jb-text);
+  color: #1a202c;
   font-weight: 700;
   font-style: italic;
 }
@@ -284,12 +291,12 @@ const onImageError = (e) => {
   top: -14px;
   right: 18px;
   font-size: 2.2rem;
-  color: var(--jb-pink-400);
+  color: #8cc63f;
   line-height: 1;
   background: #fff;
   padding: 0 8px;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(214, 51, 132, 0.15);
+  box-shadow: 0 4px 12px rgba(14, 90, 58, 0.1);
 }
 
 /* ===== ریسپانسیو ===== */

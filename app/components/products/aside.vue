@@ -20,7 +20,7 @@
     <ProductsRangprice :mainPriceRange="mainPriceRange" v-model:priceRange="localPriceRange" />
 
     <!-- دکمه اعمال فیلتر -->
-    <button class="jb-btn-linear w-full justify-center" @click="applyFilters">
+    <button class="jb-apply-filter-btn" @click="applyFilters">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
       </svg>
@@ -86,10 +86,10 @@ function applyFilters() {
   align-items: center;
   justify-content: space-between;
   padding: 14px 18px;
-  background: linear-gradient(135deg, #fff5f8, #ffe0eb);
-  border: 2px solid var(--jb-pink-200);
+  background: linear-gradient(135deg, #f8fcf9, #e8f3ec);
+  border: 2px solid rgba(14, 90, 58, 0.1);
   border-radius: 18px;
-  box-shadow: 0 6px 18px rgba(214, 51, 132, 0.08);
+  box-shadow: 0 6px 18px rgba(14, 90, 58, 0.06);
 }
 
 .jb-filter-header-title {
@@ -98,7 +98,7 @@ function applyFilters() {
   gap: 10px;
   font-size: 0.95rem;
   font-weight: 900;
-  color: var(--jb-text);
+  color: #1a202c;
 }
 
 .jb-filter-header-icon {
@@ -108,9 +108,51 @@ function applyFilters() {
   width: 34px;
   height: 34px;
   border-radius: 10px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
-  box-shadow: 0 4px 12px rgba(214, 51, 132, 0.35);
+  box-shadow: 0 4px 12px rgba(14, 90, 58, 0.3);
   border: 2px solid #fff;
+}
+
+/* دکمه اعمال فیلتر - سبز لوکس */
+.jb-apply-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 13px 24px;
+  background: linear-gradient(90deg, #0e5a3a 0%, #1a7a50 50%, #0e5a3a 100%);
+  background-size: 200% auto;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 800;
+  font-family: inherit;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.jb-apply-filter-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.35) 50%, transparent 100%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.jb-apply-filter-btn:hover {
+  background-position: 100% center;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(14, 90, 58, 0.45);
+}
+
+.jb-apply-filter-btn:hover::before {
+  transform: translateX(100%);
 }
 </style>

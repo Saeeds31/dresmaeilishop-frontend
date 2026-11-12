@@ -95,7 +95,7 @@
 
         <!-- فوتر -->
         <div class="jb-mf-drawer-footer">
-          <button class="jb-btn-linear w-full justify-center" @click="applyFilters">
+          <button class="jb-apply-filter-btn" @click="applyFilters">
             <Filter class="w-4 h-4" />
             <span>اعمال فیلتر</span>
           </button>
@@ -204,7 +204,7 @@ function applyFilters() {
 
 <style scoped>
 /* =========================================================
-   فیلتر موبایل - تم پودری
+   فیلتر موبایل - تم سبز لوکس
    ========================================================= */
 
 .jb-mobile-filter {
@@ -220,9 +220,9 @@ function applyFilters() {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 2px solid var(--jb-pink-200);
+  border: 2px solid rgba(14, 90, 58, 0.1);
   border-radius: 16px;
-  box-shadow: 0 4px 14px rgba(214, 51, 132, 0.08);
+  box-shadow: 0 4px 14px rgba(14, 90, 58, 0.08);
   scrollbar-width: none;
 }
 
@@ -236,11 +236,11 @@ function applyFilters() {
   gap: 8px;
   padding: 9px 16px;
   background: #fff;
-  border: 1.5px solid var(--jb-pink-200);
+  border: 1.5px solid rgba(14, 90, 58, 0.1);
   border-radius: 999px;
   font-size: 0.78rem;
   font-weight: 800;
-  color: var(--jb-text-soft);
+  color: #4a5568;
   cursor: pointer;
   transition: all 0.25s ease;
   white-space: nowrap;
@@ -249,9 +249,9 @@ function applyFilters() {
 }
 
 .jb-mf-tab:hover {
-  background: var(--jb-pink-50);
-  border-color: var(--jb-pink-400);
-  color: var(--jb-fuchsia);
+  background: #f1f7f3;
+  border-color: rgba(14, 90, 58, 0.25);
+  color: #0e5a3a;
   transform: translateY(-2px);
 }
 
@@ -262,16 +262,16 @@ function applyFilters() {
   width: 24px;
   height: 24px;
   border-radius: 7px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
-  box-shadow: 0 4px 10px rgba(214, 51, 132, 0.3);
+  box-shadow: 0 4px 10px rgba(14, 90, 58, 0.3);
 }
 
 /* ===== Overlay ===== */
 .jb-mf-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(45, 20, 32, 0.55);
+  background: rgba(14, 90, 58, 0.4);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   z-index: 40;
@@ -285,9 +285,9 @@ function applyFilters() {
   height: 100vh;
   width: 88vw;
   max-width: 380px;
-  background: linear-gradient(180deg, #fff8fb 0%, #ffeaf2 100%);
-  border-left: 2px solid var(--jb-pink-300);
-  box-shadow: -10px 0 40px rgba(214, 51, 132, 0.35);
+  background: linear-gradient(180deg, #f8fcf9 0%, #e8f3ec 100%);
+  border-left: 2px solid rgba(14, 90, 58, 0.15);
+  box-shadow: -10px 0 40px rgba(14, 90, 58, 0.25);
   z-index: 50;
   display: flex;
   flex-direction: column;
@@ -300,7 +300,7 @@ function applyFilters() {
   justify-content: space-between;
   padding: 16px 20px;
   background: rgba(255, 255, 255, 0.7);
-  border-bottom: 1.5px solid rgba(255, 184, 207, 0.6);
+  border-bottom: 1.5px solid rgba(14, 90, 58, 0.1);
   flex-shrink: 0;
 }
 
@@ -313,7 +313,7 @@ function applyFilters() {
 .jb-mf-drawer-header-title h3 {
   font-size: 0.95rem;
   font-weight: 900;
-  color: var(--jb-text);
+  color: #1a202c;
 }
 
 .jb-mf-header-icon {
@@ -323,9 +323,9 @@ function applyFilters() {
   width: 34px;
   height: 34px;
   border-radius: 10px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
-  box-shadow: 0 4px 12px rgba(214, 51, 132, 0.35);
+  box-shadow: 0 4px 12px rgba(14, 90, 58, 0.3);
   border: 2px solid #fff;
 }
 
@@ -337,23 +337,23 @@ function applyFilters() {
   height: 34px;
   border-radius: 10px;
   background: #fff;
-  border: 1.5px solid var(--jb-pink-200);
-  color: var(--jb-text-soft);
+  border: 1.5px solid rgba(14, 90, 58, 0.1);
+  color: #4a5568;
   cursor: pointer;
   transition: all 0.25s ease;
 }
 
 .jb-mf-close-btn:hover {
-  background: var(--jb-pink-100);
-  color: var(--jb-fuchsia);
-  border-color: var(--jb-pink-400);
+  background: #f1f7f3;
+  color: #0e5a3a;
+  border-color: rgba(14, 90, 58, 0.25);
   transform: rotate(90deg);
 }
 
 /* خط بریده‌بریده */
 .jb-mf-dashed {
   height: 0;
-  border-top: 1.5px dashed var(--jb-pink-300);
+  border-top: 1.5px dashed rgba(14, 90, 58, 0.15);
   margin: 0 16px;
   position: relative;
 }
@@ -366,8 +366,8 @@ function applyFilters() {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--jb-pink-400);
-  box-shadow: 0 0 0 2px #fff8fb;
+  background: #8cc63f;
+  box-shadow: 0 0 0 2px #f8fcf9;
 }
 
 .jb-mf-dashed::before { right: -3px; }
@@ -386,7 +386,7 @@ function applyFilters() {
 }
 
 .jb-mf-drawer-body::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, var(--jb-pink-400), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   border-radius: 6px;
 }
 
@@ -396,7 +396,49 @@ function applyFilters() {
   padding: 14px 16px;
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(10px);
-  border-top: 1.5px dashed var(--jb-pink-300);
+  border-top: 1.5px dashed rgba(14, 90, 58, 0.15);
+}
+
+/* ===== دکمه اعمال فیلتر ===== */
+.jb-apply-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 13px 24px;
+  background: linear-gradient(90deg, #0e5a3a 0%, #1a7a50 50%, #0e5a3a 100%);
+  background-size: 200% auto;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 800;
+  font-family: inherit;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.jb-apply-filter-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.35) 50%, transparent 100%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.jb-apply-filter-btn:hover {
+  background-position: 100% center;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(14, 90, 58, 0.45);
+}
+
+.jb-apply-filter-btn:hover::before {
+  transform: translateX(100%);
 }
 
 /* ===== لیست مرتب‌سازی ===== */
@@ -412,7 +454,7 @@ function applyFilters() {
   justify-content: space-between;
   padding: 14px 16px;
   background: #fff;
-  border: 2px solid var(--jb-pink-200);
+  border: 2px solid rgba(14, 90, 58, 0.1);
   border-radius: 16px;
   cursor: pointer;
   transition: all 0.25s ease;
@@ -420,15 +462,15 @@ function applyFilters() {
 }
 
 .jb-mf-sort-item:hover {
-  border-color: var(--jb-pink-400);
+  border-color: rgba(14, 90, 58, 0.25);
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.15);
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.1);
 }
 
 .jb-mf-sort-item.is-active {
-  background: linear-gradient(135deg, #ffeaf2, #ffe0eb);
-  border-color: var(--jb-fuchsia);
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.22);
+  background: linear-gradient(135deg, #f4f9f6, #e8f3ec);
+  border-color: #8cc63f;
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.15);
 }
 
 .jb-mf-sort-item-inner {
@@ -444,29 +486,29 @@ function applyFilters() {
   width: 34px;
   height: 34px;
   border-radius: 10px;
-  background: var(--jb-pink-100);
-  color: var(--jb-pink-700);
+  background: #f1f7f3;
+  color: #0e5a3a;
   transition: all 0.25s ease;
 }
 
 .jb-mf-sort-item.is-active .jb-mf-sort-item-icon {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
-  box-shadow: 0 6px 16px rgba(214, 51, 132, 0.4);
+  box-shadow: 0 6px 16px rgba(14, 90, 58, 0.3);
 }
 
 .jb-mf-sort-item-label {
   font-size: 0.88rem;
   font-weight: 800;
-  color: var(--jb-text-soft);
+  color: #4a5568;
 }
 
 .jb-mf-sort-item.is-active .jb-mf-sort-item-label {
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
 }
 
 .jb-mf-sort-check {
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
 }
 
 /* ===== انیمیشن‌ها ===== */

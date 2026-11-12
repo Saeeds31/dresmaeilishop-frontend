@@ -1,13 +1,14 @@
 <template>
+  <SharedBreadCrumb :items="[
+    { label: 'مقالات', href: '/blogs' },
+    {
+      label: article?.title || 'جزئیات مقاله',
+      href: `/blog/${route.params.id}`,
+    },
+  ]" />
+
   <main class="jb-article-page">
     <div class="container mx-auto px-4 md:px-8 lg:px-12 xl:px-28">
-      <SharedBreadCrumb :items="[
-        { label: 'مقالات', href: '/blogs' },
-        {
-          label: article?.title || 'جزئیات مقاله',
-          href: `/blog/${route.params.id}`,
-        },
-      ]" />
 
       <!-- ===== لودینگ ===== -->
       <div v-if="pending" class="jb-state-block">
@@ -321,13 +322,13 @@ useHead({
 
 <style scoped>
 /* =========================================================
-   صفحه جزئیات مقاله - تم پودری
+   صفحه جزئیات مقاله - تم سبز لوکس
    ========================================================= */
 
 .jb-article-page {
   padding-top: 20px;
   padding-bottom: 80px;
-  background: linear-gradient(135deg, #fff8fb 0%, #fff0f5 50%, #ffeaf2 100%);
+  background: linear-gradient(135deg, #f8fcf9 0%, #e8f3ec 50%, #d1e8db 100%);
   background-attachment: fixed;
   min-height: 100vh;
 }
@@ -347,9 +348,9 @@ useHead({
   gap: 28px;
   padding: 32px;
   background: rgba(255, 255, 255, 0.95);
-  border: 2px solid var(--jb-pink-200);
+  border: 2px solid rgba(14, 90, 58, 0.1);
   border-radius: 28px;
-  box-shadow: 0 15px 40px rgba(214, 51, 132, 0.12);
+  box-shadow: 0 15px 40px rgba(14, 90, 58, 0.08);
   position: relative;
   overflow: hidden;
 }
@@ -359,7 +360,7 @@ useHead({
   position: absolute;
   width: 320px;
   height: 320px;
-  background: radial-gradient(circle, rgba(255, 122, 160, 0.15), transparent 70%);
+  background: radial-gradient(circle, rgba(140, 198, 63, 0.12), transparent 70%);
   top: -140px;
   left: -100px;
   border-radius: 50%;
@@ -382,9 +383,9 @@ useHead({
   aspect-ratio: 4 / 3;
   border-radius: 24px;
   overflow: hidden;
-  background: linear-gradient(135deg, #fff5f8, #ffe0eb);
+  background: linear-gradient(135deg, #f8fcf9, #e8f3ec);
   border: 3px solid #fff;
-  box-shadow: 0 12px 30px rgba(214, 51, 132, 0.2);
+  box-shadow: 0 12px 30px rgba(14, 90, 58, 0.15);
   order: 1;
 }
 
@@ -414,7 +415,7 @@ useHead({
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--jb-pink-400);
+  color: #8cc63f;
 }
 
 /* ===== محتوای هدر ===== */
@@ -437,13 +438,13 @@ useHead({
   display: inline-flex;
   align-items: center;
   padding: 6px 14px;
-  background: linear-gradient(135deg, #ffeaf2, #ffe0eb);
-  border: 1.5px solid var(--jb-pink-300);
+  background: linear-gradient(135deg, #f4f9f6, #e8f3ec);
+  border: 1.5px solid rgba(140, 198, 63, 0.4);
   border-radius: 999px;
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
   font-size: 0.72rem;
   font-weight: 900;
-  box-shadow: 0 4px 12px rgba(214, 51, 132, 0.12);
+  box-shadow: 0 4px 12px rgba(14, 90, 58, 0.08);
 }
 
 /* تیتر */
@@ -451,7 +452,7 @@ useHead({
   font-size: 1.5rem;
   font-weight: 900;
   line-height: 1.5;
-  color: var(--jb-text);
+  color: #1a202c;
   letter-spacing: -0.4px;
 }
 
@@ -466,8 +467,8 @@ useHead({
   width: 90px;
   height: 3px;
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--jb-pink-500), var(--jb-fuchsia), transparent);
-  box-shadow: 0 2px 8px rgba(214, 51, 132, 0.25);
+  background: linear-gradient(90deg, #0e5a3a, #8cc63f, transparent);
+  box-shadow: 0 2px 8px rgba(14, 90, 58, 0.2);
 }
 
 /* متادیتا */
@@ -483,16 +484,16 @@ useHead({
   align-items: center;
   gap: 6px;
   padding: 5px 12px;
-  background: var(--jb-pink-50);
-  border: 1.5px solid var(--jb-pink-200);
+  background: #f1f7f3;
+  border: 1.5px solid rgba(14, 90, 58, 0.1);
   border-radius: 999px;
   font-size: 0.72rem;
   font-weight: 800;
-  color: var(--jb-text-soft);
+  color: #4a5568;
 }
 
 .jb-meta-item svg {
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
   flex-shrink: 0;
 }
 
@@ -500,11 +501,11 @@ useHead({
 .jb-article-excerpt {
   font-size: 0.92rem;
   line-height: 2.1;
-  color: var(--jb-text-soft);
+  color: #4a5568;
   font-weight: 600;
   padding: 16px 20px;
-  background: linear-gradient(135deg, #fff8fb, #ffeaf2);
-  border-right: 4px solid var(--jb-pink-400);
+  background: linear-gradient(135deg, #f8fcf9, #e8f3ec);
+  border-right: 4px solid #8cc63f;
   border-radius: 14px;
 }
 
@@ -520,7 +521,7 @@ useHead({
 .jb-share-label {
   font-size: 0.78rem;
   font-weight: 800;
-  color: var(--jb-text-muted);
+  color: #718096;
 }
 
 .jb-share-btn {
@@ -560,9 +561,9 @@ useHead({
   gap: 6px;
   padding: 8px 16px;
   background: #fff;
-  border: 2px solid var(--jb-pink-300);
+  border: 2px solid rgba(14, 90, 58, 0.2);
   border-radius: 12px;
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
   font-size: 0.78rem;
   font-weight: 800;
   font-family: inherit;
@@ -571,11 +572,11 @@ useHead({
 }
 
 .jb-share-copy:hover {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #1a7a50);
   color: #fff;
   border-color: transparent;
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(214, 51, 132, 0.35);
+  box-shadow: 0 8px 20px rgba(14, 90, 58, 0.3);
 }
 
 /* =========================================================
@@ -584,9 +585,9 @@ useHead({
 .jb-article-content-section {
   padding: 32px;
   background: rgba(255, 255, 255, 0.95);
-  border: 2px solid var(--jb-pink-200);
+  border: 2px solid rgba(14, 90, 58, 0.1);
   border-radius: 28px;
-  box-shadow: 0 12px 30px rgba(214, 51, 132, 0.1);
+  box-shadow: 0 12px 30px rgba(14, 90, 58, 0.06);
 }
 
 /* خط تزئینی بالای متن */
@@ -600,7 +601,7 @@ useHead({
 .jb-article-content-line {
   flex: 1;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--jb-pink-300), transparent);
+  background: linear-gradient(90deg, transparent, rgba(140, 198, 63, 0.5), transparent);
   border-radius: 999px;
 }
 
@@ -611,9 +612,9 @@ useHead({
   width: 40px;
   height: 40px;
   border-radius: 14px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.35);
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.3);
   border: 2px solid #fff;
   flex-shrink: 0;
 }
@@ -622,7 +623,7 @@ useHead({
 .jb-article-content {
   font-size: 0.95rem;
   line-height: 2.15;
-  color: var(--jb-text-soft);
+  color: #4a5568;
   font-weight: 500;
   word-break: break-word;
 }
@@ -640,7 +641,7 @@ useHead({
 .jb-article-content :deep(p:first-of-type) {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--jb-text);
+  color: #1a202c;
   line-height: 2.25;
 }
 
@@ -652,7 +653,7 @@ useHead({
 .jb-article-content :deep(h5),
 .jb-article-content :deep(h6) {
   position: relative;
-  color: var(--jb-text);
+  color: #1a202c;
   font-weight: 900;
   line-height: 1.6;
   margin-top: 32px;
@@ -681,8 +682,8 @@ useHead({
   bottom: 0.4em;
   width: 5px;
   border-radius: 999px;
-  background: linear-gradient(180deg, var(--jb-pink-500), var(--jb-fuchsia));
-  box-shadow: 0 4px 12px rgba(214, 51, 132, 0.35);
+  background: linear-gradient(180deg, #0e5a3a, #8cc63f);
+  box-shadow: 0 4px 12px rgba(14, 90, 58, 0.3);
 }
 
 .jb-article-content :deep(h1::after),
@@ -694,7 +695,7 @@ useHead({
   right: 18px;
   left: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--jb-pink-300), transparent);
+  background: linear-gradient(90deg, rgba(140, 198, 63, 0.5), transparent);
   border-radius: 999px;
 }
 
@@ -750,8 +751,8 @@ useHead({
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
-  box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.15);
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
+  box-shadow: 0 0 0 3px rgba(140, 198, 63, 0.15);
 }
 
 .jb-article-content :deep(ol) {
@@ -776,39 +777,39 @@ useHead({
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
   font-size: 0.72rem;
   font-weight: 900;
-  box-shadow: 0 4px 10px rgba(214, 51, 132, 0.35);
+  box-shadow: 0 4px 10px rgba(14, 90, 58, 0.3);
   line-height: 1;
 }
 
 /* بولد و ایتالیک */
 .jb-article-content :deep(strong),
 .jb-article-content :deep(b) {
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
   font-weight: 900;
 }
 
 .jb-article-content :deep(em),
 .jb-article-content :deep(i) {
-  color: var(--jb-pink-700);
+  color: #4a5568;
   font-style: italic;
 }
 
 /* لینک */
 .jb-article-content :deep(a) {
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
   font-weight: 800;
   text-decoration: none;
-  border-bottom: 2px dashed var(--jb-pink-400);
+  border-bottom: 2px dashed rgba(140, 198, 63, 0.6);
   transition: all 0.25s ease;
 }
 
 .jb-article-content :deep(a:hover) {
-  color: var(--jb-pink-600);
-  border-bottom-color: var(--jb-fuchsia);
+  color: #8cc63f;
+  border-bottom-color: #0e5a3a;
 }
 
 /* نقل‌قول */
@@ -816,15 +817,15 @@ useHead({
   position: relative;
   margin: 24px 0;
   padding: 18px 22px;
-  background: linear-gradient(135deg, #fff8fb, #ffeaf2);
+  background: linear-gradient(135deg, #f8fcf9, #e8f3ec);
   border-right: 4px solid transparent;
-  border-image: linear-gradient(180deg, var(--jb-pink-500), var(--jb-fuchsia)) 1;
+  border-image: linear-gradient(180deg, #0e5a3a, #8cc63f) 1;
   border-radius: 16px;
-  color: var(--jb-text);
+  color: #1a202c;
   font-weight: 700;
   font-style: italic;
   line-height: 2;
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.1);
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.08);
 }
 
 .jb-article-content :deep(blockquote::before) {
@@ -833,7 +834,7 @@ useHead({
   top: -12px;
   right: 16px;
   font-size: 2.2rem;
-  color: var(--jb-pink-400);
+  color: #8cc63f;
   line-height: 1;
   background: #fff;
   padding: 0 8px;
@@ -842,14 +843,14 @@ useHead({
 
 /* کد */
 .jb-article-content :deep(code) {
-  background: linear-gradient(135deg, #ffeaf2, #ffe0eb);
-  color: var(--jb-pink-800);
+  background: linear-gradient(135deg, #f4f9f6, #e8f3ec);
+  color: #0e5a3a;
   padding: 2px 10px;
   border-radius: 8px;
   font-family: "Vazirmatn", monospace;
   font-size: 0.85em;
   font-weight: 700;
-  border: 1.5px solid var(--jb-pink-200);
+  border: 1.5px solid rgba(14, 90, 58, 0.1);
 }
 
 /* تصاویر */
@@ -860,13 +861,13 @@ useHead({
   margin: 22px auto;
   border-radius: 20px;
   border: 3px solid #fff;
-  box-shadow: 0 12px 30px rgba(214, 51, 132, 0.2);
+  box-shadow: 0 12px 30px rgba(14, 90, 58, 0.15);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .jb-article-content :deep(img:hover) {
   transform: scale(1.02);
-  box-shadow: 0 18px 40px rgba(214, 51, 132, 0.3);
+  box-shadow: 0 18px 40px rgba(14, 90, 58, 0.25);
 }
 
 /* جدول */
@@ -877,12 +878,12 @@ useHead({
   border-spacing: 0;
   border-radius: 16px;
   overflow: hidden;
-  border: 2px solid var(--jb-pink-200);
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.1);
+  border: 2px solid rgba(14, 90, 58, 0.1);
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.08);
 }
 
 .jb-article-content :deep(thead) {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #1a7a50);
   color: #fff;
 }
 
@@ -896,9 +897,9 @@ useHead({
 .jb-article-content :deep(td) {
   padding: 12px 16px;
   font-size: 0.85rem;
-  border-top: 1.5px dashed var(--jb-pink-200);
+  border-top: 1.5px dashed rgba(14, 90, 58, 0.1);
   background: #fff;
-  color: var(--jb-text-soft);
+  color: #4a5568;
   font-weight: 600;
 }
 
@@ -906,7 +907,7 @@ useHead({
   margin: 28px 0;
   border: none;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--jb-pink-300), transparent);
+  background: linear-gradient(90deg, transparent, rgba(140, 198, 63, 0.5), transparent);
   border-radius: 999px;
 }
 
@@ -925,7 +926,7 @@ useHead({
 }
 
 .jb-state-error {
-  color: #c9184a;
+  color: #0e5a3a;
 }
 
 .jb-error-icon,
@@ -936,16 +937,16 @@ useHead({
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: linear-gradient(135deg, #ffe0e8, #ffc2d6);
-  border: 3px dashed #ff9db8;
-  color: #c9184a;
+  background: linear-gradient(135deg, #e8f3ec, #d1e8db);
+  border: 3px dashed rgba(14, 90, 58, 0.25);
+  color: #0e5a3a;
   animation: jbEmptyFloat 3s ease-in-out infinite;
 }
 
 .jb-empty-icon {
-  background: linear-gradient(135deg, #ffeaf2, #ffe0eb);
-  border-color: var(--jb-pink-300);
-  color: var(--jb-pink-400);
+  background: linear-gradient(135deg, #f8fcf9, #e8f3ec);
+  border-color: rgba(140, 198, 63, 0.5);
+  color: #8cc63f;
 }
 
 @keyframes jbEmptyFloat {
@@ -964,11 +965,11 @@ useHead({
 .jb-empty-title {
   font-size: 1.15rem;
   font-weight: 900;
-  color: var(--jb-text);
+  color: #1a202c;
 }
 
 .jb-error-title {
-  color: #c9184a;
+  color: #0e5a3a;
 }
 
 /* =========================================================

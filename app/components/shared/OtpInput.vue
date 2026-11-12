@@ -137,67 +137,61 @@ onMounted(() => {
 
 <style scoped>
 /* =========================================================
-   OTP Input - تم پودری
+   OTP Input - مینیمال سبز
    ========================================================= */
 
 .jb-otp-container {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   justify-content: center;
   direction: ltr;
 }
 
 .jb-otp-input {
   position: relative;
-  width: 52px;
-  height: 62px;
+  width: 46px;
+  height: 52px;
   text-align: center;
-  font-size: 26px;
-  font-weight: 900;
-  color: var(--jb-text);
-  border: 2px solid var(--jb-pink-200);
-  border-radius: 16px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #1a202c;
+  border: 1px solid rgba(14, 90, 58, 0.12);
+  border-radius: 6px;
   background: #fff;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease;
   outline: none;
   font-family: inherit;
-  caret-color: var(--jb-fuchsia);
+  caret-color: #0e5a3a;
 }
 
 .jb-otp-input::placeholder {
-  color: var(--jb-text-muted);
+  color: #a0aec0;
 }
 
 /* هاور */
 .jb-otp-input:hover {
-  border-color: var(--jb-pink-400);
+  border-color: rgba(14, 90, 58, 0.3);
 }
 
 /* فوکوس */
 .jb-otp-input:focus {
-  border-color: var(--jb-fuchsia);
+  border-color: #0e5a3a;
   background: #fff;
-  box-shadow:
-    0 0 0 4px rgba(214, 51, 132, 0.18),
-    0 8px 20px rgba(214, 51, 132, 0.15);
-  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 0 0 3px rgba(14, 90, 58, 0.1);
 }
 
 /* پر شده */
 .jb-otp-input.is-filled {
-  border-color: var(--jb-pink-400);
-  background: linear-gradient(135deg, #fff8fb, #ffeaf2);
-  color: var(--jb-fuchsia);
-  box-shadow: 0 6px 16px rgba(214, 51, 132, 0.15);
+  border-color: rgba(14, 90, 58, 0.25);
+  background: #f7fafc;
+  color: #0e5a3a;
 }
 
 /* پر شده + فوکوس */
 .jb-otp-input.is-filled:focus {
-  background: linear-gradient(135deg, #ffeaf2, #ffe0eb);
-  border-color: var(--jb-fuchsia);
-  box-shadow:
-    0 0 0 4px rgba(214, 51, 132, 0.22),
-    0 10px 24px rgba(214, 51, 132, 0.22);
+  background: #f1f7f3;
+  border-color: #0e5a3a;
+  box-shadow: 0 0 0 3px rgba(14, 90, 58, 0.15);
 }
 
 /* =========================================================
@@ -205,27 +199,27 @@ onMounted(() => {
    ========================================================= */
 @media (max-width: 480px) {
   .jb-otp-container {
-    gap: 7px;
+    gap: 6px;
   }
 
   .jb-otp-input {
-    width: 42px;
-    height: 52px;
-    font-size: 20px;
-    border-radius: 13px;
+    width: 40px;
+    height: 46px;
+    font-size: 18px;
+    border-radius: 5px;
   }
 }
 
 @media (max-width: 360px) {
   .jb-otp-container {
-    gap: 5px;
+    gap: 4px;
   }
 
   .jb-otp-input {
-    width: 36px;
-    height: 46px;
-    font-size: 18px;
-    border-radius: 11px;
+    width: 34px;
+    height: 42px;
+    font-size: 16px;
+    border-radius: 5px;
   }
 }
 </style>

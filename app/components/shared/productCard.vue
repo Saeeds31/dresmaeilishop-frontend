@@ -1,7 +1,7 @@
 <template>
   <nuxt-link @click="saveLocation()" :to="`/product/${product.slug ?? product.id}`" class="jb-product-card group"
     :class="{ 'is-unavailable': product.status === 'unpublished' }">
-    <!-- ===== تصویر با پدینگ داخل کارت ===== -->
+    <!-- ===== بخش تصویر ===== -->
     <div class="jb-product-image-wrap">
       <div class="jb-product-image">
         <img v-if="imageSrc" :src="imageSrc" :alt="product.title ?? 'محصول'" class="jb-product-img" loading="lazy" />
@@ -32,7 +32,7 @@
         </svg>
       </button>
 
-      <!-- بج ناموجود -->
+      <!-- بج ناموجود (شیشه‌ای) -->
       <div v-if="product.status === 'unpublished'" class="jb-unavailable-badge">
         <span>ناموجود</span>
       </div>
@@ -40,13 +40,15 @@
 
     <!-- ===== بدنه کارت ===== -->
     <div class="jb-product-body">
+      <!-- دسته‌بندی کوچک (اختیاری - برای حس داروخانه) -->
+      <span v-if="product.category?.title" class="jb-product-category">
+        {{ product.category.title }}
+      </span>
+
       <!-- عنوان -->
       <h2 class="jb-product-title">
         {{ product?.title ?? "محصول" }}
       </h2>
-
-      <!-- خط جداکننده بریده‌بریده -->
-      <div class="jb-dashed-divider"></div>
 
       <!-- ردیف پایین: قیمت + دکمه -->
       <div class="jb-product-footer">
@@ -68,15 +70,14 @@
           </template>
         </div>
 
-        <!-- دکمه مستطیلی -->
+        <!-- دکمه -->
         <button class="jb-product-btn" :disabled="product.status === 'unpublished'">
-          {{ product.status === 'unpublished' ? 'اطلاع' : 'مشاهده محصول' }}
+          {{ product.status === 'unpublished' ? 'اطلاع' : 'خرید' }}
         </button>
       </div>
     </div>
   </nuxt-link>
 </template>
-
 <script setup>
 import { computed, onMounted } from "vue";
 import { useWishlist } from "@/composables/useWishlist";
@@ -144,40 +145,45 @@ onMounted(() => {
   fetchWishlist();
 });
 </script>
-
 <style scoped>
 /* =========================================================
-   کارت محصول - سبک کلاسیک تمیز
+   کارت محصول - طراحی داروخانه لوکس (تم سبز)
    ========================================================= */
 
 .jb-product-card {
   display: flex;
   flex-direction: column;
-  background: #ffffff;
-  border: 1.5px solid #f0e6ea;
-  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fcf9 100%);
+  border: 1px solid rgba(14, 90, 58, 0.08);
+  border-radius: 20px;
   overflow: hidden;
   position: relative;
   height: 100%;
   min-height: 400px;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 10px rgba(214, 51, 132, 0.06);
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 20px rgba(14, 90, 58, 0.04);
   text-decoration: none;
   color: inherit;
+  /* پترن نقطه‌ای بسیار ملایم در پس‌زمینه */
+  background-image:
+    radial-gradient(rgba(14, 90, 58, 0.03) 1px, transparent 1px),
+    linear-gradient(180deg, #ffffff 0%, #f8fcf9 100%);
+  background-size: 20px 20px, 100% 100%;
 }
 
 .jb-product-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--jb-pink-300);
-  box-shadow: 0 14px 32px rgba(214, 51, 132, 0.16);
+  transform: translateY(-6px);
+  border-color: rgba(14, 90, 58, 0.2);
+  box-shadow: 0 20px 40px -10px rgba(14, 90, 58, 0.15);
 }
 
 .jb-product-card.is-unavailable {
-  opacity: 0.92;
+  opacity: 0.85;
+  filter: grayscale(0.3);
 }
 
 /* =========================================================
-   تصویر - با پدینگ داخل کارت
+   تصویر
    ========================================================= */
 .jb-product-image-wrap {
   position: relative;
@@ -187,9 +193,9 @@ onMounted(() => {
 .jb-product-image {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 4;
-  background: #faf7f8;
-  border-radius: 12px;
+  aspect-ratio: 1 / 1;
+  background: #f1f7f3;
+  border-radius: 14px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -201,26 +207,26 @@ onMounted(() => {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .jb-product-card:hover .jb-product-img {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 .jb-product-card.is-unavailable .jb-product-img {
-  filter: grayscale(70%);
+  filter: grayscale(100%);
 }
 
 .jb-product-img-placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--jb-pink-400);
+  color: #8cc63f;
 }
 
 /* =========================================================
-   بج تخفیف - گوشه بالا راست تصویر
+   بج تخفیف (سبز لوکس)
    ========================================================= */
 .jb-discount-badge {
   position: absolute;
@@ -230,26 +236,28 @@ onMounted(() => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #ff4d6d, #c9184a);
+  background: linear-gradient(135deg, #0e5a3a, #1a7a50);
   color: #fff;
-  border-radius: 10px;
-  padding: 5px 9px;
-  min-width: 44px;
-  box-shadow: 0 6px 16px rgba(201, 24, 74, 0.45);
+  border-radius: 12px;
+  padding: 6px 10px;
+  min-width: 46px;
+  box-shadow: 0 6px 16px rgba(14, 90, 58, 0.35);
   z-index: 5;
-  animation: popIn 0.35s ease-out;
+  animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
 }
 
 .jb-discount-percent {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 900;
   line-height: 1.1;
+  letter-spacing: -0.5px;
 }
 
 .jb-discount-text {
   font-size: 0.55rem;
   font-weight: 700;
-  opacity: 0.95;
+  opacity: 0.9;
   margin-top: 1px;
 }
 
@@ -268,7 +276,7 @@ onMounted(() => {
 }
 
 /* =========================================================
-   قلب علاقه‌مندی - گوشه بالا چپ تصویر (شبیه عکس مرجع)
+   قلب علاقه‌مندی (شیشه‌ای)
    ========================================================= */
 .jb-fav-btn {
   position: absolute;
@@ -280,27 +288,29 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: #ffffff;
-  color: #4a1428;
-  border: 1.5px solid #f0e6ea;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: #4a5568;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.3s ease;
   z-index: 5;
 }
 
 .jb-fav-btn:hover {
   background: #fff;
-  transform: scale(1.08);
-  color: var(--jb-pink-600);
-  border-color: var(--jb-pink-300);
+  transform: scale(1.1);
+  color: #0e5a3a;
+  border-color: rgba(14, 90, 58, 0.2);
 }
 
 .jb-fav-btn.is-active {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
-  border-color: var(--jb-pink-400);
-  box-shadow: 0 6px 18px rgba(214, 51, 132, 0.45);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 6px 18px rgba(14, 90, 58, 0.4);
   animation: heartBeat 0.5s ease;
 }
 
@@ -327,7 +337,7 @@ onMounted(() => {
 }
 
 /* =========================================================
-   بج ناموجود
+   بج ناموجود (شیشه‌ای)
    ========================================================= */
 .jb-unavailable-badge {
   position: absolute;
@@ -335,21 +345,21 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgb(255 255 255 / 55%);
-  backdrop-filter: blur(0.3px);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   z-index: 4;
-  border-radius: 12px;
+  border-radius: 14px;
 }
 
 .jb-unavailable-badge span {
-  background: linear-gradient(135deg, #ff4d6d, #c9184a);
+  background: linear-gradient(135deg, #4a5568, #2d3748);
   color: #fff;
   font-weight: 900;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   padding: 7px 22px;
   border-radius: 999px;
-  box-shadow: 0 8px 20px rgba(201, 24, 74, 0.5);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   border: 2px solid rgba(255, 255, 255, 0.7);
 }
 
@@ -359,35 +369,47 @@ onMounted(() => {
 .jb-product-body {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 14px 14px 14px;
+  gap: 8px;
+  padding: 12px 16px 16px;
   flex: 1;
+  position: relative;
 }
 
-/* عنوان - دو خط وسط‌چین مثل عکس مرجع */
-.jb-product-title {
-  font-size: 0.9rem;
+/* دسته‌بندی کوچک */
+.jb-product-category {
+  font-size: 0.65rem;
   font-weight: 700;
-  color: #2d3436;
+  color: #8cc63f;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: right;
+  opacity: 0.9;
+}
+
+/* عنوان */
+.jb-product-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1a202c;
   line-height: 1.7;
-  text-align: center;
+  text-align: right;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  min-height: 3em;
+  min-height: 3.2em;
   transition: color 0.25s ease;
 }
 
 .jb-product-card:hover .jb-product-title {
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
 }
 
-/* خط جداکننده بریده‌بریده - فقط خط (بدون نقطه) */
+/* خط جداکننده بریده‌بریده */
 .jb-dashed-divider {
   height: 0;
-  border-top: 1.5px dashed #e5d5dc;
-  margin: 2px 0 6px;
+  border-top: 1px dashed rgba(14, 90, 58, 0.15);
+  margin: 4px 0 8px;
 }
 
 /* =========================================================
@@ -395,17 +417,11 @@ onMounted(() => {
    ========================================================= */
 .jb-product-footer {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 10px;
   margin-top: auto;
-  padding-top: 2px;
-}
-
-@media (max-width:540px) {
-  .jb-product-footer {
-    flex-direction: column;
-  }
+  padding-top: 4px;
 }
 
 /* ----- بخش قیمت ----- */
@@ -425,59 +441,77 @@ onMounted(() => {
 }
 
 .jb-price-amount {
-  font-size: 18px;
-  font-weight: 700;
-  color: #2d3436;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0e5a3a;
   line-height: 1.1;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.5px;
 }
 
 .jb-price-unit {
-  font-size: 0.72rem;
-  color: #868e96;
+  font-size: 0.7rem;
+  color: #718096;
   font-weight: 500;
 }
 
 .jb-price-old {
-  font-size: 18px;
-  color: #adb5bd;
+  font-size: 0.85rem;
+  color: #a0aec0;
   text-decoration: line-through;
-  text-decoration-color: #ff4d6d;
+  text-decoration-color: #8cc63f;
   text-decoration-thickness: 1.5px;
   font-weight: 500;
 }
 
 .jb-price-unavailable {
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   font-weight: 800;
-  color: #c9184a;
+  color: #718096;
 }
 
-/* ----- دکمه مستطیلی (شبیه عکس مرجع) ----- */
+/* ----- دکمه (سبز لوکس) ----- */
 .jb-product-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 11px 22px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #0e5a3a, #1a7a50);
   color: #fff;
   border: none;
-  border-radius: 10px;
-  font-size: 0.85rem;
+  border-radius: 12px;
+  font-size: 0.82rem;
   font-weight: 800;
   font-family: 'Vazirmatn', sans-serif;
   cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 14px rgba(214, 51, 132, 0.35);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(14, 90, 58, 0.25);
   white-space: nowrap;
   flex-shrink: 0;
-  min-width: 100px;
+  min-width: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* افکت درخشش روی دکمه */
+.jb-product-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.jb-product-btn:hover::before {
+  left: 100%;
 }
 
 .jb-product-btn:hover {
-  background: linear-gradient(135deg, var(--jb-pink-600), var(--jb-pink-800));
+  background: linear-gradient(135deg, #0b472e, #0e5a3a);
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(214, 51, 132, 0.5);
+  box-shadow: 0 8px 20px rgba(14, 90, 58, 0.4);
 }
 
 .jb-product-btn:active {
@@ -485,7 +519,8 @@ onMounted(() => {
 }
 
 .jb-product-btn:disabled {
-  background: #d1d5db;
+  background: #e2e8f0;
+  color: #a0aec0;
   box-shadow: none;
   cursor: not-allowed;
   opacity: 0.8;
@@ -499,15 +534,14 @@ onMounted(() => {
    ریسپانسیو
    ========================================================= */
 @media (max-width: 1280px) {
-
   .jb-price-amount {
-    font-size: 1rem;
+    font-size: 1.05rem;
   }
 
   .jb-product-btn {
-    padding: 10px 18px;
-    font-size: 0.8rem;
-    min-width: 90px;
+    padding: 9px 16px;
+    font-size: 0.78rem;
+    min-width: 74px;
   }
 }
 
@@ -515,12 +549,11 @@ onMounted(() => {
   .jb-product-card {
     min-height: 380px;
   }
-
 }
 
 @media (max-width: 768px) {
   .jb-product-card {
-    min-height: 350px;
+    min-height: 340px;
     border-radius: 16px;
   }
 
@@ -529,7 +562,7 @@ onMounted(() => {
   }
 
   .jb-product-image {
-    border-radius: 10px;
+    border-radius: 12px;
   }
 
   .jb-fav-btn {
@@ -542,8 +575,8 @@ onMounted(() => {
   .jb-discount-badge {
     top: 16px;
     right: 16px;
-    padding: 4px 8px;
-    min-width: 40px;
+    padding: 5px 8px;
+    min-width: 42px;
   }
 
   .jb-discount-percent {
@@ -555,23 +588,23 @@ onMounted(() => {
   }
 
   .jb-product-title {
-    font-size: 0.83rem;
-    min-height: 2.8em;
+    font-size: 0.88rem;
+    min-height: 2.9em;
   }
 
   .jb-price-amount {
-    font-size: 0.92rem;
+    font-size: 1rem;
   }
 
   .jb-product-btn {
     padding: 9px 14px;
     font-size: 0.75rem;
-    min-width: 82px;
+    min-width: 70px;
   }
 
   .jb-product-body {
-    padding: 12px;
-    gap: 8px;
+    padding: 10px 14px 14px;
+    gap: 6px;
   }
 }
 
@@ -580,16 +613,23 @@ onMounted(() => {
     min-height: 320px;
   }
 
+  .jb-product-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
 
-
-  .jb-price-amount {
-    font-size: 0.85rem;
+  .jb-product-pricing {
+    align-items: center;
   }
 
   .jb-product-btn {
-    padding: 8px 12px;
-    font-size: 0.72rem;
-    min-width: 72px;
+    width: 100%;
+    padding: 10px 12px;
+  }
+
+  .jb-price-amount {
+    font-size: 0.95rem;
   }
 
   .jb-unavailable-badge {

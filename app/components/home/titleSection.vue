@@ -51,17 +51,17 @@ export default {
 
 /* کلمه معمولی */
 .jb-title-black {
-  color: var(--jb-text);
+  color: #1a202c;
 }
 
-/* کلمه تأکیدی با گرادیان */
+/* کلمه تأکیدی با گرادیان سبز */
 .jb-title-strong {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-weight: 900;
-  text-shadow: 0 2px 8px rgba(214, 51, 132, 0.15);
+  text-shadow: 0 2px 8px rgba(14, 90, 58, 0.15);
 }
 
 /* ===== خط تزئینی ===== */
@@ -72,17 +72,17 @@ export default {
   background: linear-gradient(
     90deg,
     transparent,
-    var(--jb-pink-400),
-    var(--jb-fuchsia),
-    var(--jb-pink-400),
+    #8cc63f,
+    #0e5a3a,
+    #8cc63f,
     transparent
   );
-  box-shadow: 0 2px 8px rgba(214, 51, 132, 0.25);
+  box-shadow: 0 2px 8px rgba(14, 90, 58, 0.2);
 }
 
 /* ===== توضیحات ===== */
 .jb-title-desc {
-  color: var(--jb-text-muted);
+  color: #4a5568;
   font-size: 0.9rem;
   font-weight: 500;
   line-height: 1.8;

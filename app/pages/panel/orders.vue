@@ -1,10 +1,10 @@
 <template>
   <div class="jb-orders-card">
-    <!-- ===== هدر ===== -->
+    <!-- هدر -->
     <div class="jb-orders-header">
       <h3 class="jb-orders-header-title">
         <span class="jb-orders-header-icon">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
               d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
           </svg>
@@ -13,18 +13,18 @@
       </h3>
     </div>
 
-    <!-- خط بریده‌بریده -->
+    <!-- خط جداکننده -->
     <div class="jb-divider"></div>
 
-    <!-- ===== لودینگ ===== -->
+    <!-- لودینگ -->
     <div v-if="!ordersData" class="jb-state-block">
       <SharedLoadingSpinner size="lg" />
     </div>
 
-    <!-- ===== خالی ===== -->
+    <!-- خالی -->
     <div v-else-if="orders.length === 0" class="jb-state-block jb-state-empty">
       <div class="jb-state-icon">
-        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
             d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
         </svg>
@@ -32,16 +32,16 @@
       <span>هیچ سفارشی یافت نشد</span>
     </div>
 
-    <!-- ===== لیست سفارشات ===== -->
+    <!-- لیست سفارشات -->
     <div v-else class="jb-orders-list">
       <div v-for="order in orders" :key="order.id" class="jb-order-card"
         :class="`status-${getStatusClass(order.status)}`">
         <div class="jb-order-card-inner">
-          <!-- ===== بالای کارت: وضعیت + مشاهده ===== -->
+          <!-- بالای کارت: وضعیت + مشاهده -->
           <div class="jb-order-top">
             <div class="jb-order-status">
               <span class="jb-order-status-icon" :class="`status-icon-${getStatusClass(order.status)}`">
-                <component :is="getStatusIcon(order.status)" class="w-4 h-4" />
+                <component :is="getStatusIcon(order.status)" class="w-3.5 h-3.5" />
               </span>
               <span class="jb-order-status-text" :class="`status-text-${getStatusClass(order.status)}`">
                 {{ getStatusText(order.status) }}
@@ -53,7 +53,7 @@
             </NuxtLink>
           </div>
 
-          <!-- ===== اطلاعات سفارش ===== -->
+          <!-- اطلاعات سفارش -->
           <div class="jb-order-meta">
             <span class="jb-order-meta-item">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -63,8 +63,6 @@
               {{ order.date }}
             </span>
 
-            <span class="jb-order-meta-dot"></span>
-
             <span class="jb-order-meta-item">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
@@ -73,8 +71,6 @@
               کد سفارش:
               <strong class="jb-order-meta-strong">#{{ order.id }}</strong>
             </span>
-
-            <span class="jb-order-meta-dot"></span>
 
             <span class="jb-order-meta-item">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -89,7 +85,7 @@
             </span>
           </div>
 
-          <!-- ===== محصول ===== -->
+          <!-- محصول -->
           <div v-if="order.items.length" class="jb-order-product">
             <div class="jb-order-product-img-wrap">
               <img :src="$getImageUrl(order.items[0].product.main_image)" :alt="order.items[0].product.title"
@@ -184,7 +180,6 @@ function getStatusText(status) {
   }
 }
 
-/* دسته‌بندی وضعیت‌ها برای رنگ‌بندی تم */
 function getStatusClass(status) {
   switch (status) {
     case "cancelled":
@@ -211,7 +206,6 @@ useSeoMeta({
 
 useHead({
   link: [{ rel: 'canonical', href: 'https://dresmaeilishop.ir/panel/orders' }],
-  // 🔹 جلوگیری از ایندکس شدن با متا تگ اضافی برای اطمینان بیشتر
   meta: [
     { name: 'robots', content: 'noindex, nofollow, noarchive, nosnippet' },
   ],
@@ -220,15 +214,15 @@ useHead({
 
 <style scoped>
 /* =========================================================
-   صفحه لیست سفارشات - تم پودری
+   صفحه لیست سفارشات - مینیمال سبز
    ========================================================= */
 
 .jb-orders-card {
-  background: rgba(255, 255, 255, 0.95);
-  border: 2px solid var(--jb-pink-200);
-  border-radius: 24px;
-  padding: 24px;
-  box-shadow: 0 10px 30px rgba(214, 51, 132, 0.1);
+  background: #fff;
+  border: 1px solid rgba(14, 90, 58, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(14, 90, 58, 0.04);
 }
 
 /* ===== هدر ===== */
@@ -239,51 +233,28 @@ useHead({
 .jb-orders-header-title {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  font-size: 1.15rem;
-  font-weight: 900;
-  color: var(--jb-text);
+  gap: 10px;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1a202c;
 }
 
 .jb-orders-header-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: #0e5a3a;
   color: #fff;
-  box-shadow: 0 6px 16px rgba(214, 51, 132, 0.35);
-  border: 2px solid #fff;
 }
 
-/* خط بریده‌بریده */
+/* خط جداکننده */
 .jb-divider {
   height: 0;
-  border-top: 2px dashed var(--jb-pink-200);
-  margin: 16px 0 24px;
-  position: relative;
-}
-
-.jb-divider::before,
-.jb-divider::after {
-  content: "";
-  position: absolute;
-  top: -5px;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--jb-pink-400);
-  box-shadow: 0 0 0 3px #fff;
-}
-
-.jb-divider::before {
-  right: -4px;
-}
-
-.jb-divider::after {
-  left: -4px;
+  border-top: 1px dashed rgba(14, 90, 58, 0.15);
+  margin: 14px 0 20px;
 }
 
 /* ===== حالت‌ها ===== */
@@ -292,38 +263,25 @@ useHead({
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
+  padding: 32px 20px;
   text-align: center;
-  gap: 12px;
-  color: var(--jb-text-muted);
-  font-size: 0.88rem;
-  font-weight: 600;
+  gap: 10px;
+  color: #718096;
+  font-size: 0.85rem;
+  font-weight: 500;
 }
 
 .jb-state-icon {
-  width: 84px;
-  height: 84px;
+  width: 64px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #ffeaf2, #ffe0eb);
-  border: 3px dashed var(--jb-pink-300);
-  color: var(--jb-pink-400);
+  border-radius: 8px;
+  background: #f7fafc;
+  border: 1px solid rgba(14, 90, 58, 0.08);
+  color: #a0aec0;
   margin-bottom: 4px;
-  animation: jbEmptyFloat 3s ease-in-out infinite;
-}
-
-@keyframes jbEmptyFloat {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-8px);
-  }
 }
 
 /* =========================================================
@@ -332,17 +290,17 @@ useHead({
 .jb-orders-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
 }
 
 /* ===== کارت سفارش ===== */
 .jb-order-card {
   position: relative;
   background: #fff;
-  border: 2px solid var(--jb-pink-200);
-  border-radius: 20px;
-  padding: 18px;
-  transition: all 0.3s ease;
+  border: 1px solid rgba(14, 90, 58, 0.08);
+  border-radius: 8px;
+  padding: 14px;
+  transition: all 0.2s ease;
   overflow: hidden;
 }
 
@@ -350,56 +308,38 @@ useHead({
 .jb-order-card::before {
   content: "";
   position: absolute;
-  top: 12px;
-  bottom: 12px;
+  top: 10px;
+  bottom: 10px;
   right: 0;
-  width: 4px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
-  transition: all 0.3s ease;
+  width: 3px;
+  border-radius: 2px;
+  background: #0e5a3a;
 }
 
 .jb-order-card.status-cancelled::before {
-  background: linear-gradient(135deg, #ff4d6d, #c9184a);
+  background: #e53e3e;
 }
 
 .jb-order-card.status-pending::before {
-  background: linear-gradient(135deg, #ffb84d, #ffa31a);
+  background: #d97706;
 }
 
 .jb-order-card.status-success::before {
-  background: linear-gradient(135deg, #4ade80, #16a34a);
+  background: #16a34a;
 }
 
 .jb-order-card.status-muted::before {
-  background: linear-gradient(135deg, #cbd5e1, #94a3b8);
+  background: #a0aec0;
 }
 
 .jb-order-card:hover {
-  border-color: var(--jb-pink-400);
-  box-shadow: 0 12px 28px rgba(214, 51, 132, 0.16);
-  transform: translateY(-3px);
-}
-
-.jb-order-card.status-cancelled:hover {
-  border-color: rgba(201, 24, 74, 0.5);
-  box-shadow: 0 12px 28px rgba(201, 24, 74, 0.16);
-}
-
-.jb-order-card.status-pending:hover {
-  border-color: rgba(255, 163, 26, 0.5);
-  box-shadow: 0 12px 28px rgba(255, 163, 26, 0.16);
-}
-
-.jb-order-card.status-success:hover {
-  border-color: rgba(34, 197, 94, 0.5);
-  box-shadow: 0 12px 28px rgba(34, 197, 94, 0.16);
+  border-color: rgba(14, 90, 58, 0.2);
 }
 
 .jb-order-card-inner {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 /* ===== بالای کارت ===== */
@@ -407,60 +347,56 @@ useHead({
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
 }
 
 .jb-order-status {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .jb-order-status-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 10px;
-  border: 2px solid #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
   flex-shrink: 0;
 }
 
 .status-icon-cancelled {
-  background: linear-gradient(135deg, #ff4d6d, #c9184a);
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(201, 24, 74, 0.35);
+  background: #fff5f5;
+  color: #e53e3e;
 }
 
 .status-icon-pending {
-  background: linear-gradient(135deg, #ffb84d, #ffa31a);
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(255, 163, 26, 0.35);
+  background: #fffbea;
+  color: #d97706;
 }
 
 .status-icon-success {
-  background: linear-gradient(135deg, #4ade80, #16a34a);
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.35);
+  background: #f0fff4;
+  color: #16a34a;
 }
 
 .status-icon-muted {
-  background: linear-gradient(135deg, #cbd5e1, #94a3b8);
-  color: #fff;
+  background: #f7fafc;
+  color: #718096;
 }
 
 .jb-order-status-text {
-  font-size: 0.85rem;
-  font-weight: 900;
+  font-size: 0.8rem;
+  font-weight: 700;
 }
 
 .status-text-cancelled {
-  color: #c9184a;
+  color: #e53e3e;
 }
 
 .status-text-pending {
-  color: #b45309;
+  color: #d97706;
 }
 
 .status-text-success {
@@ -468,31 +404,29 @@ useHead({
 }
 
 .status-text-muted {
-  color: var(--jb-text-muted);
+  color: #718096;
 }
 
 /* دکمه مشاهده */
 .jb-order-view-btn {
   flex-shrink: 0;
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
-  background: var(--jb-pink-50);
-  border: 1.5px solid var(--jb-pink-200);
-  color: var(--jb-fuchsia);
-  transition: all 0.25s ease;
+  border-radius: 6px;
+  background: #f7fafc;
+  border: 1px solid rgba(14, 90, 58, 0.08);
+  color: #0e5a3a;
+  transition: all 0.2s ease;
   text-decoration: none;
 }
 
 .jb-order-view-btn:hover {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: #0e5a3a;
   color: #fff;
   border-color: transparent;
-  transform: translateX(-3px);
-  box-shadow: 0 6px 16px rgba(214, 51, 132, 0.35);
 }
 
 /* ===== اطلاعات سفارش ===== */
@@ -500,68 +434,58 @@ useHead({
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 8px;
-  padding: 10px 12px;
-  background: linear-gradient(135deg, #fff8fb, #ffeaf2);
-  border-radius: 12px;
-  border: 1.5px dashed var(--jb-pink-200);
-  font-size: 0.78rem;
+  gap: 12px;
+  padding: 8px 10px;
+  background: #f7fafc;
+  border-radius: 6px;
+  font-size: 0.75rem;
 }
 
 .jb-order-meta-item {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  color: var(--jb-text-soft);
-  font-weight: 700;
+  color: #4a5568;
+  font-weight: 500;
 }
 
 .jb-order-meta-item svg {
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
   flex-shrink: 0;
 }
 
 .jb-order-meta-strong {
-  color: var(--jb-text);
-  font-weight: 900;
+  color: #1a202c;
+  font-weight: 700;
 }
 
 .jb-order-meta-unit {
-  font-size: 0.68rem;
-  color: var(--jb-text-muted);
-  font-weight: 600;
+  font-size: 0.65rem;
+  color: #a0aec0;
+  font-weight: 500;
   margin-right: 2px;
-}
-
-.jb-order-meta-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--jb-pink-300);
-  box-shadow: 0 0 0 2px rgba(214, 51, 132, 0.12);
-  flex-shrink: 0;
 }
 
 /* ===== محصول ===== */
 .jb-order-product {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding-top: 12px;
-  border-top: 1.5px dashed var(--jb-pink-200);
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(14, 90, 58, 0.1);
 }
 
 .jb-order-product-img-wrap {
   flex-shrink: 0;
-  width: 64px;
-  height: 64px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #fff5f8, #ffe0eb);
-  border: 2px solid var(--jb-pink-200);
+  width: 56px;
+  height: 56px;
+  border-radius: 6px;
+  background: #f7fafc;
+  border: 1px solid rgba(14, 90, 58, 0.06);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5px;
+  padding: 4px;
   overflow: hidden;
 }
 
@@ -569,22 +493,22 @@ useHead({
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-radius: 9px;
+  border-radius: 4px;
 }
 
 .jb-order-product-info {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
   min-width: 0;
 }
 
 .jb-order-product-title {
-  font-size: 0.85rem;
-  font-weight: 800;
-  color: var(--jb-text);
-  line-height: 1.6;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1a202c;
+  line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -592,13 +516,13 @@ useHead({
 }
 
 .jb-order-product-more {
-  font-size: 0.72rem;
-  color: var(--jb-fuchsia);
-  font-weight: 800;
-  padding: 3px 10px;
-  background: var(--jb-pink-50);
-  border: 1.5px solid var(--jb-pink-200);
-  border-radius: 999px;
+  font-size: 0.68rem;
+  color: #0e5a3a;
+  font-weight: 600;
+  padding: 2px 8px;
+  background: #f7fafc;
+  border: 1px solid rgba(14, 90, 58, 0.08);
+  border-radius: 4px;
   width: fit-content;
 }
 
@@ -607,41 +531,35 @@ useHead({
    ========================================================= */
 @media (max-width: 640px) {
   .jb-orders-card {
-    padding: 16px;
-    border-radius: 20px;
+    padding: 14px;
+    border-radius: 8px;
   }
 
   .jb-orders-header-title {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .jb-orders-header-icon {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
   }
 
   .jb-order-card {
-    padding: 14px;
-    border-radius: 16px;
+    padding: 12px;
   }
 
   .jb-order-meta {
-    font-size: 0.72rem;
-    gap: 6px;
-  }
-
-  .jb-order-meta-dot {
-    width: 5px;
-    height: 5px;
+    font-size: 0.7rem;
+    gap: 8px;
   }
 
   .jb-order-product-img-wrap {
-    width: 56px;
-    height: 56px;
+    width: 48px;
+    height: 48px;
   }
 
   .jb-order-product-title {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
   }
 }
 
@@ -649,11 +567,7 @@ useHead({
   .jb-order-meta {
     flex-direction: column;
     align-items: flex-start;
-    gap: 6px;
-  }
-
-  .jb-order-meta-dot {
-    display: none;
+    gap: 5px;
   }
 }
 </style>

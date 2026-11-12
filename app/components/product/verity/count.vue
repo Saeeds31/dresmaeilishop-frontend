@@ -1,45 +1,4 @@
-<!-- app/components/product/verity/count.vue -->
-<template>
-  <div class="jb-count-block">
-    <!-- لیبل -->
-    <div class="jb-count-label-row">
-      <span class="jb-count-label-dot"></span>
-      <span class="jb-count-label">تعداد</span>
-    </div>
 
-    <!-- کانتینر شمارنده -->
-    <div class="jb-count-wrap">
-      <!-- دکمه منفی -->
-      <button
-        type="button"
-        class="jb-count-btn"
-        :disabled="quantity <= min"
-        @click="decrease"
-        aria-label="کاهش"
-      >
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 12h14" />
-        </svg>
-      </button>
-
-      <!-- مقدار -->
-      <div class="jb-count-value">{{ quantity }}</div>
-
-      <!-- دکمه مثبت -->
-      <button
-        type="button"
-        class="jb-count-btn"
-        :disabled="quantity >= max"
-        @click="increase"
-        aria-label="افزایش"
-      >
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 5v14M5 12h14" />
-        </svg>
-      </button>
-    </div>
-  </div>
-</template>
 
 <script setup>
 import { ref, watch, defineProps, defineEmits } from "vue";
@@ -72,16 +31,54 @@ function decrease() {
   if (quantity.value > props.min) quantity.value--;
 }
 </script>
+<template>
+  <div class="jb-count-block">
+    <!-- لیبل -->
+    <div class="jb-count-label-row">
+      <span class="jb-count-label-dot"></span>
+      <span class="jb-count-label">تعداد</span>
+    </div>
+
+    <!-- کانتینر شمارنده -->
+    <div class="jb-count-wrap">
+      <button
+        type="button"
+        class="jb-count-btn"
+        :disabled="quantity <= min"
+        @click="decrease"
+        aria-label="کاهش"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 12h14" />
+        </svg>
+      </button>
+
+      <div class="jb-count-value">{{ quantity }}</div>
+
+      <button
+        type="button"
+        class="jb-count-btn"
+        :disabled="quantity >= max"
+        @click="increase"
+        aria-label="افزایش"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 5v14M5 12h14" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</template>
 
 <style scoped>
 /* =========================================================
-   شمارنده تعداد - تم پودری
+   شمارنده تعداد - تم سبز لوکس
    ========================================================= */
 
 .jb-count-block {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 /* لیبل */
@@ -95,14 +92,14 @@ function decrease() {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
-  box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.18);
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
+  box-shadow: 0 0 0 3px rgba(140, 198, 63, 0.18);
 }
 
 .jb-count-label {
   font-size: 0.9rem;
   font-weight: 800;
-  color: var(--jb-text);
+  color: #1a202c;
 }
 
 /* کانتینر شمارنده */
@@ -110,34 +107,34 @@ function decrease() {
   display: inline-flex;
   align-items: center;
   background: #fff;
-  border: 2px solid var(--jb-pink-200);
-  border-radius: 14px;
+  border: 2px solid rgba(14, 90, 58, 0.12);
+  border-radius: 16px;
   overflow: hidden;
   transition: all 0.25s ease;
   width: fit-content;
 }
 
 .jb-count-wrap:hover {
-  border-color: var(--jb-pink-400);
-  box-shadow: 0 6px 16px rgba(214, 51, 132, 0.12);
+  border-color: rgba(14, 90, 58, 0.25);
+  box-shadow: 0 6px 16px rgba(14, 90, 58, 0.08);
 }
 
 /* دکمه‌های + و - */
 .jb-count-btn {
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: transparent;
   border: none;
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
   cursor: pointer;
   transition: all 0.25s ease;
 }
 
 .jb-count-btn:hover:not(:disabled) {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
 }
 
@@ -152,29 +149,29 @@ function decrease() {
 
 /* مقدار وسط */
 .jb-count-value {
-  min-width: 52px;
+  min-width: 60px;
   padding: 0 16px;
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 900;
-  color: var(--jb-text);
-  line-height: 44px;
-  border-left: 2px dashed var(--jb-pink-200);
-  border-right: 2px dashed var(--jb-pink-200);
-  background: linear-gradient(135deg, #fff8fb, #ffeaf2);
+  color: #0e5a3a;
+  line-height: 48px;
+  border-left: 2px dashed rgba(14, 90, 58, 0.12);
+  border-right: 2px dashed rgba(14, 90, 58, 0.12);
+  background: linear-gradient(135deg, #f8fcf9, #e8f3ec);
 }
 
 /* ریسپانسیو */
 @media (max-width: 480px) {
   .jb-count-btn {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
   }
   .jb-count-value {
-    min-width: 44px;
+    min-width: 50px;
     padding: 0 12px;
-    line-height: 40px;
-    font-size: 0.92rem;
+    line-height: 42px;
+    font-size: 1rem;
   }
 }
 </style>

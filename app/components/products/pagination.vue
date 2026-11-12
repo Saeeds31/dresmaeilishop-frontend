@@ -118,9 +118,9 @@ const prevPage = () => {
   align-items: center;
   justify-content: center;
   border-radius: 12px;
-  border: 2px solid var(--jb-pink-200);
+  border: 2px solid rgba(14, 90, 58, 0.1);
   background: #fff;
-  color: var(--jb-text-soft);
+  color: #4a5568;
   font-size: 0.85rem;
   font-weight: 800;
   cursor: pointer;
@@ -130,17 +130,17 @@ const prevPage = () => {
 }
 
 .jb-page-btn:hover:not(.active):not(.jb-page-ellipsis):not(:disabled) {
-  background: var(--jb-pink-100);
-  border-color: var(--jb-pink-400);
-  color: var(--jb-fuchsia);
+  background: #f1f7f3;
+  border-color: rgba(14, 90, 58, 0.25);
+  color: #0e5a3a;
   transform: translateY(-2px);
 }
 
 .jb-page-btn.active {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
   border-color: transparent;
-  box-shadow: 0 8px 20px rgba(214, 51, 132, 0.45);
+  box-shadow: 0 8px 20px rgba(14, 90, 58, 0.35);
   transform: translateY(-2px);
 }
 
@@ -148,7 +148,7 @@ const prevPage = () => {
   cursor: default;
   border: none;
   background: transparent;
-  color: var(--jb-text-muted);
+  color: #a0aec0;
 }
 
 .jb-page-btn:disabled {
@@ -158,18 +158,18 @@ const prevPage = () => {
 
 .jb-page-arrow {
   background: #fff;
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
 }
 
 .jb-page-arrow:hover:not(:disabled) {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
   border-color: transparent;
-  box-shadow: 0 8px 20px rgba(214, 51, 132, 0.4);
+  box-shadow: 0 8px 20px rgba(14, 90, 58, 0.3);
 }
 
 .jb-page-info {
-  color: var(--jb-text-muted);
+  color: #718096;
   font-size: 0.82rem;
   font-weight: 600;
   text-align: center;

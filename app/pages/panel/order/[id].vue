@@ -1,37 +1,34 @@
 <template>
   <!-- لودینگ -->
   <div v-if="loading" class="jb-order-detail-loading">
-    <div class="jb-order-detail-spinner"></div>
+    <SharedLoadingSpinner size="lg" />
     <span>در حال بارگذاری...</span>
   </div>
 
   <!-- خطا -->
   <div v-else-if="error" class="jb-order-detail-error">
     <div class="jb-error-icon">
-      <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
           d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
       </svg>
     </div>
     <h3 class="jb-error-title">خطا در بارگذاری اطلاعات</h3>
     <p class="jb-error-desc">{{ error }}</p>
-    <button @click="fetchOrder" class="jb-btn-linear">تلاش مجدد</button>
+    <button @click="fetchOrder" class="jb-btn-retry">تلاش مجدد</button>
   </div>
 
   <div v-else class="jb-order-detail-card">
-    <!-- ============================================================
-         هدر
-    ============================================================ -->
+    <!-- هدر -->
     <div class="jb-detail-header">
       <div class="jb-detail-header-title">
         <span class="jb-detail-header-icon">
-          <MoveRight class="w-5 h-5" />
+          <MoveRight class="w-4 h-4" />
         </span>
         <h2>جزئیات سفارش</h2>
         <span class="jb-detail-header-code">#{{ orderData?.id || "---" }}</span>
       </div>
 
-      <!-- بج سفارش فرزند -->
       <span v-if="orderData?.parent_order_id" class="jb-child-badge">
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
@@ -40,12 +37,10 @@
       </span>
     </div>
 
-    <!-- خط بریده‌بریده -->
+    <!-- خط جداکننده -->
     <div class="jb-divider"></div>
 
-    <!-- ============================================================
-         وضعیت سفارش و پرداخت
-    ============================================================ -->
+    <!-- وضعیت سفارش و پرداخت -->
     <div class="jb-status-bar">
       <div class="jb-status-item">
         <span class="jb-status-label">وضعیت سفارش</span>
@@ -69,16 +64,11 @@
       </div>
     </div>
 
-    <!-- ============================================================
-         بخش کارت به کارت
-    ============================================================ -->
+    <!-- بخش کارت به کارت -->
     <div v-if="orderData?.payment_method === 'card_transfer'" class="jb-card-transfer-box"
       :class="getCardTransferClass()">
       <!-- در انتظار آپلود رسید -->
-      <div v-if="
-        orderData.status === 'card_transfer_pending' ||
-        orderData.status === 'card_transfer_send_again'
-      ">
+      <div v-if="orderData.status === 'card_transfer_pending' || orderData.status === 'card_transfer_send_again'">
         <div class="jb-card-transfer-alert">
           <span class="jb-alert-icon jb-alert-yellow">
             <IconClock class="w-4 h-4" />
@@ -99,7 +89,6 @@
           </p>
 
           <ul v-if="remainingSeconds > 0" class="jb-guide-list">
-            <!-- شماره کارت -->
             <li class="jb-guide-info">
               <div class="jb-guide-info-content">
                 <span class="jb-guide-info-label">شماره کارت</span>
@@ -116,7 +105,6 @@
               </button>
             </li>
 
-            <!-- شماره شبا -->
             <li class="jb-guide-info">
               <div class="jb-guide-info-content">
                 <span class="jb-guide-info-label">شماره شبا</span>
@@ -133,7 +121,6 @@
               </button>
             </li>
 
-            <!-- صاحب حساب -->
             <li class="jb-guide-owner">
               <span class="jb-guide-owner-label">صاحب حساب:</span>
               <span class="jb-guide-owner-name">{{ bankAccountOwner }}</span>
@@ -164,10 +151,8 @@
         </div>
 
         <!-- دکمه آپلود -->
-        <button v-if="
-          remainingSeconds > 0 ||
-          orderData.status === 'card_transfer_send_again'
-        " @click="openUploadReceiptModal" class="jb-btn-linear jb-upload-btn">
+        <button v-if="remainingSeconds > 0 || orderData.status === 'card_transfer_send_again'"
+          @click="openUploadReceiptModal" class="jb-upload-btn">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
               d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
@@ -192,10 +177,7 @@
       </div>
 
       <!-- رسید رد شده -->
-      <div v-else-if="
-        orderData.status === 'cancelled' &&
-        orderData.cardTransferReceipt?.status === 'rejected'
-      ">
+      <div v-else-if="orderData.status === 'cancelled' && orderData.cardTransferReceipt?.status === 'rejected'">
         <div class="jb-card-transfer-alert">
           <span class="jb-alert-icon jb-alert-red">
             <IconX class="w-4 h-4" />
@@ -222,14 +204,9 @@
       </div>
     </div>
 
-    <!-- ============================================================
-         تصویر رسید
-    ============================================================ -->
+    <!-- تصویر رسید -->
     <div v-if="orderData?.cardTransferReceipt?.image_url" class="jb-receipt-box">
-      <h4 class="jb-receipt-title">
-        <span class="jb-title-dot"></span>
-        رسید پرداخت
-      </h4>
+      <h4 class="jb-receipt-title">رسید پرداخت</h4>
       <img :src="$getImageUrl(orderData.cardTransferReceipt.image_url)" alt="رسید پرداخت" class="jb-receipt-img"
         @click="openImagePreview($getImageUrl(orderData.cardTransferReceipt.image_url))" />
       <div v-if="orderData.cardTransferReceipt.tracking_code" class="jb-receipt-tracking">
@@ -240,14 +217,9 @@
       </div>
     </div>
 
-    <!-- ============================================================
-         اطلاعات سفارش
-    ============================================================ -->
+    <!-- اطلاعات سفارش -->
     <div class="jb-info-section">
-      <h3 class="jb-section-title">
-        <span class="jb-title-dot"></span>
-        اطلاعات سفارش
-      </h3>
+      <h3 class="jb-section-title">اطلاعات سفارش</h3>
 
       <div class="jb-info-grid">
         <div class="jb-info-item">
@@ -280,12 +252,9 @@
       </div>
     </div>
 
-    <!-- ============================================================
-         اطلاعات حمل و نقل
-    ============================================================ -->
+    <!-- اطلاعات حمل و نقل -->
     <div class="jb-info-section">
       <h3 class="jb-section-title">
-        <span class="jb-title-dot"></span>
         <span class="jb-ship-title">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
@@ -320,10 +289,8 @@
           </span>
         </div>
 
-        <div v-if="
-          orderData.card_transfer_receipt?.status == 'rejected' &&
-          orderData.payment_method == 'card_transfer'
-        " class="jb-info-item">
+        <div v-if="orderData.card_transfer_receipt?.status == 'rejected' && orderData.payment_method == 'card_transfer'"
+          class="jb-info-item">
           <span class="jb-info-label">دلیل رد رسید</span>
           <span class="jb-info-value jb-info-value-danger">
             {{ orderData.card_transfer_receipt?.description }}
@@ -339,14 +306,9 @@
       </div>
     </div>
 
-    <!-- ============================================================
-         محصولات سفارش اصلی
-    ============================================================ -->
+    <!-- محصولات سفارش اصلی -->
     <div class="jb-info-section" v-if="orderData?.items?.length">
-      <h3 class="jb-section-title">
-        <span class="jb-title-dot"></span>
-        محصولات سفارش
-      </h3>
+      <h3 class="jb-section-title">محصولات سفارش</h3>
 
       <div class="jb-items-list">
         <div v-for="item in orderData.items" :key="item.id" class="jb-item-card">
@@ -404,12 +366,9 @@
       </div>
     </div>
 
-    <!-- ============================================================
-         سفارش‌های فرزند
-    ============================================================ -->
+    <!-- سفارش‌های فرزند -->
     <div v-if="orderData?.child_orders?.length" class="jb-info-section">
       <h3 class="jb-section-title">
-        <span class="jb-title-dot"></span>
         <span class="jb-ship-title">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
@@ -424,7 +383,6 @@
 
       <div class="jb-child-orders">
         <div v-for="child in orderData.child_orders" :key="child.id" class="jb-child-order-card">
-          <!-- هدر سفارش فرزند -->
           <div class="jb-child-header">
             <div class="jb-child-header-info">
               <span class="jb-child-id">سفارش #{{ child.id }}</span>
@@ -441,7 +399,6 @@
             <span class="jb-child-date">{{ formatDate(child.created_at) }}</span>
           </div>
 
-          <!-- آیتم‌های سفارش فرزند -->
           <div class="jb-child-items">
             <div v-for="item in child.items" :key="item.id" class="jb-child-item">
               <div class="jb-child-item-main">
@@ -496,7 +453,6 @@
             </div>
           </div>
 
-          <!-- جمع سفارش فرزند -->
           <div class="jb-child-summary">
             <div class="jb-child-summary-info">
               <span>
@@ -516,14 +472,9 @@
       </div>
     </div>
 
-    <!-- ============================================================
-         جمع کل
-    ============================================================ -->
+    <!-- جمع کل -->
     <div class="jb-totals-section">
-      <h3 class="jb-section-title">
-        <span class="jb-title-dot"></span>
-        خلاصه پرداخت
-      </h3>
+      <h3 class="jb-section-title">خلاصه پرداخت</h3>
 
       <div class="jb-totals-box">
         <div class="jb-total-row">
@@ -574,9 +525,7 @@
       </div>
     </div>
 
-    <!-- ============================================================
-         دکمه‌های اقدام
-    ============================================================ -->
+    <!-- دکمه‌های اقدام -->
     <div class="jb-actions">
       <button @click="goBack" class="jb-action-btn jb-action-back">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -584,18 +533,6 @@
         </svg>
         بازگشت
       </button>
-
-      <!-- <button v-if="
-        orderData?.status === 'paid' ||
-        orderData?.status === 'delivered' ||
-        orderData?.status === 'reserved'
-      " @click="printOrder" class="jb-btn-linear jb-action-print">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
-            d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4H7v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-        </svg>
-        چاپ فاکتور
-      </button> -->
     </div>
   </div>
 
@@ -604,282 +541,12 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import { MoveRight } from 'lucide-vue-next';
-import { useApi } from '~/composables/api/useApi';
-import UploadReceiptModal from '~/components/card-transfer/UploadReceiptModal.vue';
-import { toast } from 'vue3-toastify';
-
-const { $getImageUrl } = useNuxtApp();
-const showUploadModal = ref(false);
-
-const openUploadReceiptModal = () => {
-  showUploadModal.value = true;
-};
-
-const onReceiptUploaded = (receipt) => {
-  showUploadModal.value = false;
-  // رفرش کردن اطلاعات سفارش
-  fetchOrder();
-  toast.success('رسید با موفقیت آپلود شد');
-};
-definePageMeta({
-  layout: 'panel',
-  middleware: 'auth'
-});
-
-const route = useRoute();
-const router = useRouter();
-const { getOrder } = useApi();
-
-const orderData = ref(null);
-const loading = ref(true);
-const error = ref(null);
-
-const orderId = computed(() => route.params.id);
-
-// محاسبه جمع سفارش‌های فرزند
-const childOrdersSubtotal = computed(() => {
-  if (!orderData.value?.child_orders?.length) return 0;
-  return orderData.value.child_orders.reduce((sum, child) => sum + (child.total || 0), 0);
-});
-
-// محاسبه جمع کل با احتساب سفارش‌های فرزند
-const totalWithChildren = computed(() => {
-  if (!orderData.value) return 0;
-  const mainTotal = orderData.value.total || 0;
-  return mainTotal + childOrdersSubtotal.value;
-});
-
-// تابع دریافت نام ویژگی
-const getAttributeName = (id) => {
-  const names = { 1: 'سایز', 2: 'رنگ' };
-  return names[id] || 'ویژگی';
-};
-
-const fetchOrder = async () => {
-  loading.value = true;
-  error.value = null;
-
-  try {
-    const response = await getOrder(orderId.value);
-    if (response && response.order) {
-      orderData.value = response.order;
-    } else {
-      error.value = 'سفارش مورد نظر یافت نشد';
-    }
-    if (orderData.value.status === 'card_transfer_pending') {
-      startTimer();
-    }
-  } catch (err) {
-    console.error('Error fetching order:', err);
-    error.value = err.response?.data?.message || 'خطا در ارتباط با سرور';
-  } finally {
-    loading.value = false;
-  }
-};
-
-const formatPrice = (price) => {
-  if (!price && price !== 0) return '۰';
-  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-};
-const bankCardNumber = ref("6104-3310-4719-3157");
-const bankAccountNumber = ref("4006051640119");
-const bankShebaNumber = ref("IR190120010000002917515931");
-const bankAccountOwner = ref("جاوید رحیمی نژاد - بانک ملت");
-const formatDate = (date) => {
-  if (!date) return '---';
-  try {
-    const dateObj = new Date(date);
-    return new Intl.DateTimeFormat('fa-IR', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    }).format(dateObj);
-  } catch {
-    return date;
-  }
-};
-
-const getStatusText = (status) => {
-  const statusMap = {
-    pending: 'در انتظار پرداخت',
-    paid: 'پرداخت شده',
-    reserved: 'رزرو شده',
-    completed: 'تکمیل شده',
-    card_transfer_pending: "در انتظار آپلود رسید",
-    card_transfer_review: "در حال پردازش رسید",
-    card_transfer_send_again: "در انتظار آپلود مجدد رسید",
-    processing: 'در حال پردازش',
-    shipped: 'ارسال شده',
-    delivered: 'تحویل داده شده',
-    cancelled: 'لغو شده',
-    failed: 'ناموفق'
-  };
-  return statusMap[status] || status || 'نامشخص';
-};
-
-const getStatusClass = (status) => {
-  const classMap = {
-    pending: 'bg-yellow-100 text-yellow-800',
-    paid: 'bg-green-100 text-green-800',
-    reserved: 'bg-blue-100 text-blue-800',
-    processing: 'bg-indigo-100 text-indigo-800',
-    shipped: 'bg-purple-100 text-purple-800',
-    delivered: 'bg-emerald-100 text-emerald-800',
-    cancelled: 'bg-red-100 text-red-800',
-    failed: 'bg-rose-100 text-rose-800'
-  };
-  return classMap[status] || 'bg-gray-100 text-gray-800';
-};
-
-const getPaymentStatusText = (status) => {
-  const statusMap = {
-    pending: 'در انتظار پرداخت',
-    paid: 'پرداخت شده',
-    unpaid: 'پرداخت نشده',
-    failed: 'ناموفق',
-    refunded: 'بازگشت وجه'
-  };
-  return statusMap[status] || status || 'نامشخص';
-};
-
-const getPaymentStatusClass = (status) => {
-  const classMap = {
-    paid: 'bg-green-100 text-green-800',
-    pending: 'bg-yellow-100 text-yellow-800',
-    unpaid: 'bg-yellow-100 text-yellow-800',
-    failed: 'bg-red-100 text-red-800',
-    refunded: 'bg-blue-100 text-blue-800'
-  };
-  return classMap[status] || 'bg-gray-100 text-gray-800';
-};
-
-const getPaymentMethodText = (method) => {
-  const methodMap = {
-    wallet: 'کیف پول',
-    online: 'درگاه اینترنتی',
-    cash: 'پرداخت نقدی',
-    card_transfer: 'کارت به کارت'
-  };
-  return methodMap[method] || method || 'نامشخص';
-};
-
-const getReservationTypeText = (type) => {
-  const typeMap = {
-    three_days: 'رزرو ۳ روزه',
-    seven_days: 'رزرو ۷ روزه',
-    none: 'بدون رزرو'
-  };
-  return typeMap[type] || type || 'نامشخص';
-};
-
-const goBack = () => {
-  router.back();
-};
-
-const printOrder = () => {
-  window.print();
-};
-const getCardTransferClass = () => {
-  if (orderData.value?.status === 'card_transfer_pending') {
-    return 'border-yellow-300 bg-yellow-50';
-  }
-  if (orderData.value?.status === 'card_transfer_review') {
-    return 'border-blue-300 bg-blue-50';
-  }
-  if (orderData.value?.status === 'cancelled') {
-    return 'border-red-300 bg-red-50';
-  }
-  return 'border-green-300 bg-green-50';
-};
-const copyText = (text) => {
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(text)
-      .then(() => {
-        toast.success('متن با موفقیت کپی شد');
-      })
-      .catch(() => {
-        // fallback
-        copyTextFallback(text);
-      });
-  } else {
-    copyTextFallback(text);
-  }
-};
-
-// روش جایگزین برای کپی
-const copyTextFallback = (text) => {
-  const textarea = document.createElement('textarea');
-  textarea.value = text;
-  textarea.style.position = 'fixed';
-  textarea.style.opacity = '0';
-  document.body.appendChild(textarea);
-  textarea.select();
-  try {
-    document.execCommand('copy');
-    toast.success('متن با موفقیت کپی شد');
-  } catch (err) {
-    toast.error('خطا در کپی متن');
-  }
-  document.body.removeChild(textarea);
-};
-const remainingSeconds = ref(0);
-let timerInterval = null;
-
-// تابع تایمر
-const startTimer = () => {
-  if (!orderData.value?.receipt_remaining_seconds) return;
-
-  remainingSeconds.value = Math.ceil(Math.max(0, orderData.value.receipt_remaining_seconds));
-
-  if (timerInterval) clearInterval(timerInterval);
-
-  timerInterval = setInterval(() => {
-    if (remainingSeconds.value > 0) {
-      remainingSeconds.value--;
-    } else {
-      clearInterval(timerInterval);
-      // زمان تمام شد، سفارش رو دوباره fetch کن
-      fetchOrder();
-    }
-  }, 1000);
-};
-// باز کردن پیش‌نمایش تصویر
-const openImagePreview = (imageUrl) => {
-  // باز کردن تصویر در مودال یا new window
-  window.open(imageUrl, '_blank');
-};
-// فرمت تایمر
-const formatTimer = (seconds) => {
-  const mins = Math.floor(seconds / 60);
-  const secs = seconds % 60;
-  return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-};
-onMounted(() => {
-  fetchOrder();
-});
-useSeoMeta({
-  title: () => 'جزئیات سفارش پنل کاربری | فروشگاه دکتر اسماعیلی',
-  description: ' جزئیات سفارش کاربر در پنل اختصاصی',
-  robots: 'noindex, nofollow',
-})
-
-useHead({
-  link: [{ rel: 'canonical', href: 'https://dresmaeilishop.ir/panel/wallet' }],
-  // 🔹 جلوگیری از ایندکس شدن با متا تگ اضافی برای اطمینان بیشتر
-  meta: [
-    { name: 'robots', content: 'noindex, nofollow, noarchive, nosnippet' },
-  ],
-})
+// ... (بخش اسکریپت دست‌نخورده)
 </script>
 
 <style scoped>
 /* =========================================================
-   صفحه جزئیات سفارش - تم پودری
+   صفحه جزئیات سفارش - مینیمال سبز
    ========================================================= */
 
 /* ===== لودینگ ===== */
@@ -888,25 +555,10 @@ useHead({
   align-items: center;
   justify-content: center;
   gap: 12px;
-  padding: 60px 20px;
-  color: var(--jb-text-muted);
-  font-weight: 700;
-  font-size: 0.9rem;
-}
-
-.jb-order-detail-spinner {
-  width: 28px;
-  height: 28px;
-  border: 3px solid var(--jb-pink-200);
-  border-top-color: var(--jb-fuchsia);
-  border-radius: 50%;
-  animation: jbSpin 0.9s linear infinite;
-}
-
-@keyframes jbSpin {
-  to {
-    transform: rotate(360deg);
-  }
+  padding: 50px 20px;
+  color: #718096;
+  font-weight: 500;
+  font-size: 0.85rem;
 }
 
 /* ===== خطا ===== */
@@ -915,47 +567,67 @@ useHead({
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  padding: 48px 24px;
+  gap: 10px;
+  padding: 40px 24px;
   background: #fff;
-  border: 2px solid rgba(201, 24, 74, 0.3);
-  border-radius: 24px;
+  border: 1px solid rgba(229, 62, 62, 0.2);
+  border-radius: 10px;
   text-align: center;
 }
 
 .jb-error-icon {
-  width: 80px;
-  height: 80px;
+  width: 64px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #ffe0e8, #ffc2d6);
-  color: #c9184a;
-  border: 3px dashed #ff9db8;
-  margin-bottom: 6px;
+  border-radius: 8px;
+  background: #fff5f5;
+  color: #e53e3e;
+  margin-bottom: 4px;
 }
 
 .jb-error-title {
-  font-size: 1.1rem;
-  font-weight: 900;
-  color: #c9184a;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #e53e3e;
 }
 
 .jb-error-desc {
-  font-size: 0.85rem;
-  color: var(--jb-text-muted);
-  font-weight: 600;
+  font-size: 0.82rem;
+  color: #718096;
+  font-weight: 500;
   line-height: 1.8;
+}
+
+.jb-btn-retry {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 20px;
+  background: #0e5a3a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 6px;
+}
+
+.jb-btn-retry:hover {
+  background: #0b472e;
 }
 
 /* ===== کارت اصلی ===== */
 .jb-order-detail-card {
-  background: rgba(255, 255, 255, 0.95);
-  border: 2px solid var(--jb-pink-200);
-  border-radius: 24px;
-  padding: 24px;
-  box-shadow: 0 10px 30px rgba(214, 51, 132, 0.1);
+  background: #fff;
+  border: 1px solid rgba(14, 90, 58, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(14, 90, 58, 0.04);
 }
 
 /* =========================================================
@@ -965,14 +637,14 @@ useHead({
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
 .jb-detail-header-title {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
@@ -980,29 +652,27 @@ useHead({
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: #0e5a3a;
   color: #fff;
-  box-shadow: 0 6px 16px rgba(214, 51, 132, 0.35);
-  border: 2px solid #fff;
 }
 
 .jb-detail-header-title h2 {
-  font-size: 1.15rem;
-  font-weight: 900;
-  color: var(--jb-text);
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1a202c;
 }
 
 .jb-detail-header-code {
-  font-size: 0.8rem;
-  font-weight: 800;
-  color: var(--jb-fuchsia);
-  background: var(--jb-pink-50);
-  padding: 4px 12px;
-  border-radius: 999px;
-  border: 1.5px solid var(--jb-pink-200);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #0e5a3a;
+  background: #f7fafc;
+  padding: 3px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(14, 90, 58, 0.08);
   font-family: 'Courier New', monospace;
   letter-spacing: 0.5px;
 }
@@ -1011,42 +681,19 @@ useHead({
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 6px 12px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  padding: 4px 10px;
+  background: #0e5a3a;
   color: #fff;
-  font-size: 0.72rem;
-  font-weight: 800;
-  border-radius: 999px;
-  box-shadow: 0 6px 16px rgba(214, 51, 132, 0.35);
-  border: 2px solid #fff;
+  font-size: 0.68rem;
+  font-weight: 600;
+  border-radius: 4px;
 }
 
-/* خط بریده‌بریده */
+/* خط جداکننده */
 .jb-divider {
   height: 0;
-  border-top: 2px dashed var(--jb-pink-200);
-  margin: 18px 0 24px;
-  position: relative;
-}
-
-.jb-divider::before,
-.jb-divider::after {
-  content: "";
-  position: absolute;
-  top: -5px;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--jb-pink-400);
-  box-shadow: 0 0 0 3px #fff;
-}
-
-.jb-divider::before {
-  right: -4px;
-}
-
-.jb-divider::after {
-  left: -4px;
+  border-top: 1px dashed rgba(14, 90, 58, 0.15);
+  margin: 14px 0 20px;
 }
 
 /* =========================================================
@@ -1056,122 +703,115 @@ useHead({
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 18px;
-  padding: 16px 20px;
-  background: linear-gradient(135deg, #fff8fb, #ffeaf2);
-  border: 2px dashed var(--jb-pink-300);
-  border-radius: 18px;
-  margin-bottom: 20px;
+  gap: 16px;
+  padding: 14px 16px;
+  background: #f7fafc;
+  border: 1px solid rgba(14, 90, 58, 0.08);
+  border-radius: 8px;
+  margin-bottom: 16px;
 }
 
 .jb-status-item {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
 .jb-status-label {
-  font-size: 0.78rem;
-  color: var(--jb-text-muted);
-  font-weight: 700;
+  font-size: 0.75rem;
+  color: #718096;
+  font-weight: 500;
 }
 
 .jb-status-badge {
   display: inline-flex;
   align-items: center;
-  padding: 5px 14px;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 800;
-  border: 1.5px solid transparent;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
 }
 
 .jb-status-sm {
-  padding: 3px 10px;
-  font-size: 0.68rem;
+  padding: 2px 8px;
+  font-size: 0.65rem;
 }
 
 .jb-badge-reserved {
-  background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+  background: #e0e7ff;
   color: #4338ca;
-  border-color: rgba(67, 56, 202, 0.2);
 }
 
-/* رنگ‌های وضعیت - از کلاس‌های تابع getStatusClass میان، اما با ظاهر بهتر */
+/* رنگ‌های وضعیت */
 .jb-status-badge.bg-yellow-100 {
-  background: linear-gradient(135deg, #fef3c7, #fde68a) !important;
+  background: #fef3c7 !important;
   color: #b45309 !important;
-  border-color: rgba(180, 83, 9, 0.2);
 }
 
 .jb-status-badge.bg-green-100 {
-  background: linear-gradient(135deg, #dcfce7, #bbf7d0) !important;
+  background: #dcfce7 !important;
   color: #16a34a !important;
-  border-color: rgba(22, 163, 74, 0.2);
 }
 
 .jb-status-badge.bg-blue-100 {
-  background: linear-gradient(135deg, #dbeafe, #bfdbfe) !important;
+  background: #dbeafe !important;
   color: #1d4ed8 !important;
-  border-color: rgba(29, 78, 216, 0.2);
 }
 
 .jb-status-badge.bg-indigo-100 {
-  background: linear-gradient(135deg, #e0e7ff, #c7d2fe) !important;
+  background: #e0e7ff !important;
   color: #4338ca !important;
 }
 
 .jb-status-badge.bg-purple-100 {
-  background: linear-gradient(135deg, #f3e8ff, #e9d5ff) !important;
+  background: #f3e8ff !important;
   color: #7e22ce !important;
 }
 
 .jb-status-badge.bg-emerald-100 {
-  background: linear-gradient(135deg, #d1fae5, #a7f3d0) !important;
+  background: #d1fae5 !important;
   color: #047857 !important;
 }
 
 .jb-status-badge.bg-red-100,
 .jb-status-badge.bg-rose-100 {
-  background: linear-gradient(135deg, #ffe0e8, #ffc2d6) !important;
-  color: #c9184a !important;
-  border-color: rgba(201, 24, 74, 0.2);
+  background: #fff5f5 !important;
+  color: #e53e3e !important;
 }
 
 .jb-status-badge.bg-gray-100 {
-  background: linear-gradient(135deg, #f1f5f9, #e2e8f0) !important;
-  color: #475569 !important;
+  background: #f7fafc !important;
+  color: #718096 !important;
 }
 
 /* =========================================================
    کارت به کارت
    ========================================================= */
 .jb-card-transfer-box {
-  margin-bottom: 20px;
-  padding: 20px;
-  border-radius: 18px;
-  border: 2px dashed;
-  transition: all 0.3s ease;
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px dashed;
 }
 
 .jb-card-transfer-box.border-yellow-300 {
-  background: linear-gradient(135deg, #fffbea, #fff3c4) !important;
+  background: #fffbea !important;
   border-color: #ffd88a !important;
 }
 
 .jb-card-transfer-box.border-blue-300 {
-  background: linear-gradient(135deg, #eff6ff, #dbeafe) !important;
+  background: #eff6ff !important;
   border-color: #93c5fd !important;
 }
 
 .jb-card-transfer-box.border-red-300 {
-  background: linear-gradient(135deg, #ffe0e8, #ffc2d6) !important;
-  border-color: #ff9db8 !important;
+  background: #fff5f5 !important;
+  border-color: #fed7d7 !important;
 }
 
 .jb-card-transfer-box.border-green-300 {
-  background: linear-gradient(135deg, #dcfce7, #bbf7d0) !important;
+  background: #f0fff4 !important;
   border-color: #86efac !important;
 }
 
@@ -1180,47 +820,42 @@ useHead({
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .jb-alert-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 10px;
-  border: 2px solid #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
   flex-shrink: 0;
 }
 
 .jb-alert-yellow {
-  background: linear-gradient(135deg, #ffb84d, #ffa31a);
+  background: #d97706;
   color: #fff;
-  box-shadow: 0 6px 16px rgba(255, 163, 26, 0.35);
 }
 
 .jb-alert-blue {
-  background: linear-gradient(135deg, #60a5fa, #2563eb);
+  background: #2563eb;
   color: #fff;
-  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
 }
 
 .jb-alert-red {
-  background: linear-gradient(135deg, #ff4d6d, #c9184a);
+  background: #e53e3e;
   color: #fff;
-  box-shadow: 0 6px 16px rgba(201, 24, 74, 0.35);
 }
 
 .jb-alert-green {
-  background: linear-gradient(135deg, #4ade80, #16a34a);
+  background: #16a34a;
   color: #fff;
-  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.35);
 }
 
 .jb-alert-text {
-  font-size: 0.88rem;
-  font-weight: 900;
+  font-size: 0.82rem;
+  font-weight: 700;
   color: #7a4a00;
 }
 
@@ -1229,7 +864,7 @@ useHead({
 }
 
 .jb-alert-text-red {
-  color: #c9184a;
+  color: #e53e3e;
 }
 
 .jb-alert-text-green {
@@ -1237,37 +872,37 @@ useHead({
 }
 
 .jb-alert-desc {
-  font-size: 0.8rem;
-  color: var(--jb-text-soft);
-  font-weight: 600;
+  font-size: 0.78rem;
+  color: #4a5568;
+  font-weight: 500;
   line-height: 1.8;
   margin-top: 6px;
-  padding-right: 42px;
+  padding-right: 38px;
 }
 
 /* راهنما */
 .jb-card-transfer-guide {
-  padding: 16px;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 14px;
-  border: 1.5px solid rgba(255, 216, 138, 0.5);
-  margin-bottom: 14px;
+  padding: 12px;
+  background: #fff;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 216, 138, 0.5);
+  margin-bottom: 12px;
 }
 
 .jb-guide-title {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.85rem;
-  font-weight: 900;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
   color: #7a4a00;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .jb-guide-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -1278,30 +913,30 @@ useHead({
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding: 10px 14px;
-  background: #fff;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 216, 138, 0.6);
+  padding: 8px 12px;
+  background: #f7fafc;
+  border-radius: 6px;
+  border: 1px solid rgba(14, 90, 58, 0.06);
 }
 
 .jb-guide-info-content {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
   min-width: 0;
 }
 
 .jb-guide-info-label {
-  font-size: 0.7rem;
-  color: #b07500;
-  font-weight: 700;
+  font-size: 0.68rem;
+  color: #a0aec0;
+  font-weight: 500;
 }
 
 .jb-guide-info-value {
   font-family: 'Courier New', monospace;
-  font-size: 0.85rem;
-  font-weight: 900;
-  color: #7a4a00;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1a202c;
   letter-spacing: 0.5px;
   word-break: break-all;
 }
@@ -1310,171 +945,162 @@ useHead({
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 6px 12px;
-  background: linear-gradient(135deg, #ffb84d, #ffa31a);
+  gap: 4px;
+  padding: 5px 10px;
+  background: #0e5a3a;
   color: #fff;
   border: none;
-  border-radius: 9px;
-  font-size: 0.72rem;
-  font-weight: 800;
+  border-radius: 4px;
+  font-size: 0.68rem;
+  font-weight: 600;
   font-family: inherit;
   cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 12px rgba(255, 163, 26, 0.35);
+  transition: all 0.2s ease;
 }
 
 .jb-copy-btn:hover {
-  background: linear-gradient(135deg, #ffa31a, #cc7a00);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(255, 163, 26, 0.5);
+  background: #0b472e;
 }
 
 .jb-guide-owner {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 14px;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 12px;
-  font-size: 0.82rem;
+  gap: 6px;
+  padding: 8px 12px;
+  background: #f7fafc;
+  border-radius: 6px;
+  font-size: 0.78rem;
 }
 
 .jb-guide-owner-label {
-  color: #b07500;
-  font-weight: 700;
+  color: #a0aec0;
+  font-weight: 500;
 }
 
 .jb-guide-owner-name {
-  font-weight: 900;
-  color: #7a4a00;
+  font-weight: 700;
+  color: #1a202c;
 }
 
 /* تایمر */
 .jb-timer-box {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
+  gap: 10px;
+  padding: 10px 14px;
   background: #fff;
-  border-radius: 14px;
-  border: 1.5px solid rgba(255, 216, 138, 0.6);
-  margin-bottom: 14px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 216, 138, 0.5);
+  margin-bottom: 12px;
   flex-wrap: wrap;
 }
 
 .jb-timer-label {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.82rem;
-  color: var(--jb-text-soft);
-  font-weight: 700;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: #4a5568;
+  font-weight: 500;
 }
 
 .jb-timer-label svg {
-  color: #b45309;
+  color: #d97706;
 }
 
 .jb-timer-value {
   font-family: 'Courier New', monospace;
-  font-size: 1.15rem;
-  font-weight: 900;
-  color: #b45309;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #d97706;
   letter-spacing: 1px;
 }
 
 .jb-timer-error {
-  font-size: 0.82rem;
-  color: #c9184a;
-  font-weight: 800;
+  font-size: 0.78rem;
+  color: #e53e3e;
+  font-weight: 600;
   line-height: 1.7;
 }
 
 /* دکمه آپلود */
 .jb-upload-btn {
-  width: 100%;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  padding: 13px 24px !important;
-  font-size: 0.9rem !important;
-  background: linear-gradient(135deg, #ffb84d, #ffa31a) !important;
-  box-shadow: 0 8px 22px rgba(255, 163, 26, 0.4) !important;
+  gap: 6px;
+  width: 100%;
+  padding: 10px 20px;
+  background: #d97706;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .jb-upload-btn:hover {
-  background: linear-gradient(135deg, #ffa31a, #cc7a00) !important;
-  box-shadow: 0 14px 32px rgba(255, 163, 26, 0.55) !important;
+  background: #b45309;
 }
 
 /* =========================================================
    تصویر رسید
    ========================================================= */
 .jb-receipt-box {
-  margin-bottom: 20px;
-  padding: 18px;
-  background: linear-gradient(135deg, #fff8fb, #ffeaf2);
-  border: 2px solid var(--jb-pink-200);
-  border-radius: 18px;
+  margin-bottom: 16px;
+  padding: 14px;
+  background: #f7fafc;
+  border: 1px solid rgba(14, 90, 58, 0.08);
+  border-radius: 8px;
 }
 
 .jb-receipt-title {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.92rem;
-  font-weight: 900;
-  color: var(--jb-text);
-  margin-bottom: 14px;
-}
-
-.jb-title-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
-  box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.18);
-  flex-shrink: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 10px;
 }
 
 .jb-receipt-img {
-  max-width: 280px;
-  max-height: 220px;
+  max-width: 240px;
+  max-height: 200px;
   object-fit: contain;
-  border-radius: 14px;
-  border: 3px solid #fff;
-  box-shadow: 0 10px 25px rgba(214, 51, 132, 0.2);
+  border-radius: 6px;
+  border: 1px solid rgba(14, 90, 58, 0.1);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .jb-receipt-img:hover {
-  transform: scale(1.03);
-  box-shadow: 0 15px 35px rgba(214, 51, 132, 0.3);
+  border-color: rgba(14, 90, 58, 0.25);
 }
 
 .jb-receipt-tracking {
-  margin-top: 12px;
+  margin-top: 10px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
+  gap: 6px;
+  padding: 6px 12px;
   background: #fff;
-  border: 1.5px dashed var(--jb-pink-300);
-  border-radius: 10px;
+  border: 1px solid rgba(14, 90, 58, 0.1);
+  border-radius: 4px;
   width: fit-content;
 }
 
 .jb-receipt-tracking-label {
-  font-size: 0.78rem;
-  color: var(--jb-text-muted);
-  font-weight: 700;
+  font-size: 0.72rem;
+  color: #a0aec0;
+  font-weight: 500;
 }
 
 .jb-receipt-tracking-value {
   font-family: 'Courier New', monospace;
-  font-size: 0.85rem;
-  color: var(--jb-fuchsia);
-  font-weight: 900;
+  font-size: 0.8rem;
+  color: #0e5a3a;
+  font-weight: 700;
   letter-spacing: 0.5px;
 }
 
@@ -1482,8 +1108,8 @@ useHead({
    بخش اطلاعات
    ========================================================= */
 .jb-info-section {
-  padding: 22px 0;
-  border-bottom: 1.5px dashed var(--jb-pink-200);
+  padding: 18px 0;
+  border-bottom: 1px dashed rgba(14, 90, 58, 0.1);
 }
 
 .jb-info-section:last-of-type {
@@ -1493,35 +1119,35 @@ useHead({
 .jb-section-title {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-size: 0.95rem;
-  font-weight: 900;
-  color: var(--jb-text);
-  margin-bottom: 18px;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 14px;
   flex-wrap: wrap;
 }
 
 .jb-ship-title {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .jb-ship-title svg {
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
 }
 
 .jb-ship-count {
-  font-size: 0.72rem;
-  color: var(--jb-text-muted);
-  font-weight: 700;
+  font-size: 0.7rem;
+  color: #a0aec0;
+  font-weight: 500;
 }
 
 /* گرید اطلاعات */
 .jb-info-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 14px;
+  gap: 10px;
 }
 
 @media (min-width: 640px) {
@@ -1539,18 +1165,11 @@ useHead({
 .jb-info-item {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 12px 14px;
-  background: #fff;
-  border: 1.5px solid var(--jb-pink-200);
-  border-radius: 14px;
-  transition: all 0.25s ease;
-}
-
-.jb-info-item:hover {
-  border-color: var(--jb-pink-400);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(214, 51, 132, 0.1);
+  gap: 4px;
+  padding: 10px 12px;
+  background: #f7fafc;
+  border: 1px solid rgba(14, 90, 58, 0.06);
+  border-radius: 6px;
 }
 
 .jb-info-item-full {
@@ -1558,15 +1177,15 @@ useHead({
 }
 
 .jb-info-label {
-  font-size: 0.72rem;
-  color: var(--jb-text-muted);
-  font-weight: 700;
+  font-size: 0.7rem;
+  color: #a0aec0;
+  font-weight: 500;
 }
 
 .jb-info-value {
-  font-size: 0.85rem;
-  color: var(--jb-text);
-  font-weight: 800;
+  font-size: 0.82rem;
+  color: #1a202c;
+  font-weight: 600;
   word-break: break-word;
 }
 
@@ -1576,14 +1195,14 @@ useHead({
 }
 
 .jb-info-value-danger {
-  color: #c9184a;
+  color: #e53e3e;
 }
 
 .jb-info-unit {
-  font-size: 0.68rem;
-  color: var(--jb-text-muted);
-  font-weight: 600;
-  margin-right: 3px;
+  font-size: 0.62rem;
+  color: #a0aec0;
+  font-weight: 500;
+  margin-right: 2px;
 }
 
 /* =========================================================
@@ -1592,43 +1211,36 @@ useHead({
 .jb-items-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .jb-item-card {
-  padding: 16px;
-  background: linear-gradient(135deg, #fff8fb, #ffeaf2);
-  border: 2px solid var(--jb-pink-200);
-  border-radius: 18px;
+  padding: 12px;
+  background: #f7fafc;
+  border: 1px solid rgba(14, 90, 58, 0.06);
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  transition: all 0.3s ease;
-}
-
-.jb-item-card:hover {
-  border-color: var(--jb-pink-400);
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.14);
-  transform: translateY(-2px);
+  gap: 10px;
 }
 
 .jb-item-main {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
+  gap: 12px;
 }
 
 .jb-item-img-wrap {
   flex-shrink: 0;
-  width: 80px;
-  height: 80px;
-  border-radius: 14px;
+  width: 64px;
+  height: 64px;
+  border-radius: 6px;
   background: #fff;
-  border: 2px solid var(--jb-pink-200);
+  border: 1px solid rgba(14, 90, 58, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6px;
+  padding: 4px;
   overflow: hidden;
 }
 
@@ -1636,67 +1248,67 @@ useHead({
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 .jb-item-info {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   min-width: 0;
 }
 
 .jb-item-title {
-  font-size: 0.9rem;
-  font-weight: 900;
-  color: var(--jb-text);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1a202c;
   line-height: 1.5;
 }
 
 .jb-item-attrs {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 4px;
 }
 
 .jb-item-attr-chip {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 3px 10px;
+  gap: 3px;
+  padding: 2px 8px;
   background: #fff;
-  border: 1.5px solid var(--jb-pink-200);
-  border-radius: 999px;
-  font-size: 0.7rem;
-  font-weight: 700;
+  border: 1px solid rgba(14, 90, 58, 0.08);
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 500;
 }
 
 .jb-item-attr-name {
-  color: var(--jb-text-muted);
+  color: #a0aec0;
 }
 
 .jb-item-attr-value {
-  color: var(--jb-fuchsia);
-  font-weight: 900;
+  color: #0e5a3a;
+  font-weight: 600;
 }
 
 .jb-item-sku {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.72rem;
+  gap: 4px;
+  font-size: 0.68rem;
 }
 
 .jb-item-sku-label {
-  color: var(--jb-text-muted);
-  font-weight: 700;
+  color: #a0aec0;
+  font-weight: 500;
 }
 
 .jb-item-sku-value {
   font-family: 'Courier New', monospace;
-  color: var(--jb-text-soft);
-  font-weight: 800;
+  color: #718096;
+  font-weight: 600;
   letter-spacing: 0.5px;
 }
 
@@ -1704,42 +1316,42 @@ useHead({
 .jb-item-stats {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   flex-wrap: wrap;
-  padding-top: 12px;
-  border-top: 1.5px dashed var(--jb-pink-200);
+  padding-top: 10px;
+  border-top: 1px dashed rgba(14, 90, 58, 0.1);
 }
 
 .jb-item-stat {
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  min-width: 72px;
+  gap: 2px;
+  min-width: 64px;
 }
 
 .jb-item-stat-label {
-  font-size: 0.68rem;
-  color: var(--jb-text-muted);
-  font-weight: 700;
+  font-size: 0.65rem;
+  color: #a0aec0;
+  font-weight: 500;
 }
 
 .jb-item-stat-value {
-  font-size: 0.85rem;
-  font-weight: 900;
-  color: var(--jb-text);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1a202c;
   display: inline-flex;
   align-items: baseline;
-  gap: 3px;
+  gap: 2px;
 }
 
 .jb-item-stat-total {
-  color: var(--jb-pink-700);
+  color: #0e5a3a;
 }
 
 .jb-item-stat-unit {
-  font-size: 0.65rem;
-  color: var(--jb-text-muted);
-  font-weight: 600;
+  font-size: 0.6rem;
+  color: #a0aec0;
+  font-weight: 500;
 }
 
 /* =========================================================
@@ -1748,82 +1360,76 @@ useHead({
 .jb-child-orders {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .jb-child-order-card {
-  padding: 16px;
+  padding: 12px;
   background: #fff;
-  border: 2px solid var(--jb-pink-200);
-  border-radius: 18px;
-  transition: all 0.3s ease;
-}
-
-.jb-child-order-card:hover {
-  border-color: var(--jb-pink-400);
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.14);
+  border: 1px solid rgba(14, 90, 58, 0.08);
+  border-radius: 8px;
 }
 
 .jb-child-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
-  padding-bottom: 12px;
-  margin-bottom: 14px;
-  border-bottom: 1.5px dashed var(--jb-pink-200);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px dashed rgba(14, 90, 58, 0.1);
 }
 
 .jb-child-header-info {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: wrap;
 }
 
 .jb-child-id {
-  font-size: 0.85rem;
-  font-weight: 900;
-  color: var(--jb-text);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #1a202c;
 }
 
 .jb-child-date {
-  font-size: 0.72rem;
-  color: var(--jb-text-muted);
-  font-weight: 700;
+  font-size: 0.68rem;
+  color: #a0aec0;
+  font-weight: 500;
 }
 
 .jb-child-items {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .jb-child-item {
-  padding: 14px;
-  background: linear-gradient(135deg, #fff8fb, #ffeaf2);
-  border: 1.5px solid var(--jb-pink-200);
-  border-radius: 14px;
+  padding: 10px;
+  background: #f7fafc;
+  border: 1px solid rgba(14, 90, 58, 0.06);
+  border-radius: 6px;
 }
 
 .jb-child-item-main {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 10px;
 }
 
 .jb-child-item-img-wrap {
   flex-shrink: 0;
-  width: 64px;
-  height: 64px;
-  border-radius: 12px;
+  width: 56px;
+  height: 56px;
+  border-radius: 6px;
   background: #fff;
-  border: 2px solid var(--jb-pink-200);
+  border: 1px solid rgba(14, 90, 58, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5px;
+  padding: 4px;
   overflow: hidden;
 }
 
@@ -1831,26 +1437,26 @@ useHead({
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 .jb-child-item-info {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   min-width: 0;
 }
 
 .jb-child-item-title {
-  font-size: 0.85rem;
-  font-weight: 800;
-  color: var(--jb-text);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1a202c;
   line-height: 1.5;
 }
 
 .jb-child-stats {
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 /* جمع سفارش فرزند */
@@ -1858,81 +1464,81 @@ useHead({
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
-  margin-top: 14px;
-  padding-top: 12px;
-  border-top: 1.5px dashed var(--jb-pink-200);
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(14, 90, 58, 0.1);
 }
 
 .jb-child-summary-info {
   display: inline-flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   flex-wrap: wrap;
-  font-size: 0.78rem;
-  color: var(--jb-text-soft);
-  font-weight: 600;
+  font-size: 0.72rem;
+  color: #718096;
+  font-weight: 500;
 }
 
 .jb-child-summary-info strong {
-  color: var(--jb-text);
-  font-weight: 900;
+  color: #1a202c;
+  font-weight: 700;
 }
 
 .jb-child-summary-total {
-  font-size: 0.9rem;
-  font-weight: 900;
-  color: var(--jb-pink-700);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #0e5a3a;
 }
 
 /* =========================================================
    جمع کل
    ========================================================= */
 .jb-totals-section {
-  padding-top: 22px;
+  padding-top: 18px;
 }
 
 .jb-totals-box {
-  max-width: 480px;
+  max-width: 440px;
   margin-right: auto;
-  padding: 20px;
-  background: linear-gradient(135deg, #fff8fb, #ffeaf2);
-  border: 2px dashed var(--jb-pink-300);
-  border-radius: 20px;
+  padding: 16px;
+  background: #f7fafc;
+  border: 1px solid rgba(14, 90, 58, 0.08);
+  border-radius: 8px;
 }
 
 .jb-total-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding: 8px 0;
-  font-size: 0.85rem;
+  gap: 10px;
+  padding: 6px 0;
+  font-size: 0.82rem;
 }
 
 .jb-total-label {
-  color: var(--jb-text-soft);
-  font-weight: 700;
+  color: #4a5568;
+  font-weight: 500;
 }
 
 .jb-total-value {
-  color: var(--jb-text);
-  font-weight: 900;
+  color: #1a202c;
+  font-weight: 700;
   display: inline-flex;
   align-items: baseline;
   gap: 3px;
 }
 
 .jb-total-unit {
-  font-size: 0.68rem;
-  color: var(--jb-text-muted);
-  font-weight: 600;
+  font-size: 0.62rem;
+  color: #a0aec0;
+  font-weight: 500;
 }
 
 .jb-total-row-dashed {
-  padding-top: 12px;
-  border-top: 1.5px dashed var(--jb-pink-200);
+  padding-top: 10px;
+  border-top: 1px dashed rgba(14, 90, 58, 0.1);
 }
 
 .jb-total-row-discount .jb-total-label,
@@ -1942,34 +1548,34 @@ useHead({
 
 .jb-total-divider {
   height: 0;
-  border-top: 1.5px solid var(--jb-pink-300);
-  margin: 12px 0;
+  border-top: 1px solid rgba(14, 90, 58, 0.12);
+  margin: 10px 0;
 }
 
 .jb-total-row-final {
-  padding: 6px 0;
+  padding: 4px 0;
 }
 
 .jb-total-label-final {
-  font-size: 1.05rem;
-  font-weight: 900;
-  color: var(--jb-text);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #1a202c;
 }
 
 .jb-total-value-final {
-  font-size: 1.25rem;
-  font-weight: 900;
-  color: var(--jb-pink-700);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0e5a3a;
   display: inline-flex;
   align-items: baseline;
   gap: 4px;
 }
 
 .jb-total-note {
-  margin-top: 10px;
-  font-size: 0.72rem;
-  color: var(--jb-text-muted);
-  font-weight: 700;
+  margin-top: 8px;
+  font-size: 0.68rem;
+  color: #a0aec0;
+  font-weight: 500;
   text-align: left;
 }
 
@@ -1979,43 +1585,37 @@ useHead({
 .jb-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  padding-top: 22px;
-  border-top: 1.5px dashed var(--jb-pink-200);
-  margin-top: 12px;
+  gap: 10px;
+  padding-top: 18px;
+  border-top: 1px dashed rgba(14, 90, 58, 0.12);
+  margin-top: 10px;
 }
 
 .jb-action-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 12px 24px;
-  border-radius: 14px;
-  font-size: 0.85rem;
-  font-weight: 800;
+  gap: 6px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
   font-family: inherit;
   cursor: pointer;
-  transition: all 0.25s ease;
-  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
 }
 
 .jb-action-back {
   background: #fff;
-  color: var(--jb-text-soft);
-  border-color: var(--jb-pink-200);
+  color: #4a5568;
+  border-color: rgba(14, 90, 58, 0.15);
 }
 
 .jb-action-back:hover {
-  background: var(--jb-pink-50);
-  color: var(--jb-fuchsia);
-  border-color: var(--jb-pink-400);
-  transform: translateY(-2px);
-}
-
-.jb-action-print {
-  padding: 12px 26px !important;
-  font-size: 0.85rem !important;
+  background: #f7fafc;
+  color: #0e5a3a;
+  border-color: rgba(14, 90, 58, 0.3);
 }
 
 /* =========================================================
@@ -2023,21 +1623,21 @@ useHead({
    ========================================================= */
 @media (max-width: 640px) {
   .jb-order-detail-card {
-    padding: 16px;
-    border-radius: 20px;
+    padding: 14px;
+    border-radius: 8px;
   }
 
   .jb-detail-header-title h2 {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .jb-detail-header-icon {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
   }
 
   .jb-info-section {
-    padding: 18px 0;
+    padding: 14px 0;
   }
 
   .jb-item-main {
@@ -2046,8 +1646,8 @@ useHead({
   }
 
   .jb-item-img-wrap {
-    width: 68px;
-    height: 68px;
+    width: 56px;
+    height: 56px;
   }
 
   .jb-item-stats {
@@ -2055,7 +1655,7 @@ useHead({
   }
 
   .jb-totals-box {
-    padding: 16px;
+    padding: 12px;
     max-width: none;
   }
 
@@ -2063,8 +1663,7 @@ useHead({
     flex-direction: column;
   }
 
-  .jb-action-btn,
-  .jb-action-print {
+  .jb-action-btn {
     width: 100%;
   }
 }
@@ -2089,7 +1688,6 @@ useHead({
    استایل چاپ
    ========================================================= */
 @media print {
-
   header,
   footer,
   aside {

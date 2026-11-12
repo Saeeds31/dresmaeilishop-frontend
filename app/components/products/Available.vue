@@ -36,17 +36,17 @@ watch(() => props.onlyAvailable, (val) => (localOnlyAvailable.value = val));
 <style scoped>
 .jb-filter-box {
   background: rgba(255, 255, 255, 0.95);
-  border: 2px solid var(--jb-pink-200);
+  border: 2px solid rgba(14, 90, 58, 0.1);
   border-radius: 18px;
   overflow: hidden;
   padding: 14px 16px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 14px rgba(214, 51, 132, 0.06);
+  box-shadow: 0 4px 14px rgba(14, 90, 58, 0.06);
 }
 
 .jb-filter-box:hover {
-  border-color: var(--jb-pink-300);
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.12);
+  border-color: rgba(14, 90, 58, 0.2);
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.1);
 }
 
 .jb-available-header {
@@ -63,14 +63,14 @@ watch(() => props.onlyAvailable, (val) => (localOnlyAvailable.value = val));
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
-  box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.18);
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
+  box-shadow: 0 0 0 3px rgba(140, 198, 63, 0.18);
 }
 
 .jb-available-title {
   font-size: 0.9rem;
   font-weight: 900;
-  color: var(--jb-text);
+  color: #1a202c;
 }
 
 .jb-available-row {
@@ -84,7 +84,7 @@ watch(() => props.onlyAvailable, (val) => (localOnlyAvailable.value = val));
 .jb-available-label {
   font-size: 0.82rem;
   font-weight: 600;
-  color: var(--jb-text-soft);
+  color: #4a5568;
 }
 
 /* سوییچ */
@@ -106,10 +106,10 @@ watch(() => props.onlyAvailable, (val) => (localOnlyAvailable.value = val));
   position: absolute;
   cursor: pointer;
   inset: 0;
-  background: #e9dbe1;
+  background: #e2e8f0;
   border-radius: 999px;
   transition: all 0.3s ease;
-  border: 2px solid var(--jb-pink-200);
+  border: 2px solid rgba(14, 90, 58, 0.1);
 }
 
 .jb-slider-dot {
@@ -126,13 +126,13 @@ watch(() => props.onlyAvailable, (val) => (localOnlyAvailable.value = val));
 }
 
 .jb-switch input:checked + .jb-slider {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   border-color: transparent;
-  box-shadow: 0 4px 12px rgba(214, 51, 132, 0.35);
+  box-shadow: 0 4px 12px rgba(14, 90, 58, 0.3);
 }
 
 .jb-switch input:checked + .jb-slider .jb-slider-dot {
   right: calc(100% - 22px);
-  box-shadow: 0 2px 8px rgba(214, 51, 132, 0.4);
+  box-shadow: 0 2px 8px rgba(14, 90, 58, 0.35);
 }
 </style>

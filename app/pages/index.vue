@@ -20,12 +20,11 @@
     <div v-else-if="home" class="space-y-10">
       <HomeSlider :sliders="home.sliders" />
       <HomeNewProductsList :new_products="home.is_rechargeables" />
-      <HomeCategories :categories="home.selected_categories" />
-      <!-- <HomeBanners v-if="home.banners?.after_discount?.length" :banners="home.banners.after_discount" /> -->
-
-      <!-- محصولات جدید با دیتا از products و فیلتر از shop-filters -->
-      <HomeNewProducts :selectedCategoryList="home.selectedCategoryList" v-if="home && home.selectedCategoryList" />
-
+      <!-- <HomeCategories :categories="home.selected_categories" /> -->
+      <HomeBanners class="hidden md:flex" v-if="home.banners?.after_products?.length"
+        :banners="home.banners.after_products" />
+      <HomeNewProducts :banners="home.banners?.after_products" :selectedCategoryList="home.selectedCategoryList"
+        v-if="home && home.selectedCategoryList" />
       <!-- <HomeBannerTriple :items="banners" /> -->
       <!-- <HomeVotedRestockSection v-if="home && home.is_rechargeables && home.is_rechargeables.length"
         :products="home.is_rechargeables" /> -->
@@ -35,9 +34,7 @@
       <!-- <HomeBanners v-if="home.banners?.after_new_product?.length" :banners="home.banners.after_new_product" /> -->
       <!-- <HomeBanners v-if="home.banners?.before_blog?.length" :banners="home.banners.before_blog" /> -->
       <AboutHomeStor />
-      <AboutFAQSection />
-      />
-      <!-- <HomeArticles :list="home.blogs" /> -->
+      <HomeArticles :list="home.blogs" />
     </div>
 
     <div v-else class="min-h-screen flex items-center justify-center text-center py-20 text-muted text-xl">

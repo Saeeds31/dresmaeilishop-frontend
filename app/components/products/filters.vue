@@ -62,16 +62,16 @@ watch(() => props.selectedCategories, (val) => {
 <style scoped>
 .jb-filter-box {
   background: rgba(255, 255, 255, 0.95);
-  border: 2px solid var(--jb-pink-200);
+  border: 2px solid rgba(14, 90, 58, 0.1);
   border-radius: 18px;
   overflow: hidden;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 14px rgba(214, 51, 132, 0.06);
+  box-shadow: 0 4px 14px rgba(14, 90, 58, 0.06);
 }
 
 .jb-filter-box:hover {
-  border-color: var(--jb-pink-300);
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.12);
+  border-color: rgba(14, 90, 58, 0.2);
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.1);
 }
 
 .jb-filter-box-header {
@@ -80,7 +80,7 @@ watch(() => props.selectedCategories, (val) => {
   justify-content: space-between;
   padding: 14px 16px;
   cursor: pointer;
-  background: linear-gradient(135deg, #fff5f8, #ffeaf2);
+  background: linear-gradient(135deg, #f8fcf9, #e8f3ec);
 }
 
 .jb-filter-box-title {
@@ -89,15 +89,15 @@ watch(() => props.selectedCategories, (val) => {
   gap: 8px;
   font-size: 0.9rem;
   font-weight: 900;
-  color: var(--jb-text);
+  color: #1a202c;
 }
 
 .jb-filter-box-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
-  box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.18);
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
+  box-shadow: 0 0 0 3px rgba(140, 198, 63, 0.18);
 }
 
 .jb-filter-collapse-btn {
@@ -107,19 +107,19 @@ watch(() => props.selectedCategories, (val) => {
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  background: var(--jb-pink-100);
-  color: var(--jb-pink-700);
-  border: 1.5px solid var(--jb-pink-200);
+  background: #f1f7f3;
+  color: #0e5a3a;
+  border: 1.5px solid rgba(14, 90, 58, 0.1);
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .jb-filter-collapse-btn.is-open {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
   border-color: transparent;
   transform: rotate(180deg);
-  box-shadow: 0 4px 12px rgba(214, 51, 132, 0.35);
+  box-shadow: 0 4px 12px rgba(14, 90, 58, 0.3);
 }
 
 .jb-filter-box-body {
@@ -142,22 +142,22 @@ watch(() => props.selectedCategories, (val) => {
 }
 
 .jb-cat-item:hover {
-  background: var(--jb-pink-50);
+  background: #f1f7f3;
 }
 
 .jb-cat-item.is-checked {
-  background: linear-gradient(135deg, #ffeaf2, #ffe0eb);
+  background: linear-gradient(135deg, #f4f9f6, #e8f3ec);
 }
 
 .jb-cat-item-title {
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--jb-text-soft);
+  color: #4a5568;
   transition: color 0.2s ease;
 }
 
 .jb-cat-item.is-checked .jb-cat-item-title {
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
   font-weight: 800;
 }
 
@@ -184,17 +184,17 @@ watch(() => props.selectedCategories, (val) => {
   align-items: center;
   justify-content: center;
   border-radius: 6px;
-  border: 2px solid var(--jb-pink-300);
+  border: 2px solid rgba(14, 90, 58, 0.25);
   background: #fff;
   color: transparent;
   transition: all 0.2s ease;
 }
 
 .jb-cat-checkbox input:checked + .jb-cat-checkmark {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   border-color: transparent;
   color: #fff;
-  box-shadow: 0 4px 10px rgba(214, 51, 132, 0.35);
+  box-shadow: 0 4px 10px rgba(14, 90, 58, 0.3);
 }
 
 /* انیمیشن باز/بسته */

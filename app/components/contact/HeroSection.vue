@@ -23,7 +23,7 @@
         <li class="jb-hero-list-item">
           <span class="jb-hero-list-dot"></span>
           <span>
-            در فروشگاه دکتر اسماعیلی، همراه شما هستیم تا برای کوچولوی عزیزتان بهترین
+            در فروشگاه دکتر اسماعیلی، همراه شما هستیم تا برای سلامت و زیبایی خود بهترین
             انتخاب‌ها را با تجربه‌ای صادقانه و پشتیبانی سریع فراهم کنیم.
           </span>
         </li>
@@ -31,7 +31,7 @@
           <span class="jb-hero-list-dot"></span>
           <span>
             ارتباط آسان، پاسخگویی بی‌وقفه. تیم پشتیبانی ما همیشه آماده است تا
-            در انتخاب لباس، اسباب‌بازی و لوازم سیسمونی به شما مشاوره بدهد.
+            در انتخاب محصولات مراقبتی، مکمل‌ها و لوازم بهداشتی به شما مشاوره بدهد.
           </span>
         </li>
       </ul>
@@ -49,7 +49,7 @@
                   d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
             </span>
-            <span class="jb-contact-card-label">آدرس فروشگاه</span>
+            <span class="jb-contact-card-label">آدرس داروخانه</span>
           </div>
           <p class="jb-contact-card-value">{{ contactInfo.address }}</p>
         </div>
@@ -102,7 +102,7 @@
                   d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </span>
-            <span class="jb-contact-card-label">ساعت کاری فروشگاه</span>
+            <span class="jb-contact-card-label">ساعت کاری داروخانه</span>
           </div>
           <div class="jb-contact-card-row">
             <span class="jb-contact-card-value">{{ contactInfo.storeHours }}</span>
@@ -179,7 +179,7 @@ const asset = (file) => {
 
 <style scoped>
 /* =========================================================
-   Hero تماس با ما - تم پودری
+   Hero تماس با ما - تم سبز لوکس
    ========================================================= */
 
 .jb-contact-hero {
@@ -207,9 +207,9 @@ const asset = (file) => {
   max-width: 320px;
   padding: 20px;
   border-radius: 32px;
-  background: linear-gradient(135deg, #fff8fb, #ffeaf2);
-  border: 2px dashed var(--jb-pink-300);
-  box-shadow: 0 20px 45px rgba(214, 51, 132, 0.15);
+  background: linear-gradient(135deg, #f8fcf9, #e8f3ec);
+  border: 2px dashed rgba(140, 198, 63, 0.5);
+  box-shadow: 0 20px 45px rgba(14, 90, 58, 0.12);
   animation: jbHeroFloat 4s ease-in-out infinite;
 }
 
@@ -240,21 +240,21 @@ const asset = (file) => {
   width: 46px;
   height: 46px;
   border-radius: 15px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.35);
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.3);
   border: 3px solid #fff;
 }
 
 .jb-hero-title {
   font-size: 1.6rem;
   font-weight: 900;
-  color: var(--jb-text);
+  color: #1a202c;
   letter-spacing: -0.5px;
 }
 
 .jb-hero-title-strong {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -266,8 +266,8 @@ const asset = (file) => {
   width: 90px;
   height: 3px;
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--jb-pink-500), var(--jb-fuchsia), transparent);
-  box-shadow: 0 2px 8px rgba(214, 51, 132, 0.25);
+  background: linear-gradient(90deg, #0e5a3a, #8cc63f, transparent);
+  box-shadow: 0 2px 8px rgba(14, 90, 58, 0.2);
   margin-bottom: 24px;
 }
 
@@ -287,7 +287,7 @@ const asset = (file) => {
   gap: 12px;
   font-size: 0.92rem;
   line-height: 2;
-  color: var(--jb-text-soft);
+  color: #4a5568;
   font-weight: 600;
 }
 
@@ -296,8 +296,8 @@ const asset = (file) => {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
-  box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.18);
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
+  box-shadow: 0 0 0 3px rgba(140, 198, 63, 0.18);
   margin-top: 0.7em;
 }
 
@@ -320,15 +320,15 @@ const asset = (file) => {
   gap: 10px;
   padding: 16px 18px;
   background: rgba(255, 255, 255, 0.95);
-  border: 2px solid var(--jb-pink-200);
+  border: 2px solid rgba(14, 90, 58, 0.1);
   border-radius: 18px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 14px rgba(214, 51, 132, 0.06);
+  box-shadow: 0 4px 14px rgba(14, 90, 58, 0.06);
 }
 
 .jb-contact-card:hover {
-  border-color: var(--jb-pink-400);
-  box-shadow: 0 10px 25px rgba(214, 51, 132, 0.14);
+  border-color: rgba(14, 90, 58, 0.25);
+  box-shadow: 0 10px 25px rgba(14, 90, 58, 0.12);
   transform: translateY(-3px);
 }
 
@@ -345,9 +345,9 @@ const asset = (file) => {
   width: 34px;
   height: 34px;
   border-radius: 11px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
-  box-shadow: 0 6px 14px rgba(214, 51, 132, 0.3);
+  box-shadow: 0 6px 14px rgba(14, 90, 58, 0.25);
   border: 2px solid #fff;
   flex-shrink: 0;
 }
@@ -355,13 +355,13 @@ const asset = (file) => {
 .jb-contact-card-label {
   font-size: 0.82rem;
   font-weight: 900;
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
 }
 
 .jb-contact-card-value {
   font-size: 0.85rem;
   font-weight: 800;
-  color: var(--jb-text);
+  color: #1a202c;
   line-height: 1.8;
 }
 
@@ -376,18 +376,18 @@ const asset = (file) => {
   font-family: 'Courier New', monospace;
   font-size: 0.85rem;
   font-weight: 900;
-  color: var(--jb-text);
+  color: #1a202c;
   text-decoration: none;
   transition: color 0.25s ease;
   letter-spacing: 0.3px;
 }
 
 .jb-phone-link:hover {
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
 }
 
 .jb-phone-sep {
-  color: var(--jb-pink-300);
+  color: rgba(140, 198, 63, 0.5);
 }
 
 .jb-contact-card-row {
@@ -400,7 +400,7 @@ const asset = (file) => {
 
 .jb-contact-card-sub {
   font-size: 0.72rem;
-  color: var(--jb-text-muted);
+  color: #718096;
   font-weight: 700;
 }
 
@@ -411,16 +411,16 @@ const asset = (file) => {
   gap: 12px;
   padding: 14px 18px;
   background: rgba(255, 255, 255, 0.95);
-  border: 2px solid var(--jb-pink-200);
+  border: 2px solid rgba(14, 90, 58, 0.1);
   border-radius: 18px;
   text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 14px rgba(214, 51, 132, 0.06);
+  box-shadow: 0 4px 14px rgba(14, 90, 58, 0.06);
 }
 
 .jb-contact-social:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(214, 51, 132, 0.18);
+  box-shadow: 0 12px 28px rgba(14, 90, 58, 0.15);
 }
 
 .jb-social-icon {
@@ -460,12 +460,12 @@ const asset = (file) => {
 .jb-social-name {
   font-size: 0.82rem;
   font-weight: 900;
-  color: var(--jb-text);
+  color: #1a202c;
 }
 
 .jb-social-id {
   font-size: 0.72rem;
-  color: var(--jb-text-muted);
+  color: #718096;
   font-weight: 700;
   font-family: 'Courier New', monospace;
   direction: ltr;
@@ -475,13 +475,13 @@ const asset = (file) => {
 .jb-social-arrow {
   width: 16px;
   height: 16px;
-  color: var(--jb-pink-400);
+  color: rgba(140, 198, 63, 0.7);
   flex-shrink: 0;
   transition: all 0.25s ease;
 }
 
 .jb-contact-social:hover .jb-social-arrow {
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
   transform: translateX(-4px);
 }
 

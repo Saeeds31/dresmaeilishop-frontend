@@ -134,8 +134,8 @@ const product = computed(() => {
     video: core.video,
     description: core.description,
     price: core.price,
-    meta_title:core.meta_title,
-    meta_description:core.meta_description,
+    meta_title: core.meta_title,
+    meta_description: core.meta_description,
     final_price: core.final_price,
     // 🔹 اصلاح: بر اساس موجودی واقعی تنوع‌ها
     inStock: !isCompletelyOutOfStock.value,
@@ -292,7 +292,7 @@ useSeoMeta({
 
 // ============ Structured Data (JSON-LD) ============
 useHead({
-    link: [
+  link: [
     { rel: 'canonical', href: canonicalUrl },
   ],
   script: [
@@ -387,40 +387,63 @@ useHead({
   ],
 })
 </script>
-
 <template>
-  <main class="container">
+  <main class="container mx-auto px-4 md:px-6 lg:px-8 py-6">
     <SharedBreadCrumb :items="[
       { label: 'محصولات', href: '/products' },
       { label: product?.title || 'محصول', href: `/product/${productId}` },
     ]" />
-    <div v-if="product" class="t-0">
-      <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
-        <ProductImage :images="product.images" :video="product.video" :thumbnails="product.images" />
 
-        <div class="flex flex-col justify-start gap-6 h-full">
-          <div id="info" class="space-y-6 lg:space-y-8">
-            <ProductTitle :title="product.title" :price="currentPrice" :oldPrice="oldPrice"
-              :in-stock="product.inStock" />
+    <div v-if="product" class="mt-6">
+      <!-- ===== بخش اصلی: گالری + اطلاعات ===== -->
+      <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
-            <!-- 🔹 label ها دیگه برعکس نیستن -->
-            <ProductVariant v-model:selectedVariant="selectedVariantId" v-model:quantity="selectedQuantity"
-              v-model:selectedPrimaryId="selectedPrimaryId" v-model:selectedSecondaryId="selectedSecondaryId"
-              :primary-attribute="variantAttributes.primary" :secondary-attribute="variantAttributes.secondary"
-              :primary-label="variantAttributes.primaryLabel" :secondary-label="variantAttributes.secondaryLabel"
-              :nested-map="nestedMap" :variants="variants" :show-error="showWeightError" />
+        <!-- ستون راست: گالری تصاویر (۷ از ۱۲) -->
+        <div class="lg:col-span-7 order-2 lg:order-1">
+          <ProductImage :images="product.images" :video="product.video" :thumbnails="product.images" />
+        </div>
+
+        <!-- ستون چپ: اطلاعات محصول (۵ از ۱۲) -->
+        <div class="lg:col-span-5 order-1 lg:order-2">
+          <div class="lg:sticky lg:top-24 space-y-6">
+
+            <!-- کارت اصلی اطلاعات -->
+            <div class="bg-white rounded-3xl border border-[rgba(14,90,58,0.1)] shadow-sm p-6 md:p-8">
+
+              <!-- عنوان و قیمت -->
+              <ProductTitle  :title="product.title" :price="currentPrice" :oldPrice="oldPrice"
+                :in-stock="product.inStock" />
+
+              <!-- خط جداکننده -->
+              <div class="my-6 h-px bg-gradient-to-l from-transparent via-[rgba(14,90,58,0.15)] to-transparent"></div>
+
+              <!-- تنوع‌ها -->
+              <ProductVariant v-model:selectedVariant="selectedVariantId" v-model:quantity="selectedQuantity"
+                v-model:selectedPrimaryId="selectedPrimaryId" v-model:selectedSecondaryId="selectedSecondaryId"
+                :primary-attribute="variantAttributes.primary" :secondary-attribute="variantAttributes.secondary"
+                :primary-label="variantAttributes.primaryLabel" :secondary-label="variantAttributes.secondaryLabel"
+                :nested-map="nestedMap" :variants="variants" :show-error="showWeightError" />
+            </div>
+
+            <!-- کارت خرید (چسبان) -->
+            <div class="bg-white rounded-3xl border border-[rgba(14,90,58,0.1)] shadow-lg p-5 md:p-6">
+              <ProductBuy :price="currentPrice" :old-price="oldPrice" :in-stock="product.inStock"
+                :variant-id="selectedVariantId" :variants="variants" :quantity="selectedQuantity"
+                :product-id="product.id" :product-title="product.title" :product-image="product.images[0]"
+                :is-in-wishlist="isInWishlist" @wishlist-updated="handleWishlistUpdated"
+                @show-weight-error="handleShowWeightError" @cart-updated="handleCartUpdated" />
+            </div>
+
           </div>
-          <ProductBuy :price="currentPrice" :old-price="oldPrice" :in-stock="product.inStock"
-            :variant-id="selectedVariantId" :variants="variants" :quantity="selectedQuantity" :product-id="product.id"
-            :product-title="product.title" :product-image="product.images[0]" :is-in-wishlist="isInWishlist"
-            @wishlist-updated="handleWishlistUpdated" @show-weight-error="handleShowWeightError"
-            @cart-updated="handleCartUpdated" />
         </div>
       </section>
+
+      <!-- ===== بخش‌های بعدی (تب‌ها و محصولات مرتبط) ===== -->
       <ProductTabs class="mt-16 lg:mt-24" :specifications="specifications" :description="product.description"
         :comments="commentsData" :productId="product.id" />
       <ProductRelatedProducts class="mt-16 lg:mt-24" />
     </div>
+
     <div v-else class="text-center py-16">
       <SharedLoadingSpinner size="xl" />
     </div>

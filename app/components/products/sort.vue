@@ -55,9 +55,9 @@ const selectSort = (option) => {
   gap: 16px;
   padding: 14px 18px;
   background: rgba(255, 255, 255, 0.95);
-  border: 2px solid var(--jb-pink-200);
+  border: 2px solid rgba(14, 90, 58, 0.1);
   border-radius: 18px;
-  box-shadow: 0 4px 14px rgba(214, 51, 132, 0.06);
+  box-shadow: 0 4px 14px rgba(14, 90, 58, 0.06);
   flex-wrap: wrap;
 }
 
@@ -67,12 +67,12 @@ const selectSort = (option) => {
   gap: 8px;
   font-size: 0.85rem;
   font-weight: 800;
-  color: var(--jb-text);
+  color: #1a202c;
   flex-shrink: 0;
 }
 
 .jb-sort-label svg {
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
 }
 
 .jb-sort-list {
@@ -91,26 +91,26 @@ const selectSort = (option) => {
   border-radius: 999px;
   font-size: 0.8rem;
   font-weight: 700;
-  color: var(--jb-text-soft);
+  color: #4a5568;
   background: #fff;
-  border: 1.5px solid var(--jb-pink-200);
+  border: 1.5px solid rgba(14, 90, 58, 0.1);
   cursor: pointer;
   transition: all 0.25s ease;
   user-select: none;
 }
 
 .jb-sort-item:hover {
-  background: var(--jb-pink-50);
-  border-color: var(--jb-pink-400);
-  color: var(--jb-fuchsia);
+  background: #f1f7f3;
+  border-color: rgba(14, 90, 58, 0.25);
+  color: #0e5a3a;
   transform: translateY(-2px);
 }
 
 .jb-sort-item.active {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
   border-color: transparent;
-  box-shadow: 0 6px 16px rgba(214, 51, 132, 0.4);
+  box-shadow: 0 6px 16px rgba(14, 90, 58, 0.35);
   transform: translateY(-2px);
 }
 

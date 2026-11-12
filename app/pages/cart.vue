@@ -17,18 +17,15 @@
       <!-- ============ سبد خالی ============ -->
       <div v-if="cartItems.length === 0" class="jb-cart-card jb-cart-state">
         <div class="jb-state-icon-wrap jb-state-icon-empty">
-          <svg class="w-14 h-14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
               d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
           </svg>
         </div>
         <h2 class="jb-state-title">سبد خرید شما خالی است</h2>
         <p class="jb-state-desc">هنوز محصولی به سبد خرید اضافه نکرده‌اید</p>
-        <NuxtLink to="/products" class="jb-btn-linear mt-4">
-          <span>مشاهده محصولات</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
-          </svg>
+        <NuxtLink to="/products" class="jb-empty-btn">
+          مشاهده محصولات
         </NuxtLink>
       </div>
 
@@ -114,11 +111,11 @@
               <span class="jb-cell-label">تعداد:</span>
               <div class="jb-qty">
                 <button @click="increaseQuantity(item.id || item.variant_id)" class="jb-qty-btn" aria-label="افزایش">
-                  <Plus :size="14" />
+                  <Plus :size="13" />
                 </button>
                 <span class="jb-qty-value">{{ item.quantity }}</span>
                 <button @click="decreaseQuantity(item.id || item.variant_id)" class="jb-qty-btn" aria-label="کاهش">
-                  <Minus :size="14" />
+                  <Minus :size="13" />
                 </button>
               </div>
             </div>
@@ -141,7 +138,7 @@
             <div class="jb-cart-row-cell jb-cell-remove">
               <span class="jb-cell-label">حذف آیتم:</span>
               <button @click="removeItem(item.id || item.variant_id)" class="jb-cart-remove-btn" aria-label="حذف">
-                <Trash2 :size="18" />
+                <Trash2 :size="16" />
               </button>
             </div>
           </div>
@@ -162,7 +159,7 @@
             <div class="jb-coupon-input-row">
               <input v-model="couponCode" class="jb-coupon-input" type="text"
                 placeholder="کد تخفیف خود را وارد کنید ..." :disabled="isCheckingCoupon" />
-              <button type="submit" class="jb-btn-linear jb-coupon-btn" :disabled="isCheckingCoupon">
+              <button type="submit" class="jb-coupon-btn" :disabled="isCheckingCoupon">
                 {{ isCheckingCoupon ? "بررسی..." : "اعمال" }}
               </button>
             </div>
@@ -223,7 +220,6 @@
 
         <!-- ============ رزروهای فعال ============ -->
         <div v-if="isLoggedIn && (isLoadingReservations || activeReservations.length > 0)" class="jb-reservations-box">
-          <!-- Loading -->
           <div v-if="isLoadingReservations" class="jb-res-loading">
             <div class="jb-res-spinner"></div>
             <span>در حال بررسی رزروهای شما...</span>
@@ -232,10 +228,7 @@
           <template v-else>
             <div class="jb-res-header">
               <div>
-                <h3 class="jb-res-title">
-                  <span class="jb-res-title-dot"></span>
-                  رزروهای فعال شما
-                </h3>
+                <h3 class="jb-res-title">رزروهای فعال شما</h3>
                 <p class="jb-res-desc">
                   در صورت تمایل می‌توانید یکی از رزروهای خود را برای ادامه سفارش انتخاب کنید.
                 </p>
@@ -252,7 +245,6 @@
                 :class="{ 'is-selected': selectedReservation === reservation.id }">
                 <div class="jb-res-card-top">
                   <div class="jb-res-card-info">
-                    <!-- رادیو -->
                     <div class="jb-res-radio">
                       <div v-if="selectedReservation === reservation.id" class="jb-res-radio-dot"></div>
                     </div>
@@ -284,7 +276,6 @@
               </button>
             </div>
 
-            <!-- بدون رزرو -->
             <div class="jb-res-no-reservation">
               <button type="button" @click="selectReservation(null)" class="jb-res-no-btn"
                 :class="{ 'is-active': selectedReservation === null }">
@@ -299,11 +290,8 @@
 
         <!-- ============ دکمه ادامه ============ -->
         <div class="jb-cart-continue">
-          <button @click="goToShipping" class="jb-btn-linear jb-cart-continue-btn">
-            <span>ادامه فرایند</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
-            </svg>
+          <button @click="goToShipping" class="jb-cart-continue-btn">
+            ادامه فرایند
           </button>
         </div>
       </div>
@@ -761,8 +749,8 @@ const goToShipping = () => {
 
 useSeoMeta({
   title: 'سبد خرید | فروشگاه دکتر اسماعیلی',
-  description: 'مشاهده و مدیریت سبد خرید در فروشگاه فروشگاه دکتر اسماعیلی.',
-  robots: 'noindex, nofollow', // 🔴 مهم‌ترین خط
+  description: 'مشاهده و مدیریت سبد خرید در فروشگاه دکتر اسماعیلی.',
+  robots: 'noindex, nofollow',
 })
 
 useHead({
@@ -772,7 +760,7 @@ useHead({
 
 <style scoped>
 /* =========================================================
-   صفحه سبد خرید - تم پودری
+   صفحه سبد خرید - مینیمال سبز
    ========================================================= */
 
 .jb-cart-page {
@@ -781,12 +769,12 @@ useHead({
 
 /* ===== کارت اصلی ===== */
 .jb-cart-card {
-  background: rgba(255, 255, 255, 0.95);
-  border: 2px solid var(--jb-pink-200);
-  border-radius: 26px;
-  padding: 24px;
-  box-shadow: 0 10px 30px rgba(214, 51, 132, 0.1);
-  margin-bottom: 24px;
+  background: #fff;
+  border: 1px solid rgba(14, 90, 58, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(14, 90, 58, 0.04);
+  margin-bottom: 20px;
 }
 
 /* ===== حالت خالی/لودینگ ===== */
@@ -795,56 +783,62 @@ useHead({
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 60px 24px;
+  padding: 50px 24px;
   text-align: center;
-  gap: 14px;
+  gap: 12px;
 }
 
 .jb-state-icon-wrap {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .jb-state-img {
-  width: 140px;
+  width: 120px;
   height: auto;
   opacity: 0.9;
 }
 
 .jb-state-icon-empty {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #ffeaf2, #ffe0eb);
-  border: 3px dashed var(--jb-pink-300);
-  color: var(--jb-pink-400);
-  animation: jbEmptyFloat 3s ease-in-out infinite;
-}
-
-@keyframes jbEmptyFloat {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-8px);
-  }
+  border-radius: 8px;
+  background: #f7fafc;
+  border: 1px solid rgba(14, 90, 58, 0.08);
+  color: #a0aec0;
 }
 
 .jb-state-title {
-  font-size: 1.05rem;
-  font-weight: 900;
-  color: var(--jb-text);
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1a202c;
 }
 
 .jb-state-desc {
+  font-size: 0.82rem;
+  color: #718096;
+  font-weight: 500;
+}
+
+.jb-empty-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 10px 24px;
+  background: #0e5a3a;
+  color: #fff;
+  border-radius: 8px;
   font-size: 0.85rem;
-  color: var(--jb-text-muted);
-  font-weight: 600;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.jb-empty-btn:hover {
+  background: #0b472e;
 }
 
 /* =========================================================
@@ -853,7 +847,7 @@ useHead({
 .jb-cart-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 /* هدر (فقط دسکتاپ) */
@@ -861,12 +855,12 @@ useHead({
   display: none;
   grid-template-columns: minmax(0, 3fr) 1fr 1fr 1fr 1.1fr 60px;
   gap: 10px;
-  padding: 12px 16px;
-  background: linear-gradient(135deg, #ffeaf2, #ffe0eb);
-  border-radius: 14px;
-  font-size: 0.8rem;
-  font-weight: 900;
-  color: var(--jb-text);
+  padding: 10px 14px;
+  background: #f7fafc;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #4a5568;
   text-align: center;
 }
 
@@ -884,18 +878,17 @@ useHead({
 .jb-cart-row {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
-  padding: 14px 16px;
+  gap: 10px;
+  padding: 12px 14px;
   background: #fff;
-  border: 2px solid var(--jb-pink-200);
-  border-radius: 18px;
-  transition: all 0.25s ease;
+  border: 1px solid rgba(14, 90, 58, 0.08);
+  border-radius: 8px;
+  transition: all 0.2s ease;
 }
 
 .jb-cart-row:hover {
-  border-color: var(--jb-pink-400);
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.14);
-  transform: translateY(-2px);
+  border-color: rgba(14, 90, 58, 0.2);
+  box-shadow: 0 4px 12px rgba(14, 90, 58, 0.05);
 }
 
 @media (min-width: 768px) {
@@ -916,15 +909,15 @@ useHead({
 
 .jb-cart-row-img-wrap {
   flex-shrink: 0;
-  width: 84px;
-  height: 84px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #fff5f8, #ffe0eb);
-  border: 2px solid var(--jb-pink-100);
+  width: 76px;
+  height: 76px;
+  border-radius: 8px;
+  background: #f7fafc;
+  border: 1px solid rgba(14, 90, 58, 0.06);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5px;
+  padding: 4px;
   overflow: hidden;
 }
 
@@ -932,25 +925,25 @@ useHead({
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-radius: 10px;
+  border-radius: 4px;
 }
 
 .jb-cart-row-img-placeholder {
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 .jb-cart-row-info {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   min-width: 0;
 }
 
 .jb-cart-row-title {
-  font-size: 0.88rem;
-  font-weight: 800;
-  color: var(--jb-text);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1a202c;
   line-height: 1.6;
   text-decoration: none;
   transition: color 0.2s ease;
@@ -961,35 +954,35 @@ useHead({
 }
 
 .jb-cart-row-title:hover {
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
 }
 
 /* چیپ ویژگی‌ها */
 .jb-cart-row-attrs {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 4px;
 }
 
 .jb-cart-attr-chip {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 3px 9px;
-  background: linear-gradient(135deg, #ffeaf2, #ffe0eb);
-  border: 1.5px solid var(--jb-pink-200);
-  border-radius: 999px;
-  font-size: 0.68rem;
-  font-weight: 700;
+  gap: 3px;
+  padding: 2px 8px;
+  background: #f7fafc;
+  border: 1px solid rgba(14, 90, 58, 0.08);
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 600;
 }
 
 .jb-cart-attr-name {
-  color: var(--jb-text-muted);
+  color: #a0aec0;
 }
 
 .jb-cart-attr-value {
-  color: var(--jb-fuchsia);
-  font-weight: 800;
+  color: #0e5a3a;
+  font-weight: 700;
 }
 
 /* هشدار */
@@ -997,13 +990,13 @@ useHead({
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 12px;
-  background: linear-gradient(135deg, #ffe0e8, #ffc2d6);
-  border: 1.5px solid #ff9db8;
-  border-radius: 10px;
-  color: #c9184a;
-  font-size: 0.75rem;
-  font-weight: 700;
+  padding: 5px 10px;
+  background: #fff5f5;
+  border: 1px solid #fed7d7;
+  border-radius: 6px;
+  color: #c53030;
+  font-size: 0.72rem;
+  font-weight: 600;
   width: fit-content;
   max-width: 100%;
 }
@@ -1013,9 +1006,9 @@ useHead({
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.82rem;
-  padding: 8px 0;
-  border-top: 1.5px dashed var(--jb-pink-100);
+  font-size: 0.8rem;
+  padding: 6px 0;
+  border-top: 1px dashed rgba(14, 90, 58, 0.08);
 }
 
 @media (min-width: 768px) {
@@ -1031,9 +1024,9 @@ useHead({
 
 /* لیبل (فقط موبایل) */
 .jb-cell-label {
-  color: var(--jb-text-muted);
-  font-weight: 700;
-  font-size: 0.75rem;
+  color: #a0aec0;
+  font-weight: 600;
+  font-size: 0.72rem;
 }
 
 @media (min-width: 768px) {
@@ -1043,27 +1036,27 @@ useHead({
 }
 
 .jb-cell-value {
-  color: var(--jb-text);
-  font-weight: 800;
+  color: #1a202c;
+  font-weight: 700;
 }
 
 .jb-cell-unit {
-  font-size: 0.65rem;
-  color: var(--jb-text-muted);
-  font-weight: 600;
+  font-size: 0.62rem;
+  color: #a0aec0;
+  font-weight: 500;
   margin-right: 2px;
 }
 
 /* تخفیف */
 .jb-cell-discount .jb-cell-value {
-  color: #16a34a;
+  color: #38a169;
 }
 
 /* قیمت نهایی */
 .jb-cell-final .jb-cell-value-final {
-  color: var(--jb-pink-700);
-  font-weight: 900;
-  font-size: 0.9rem;
+  color: #0e5a3a;
+  font-weight: 800;
+  font-size: 0.85rem;
   display: inline-flex;
   align-items: baseline;
   gap: 3px;
@@ -1074,39 +1067,37 @@ useHead({
   display: inline-flex;
   align-items: center;
   background: #fff;
-  border: 1.5px solid var(--jb-pink-200);
-  border-radius: 10px;
+  border: 1px solid rgba(14, 90, 58, 0.12);
+  border-radius: 6px;
   overflow: hidden;
-  height: 32px;
+  height: 30px;
 }
 
 .jb-qty-btn {
-  width: 30px;
+  width: 28px;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   background: transparent;
   border: none;
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
 }
 
 .jb-qty-btn:hover {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: #0e5a3a;
   color: #fff;
 }
 
 .jb-qty-value {
-  min-width: 30px;
+  min-width: 28px;
   text-align: center;
-  font-size: 0.82rem;
-  font-weight: 900;
-  color: var(--jb-text);
-  border-left: 1.5px dashed var(--jb-pink-200);
-  border-right: 1.5px dashed var(--jb-pink-200);
-  line-height: 32px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #1a202c;
+  line-height: 30px;
 }
 
 /* ===== حذف ===== */
@@ -1121,25 +1112,23 @@ useHead({
 }
 
 .jb-cart-remove-btn {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
-  background: #fff5f8;
-  border: 1.5px solid #ffb8c8;
-  color: #c9184a;
+  border-radius: 6px;
+  background: #fff5f5;
+  border: 1px solid #fed7d7;
+  color: #e53e3e;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .jb-cart-remove-btn:hover {
-  background: linear-gradient(135deg, #ff4d6d, #c9184a);
+  background: #e53e3e;
   color: #fff;
   border-color: transparent;
-  transform: scale(1.08);
-  box-shadow: 0 6px 16px rgba(201, 24, 74, 0.35);
 }
 
 /* =========================================================
@@ -1148,12 +1137,12 @@ useHead({
 .jb-cart-summary-box {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  margin-top: 24px;
-  padding: 20px;
-  background: linear-gradient(135deg, #fff8fb, #ffeaf2);
-  border: 2px dashed var(--jb-pink-300);
-  border-radius: 22px;
+  gap: 16px;
+  margin-top: 20px;
+  padding: 16px;
+  background: #f7fafc;
+  border: 1px dashed rgba(14, 90, 58, 0.15);
+  border-radius: 8px;
 }
 
 @media (min-width: 768px) {
@@ -1161,7 +1150,7 @@ useHead({
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 30px;
+    gap: 24px;
   }
 }
 
@@ -1169,7 +1158,7 @@ useHead({
 .jb-coupon-form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   flex: 1;
 }
 
@@ -1177,13 +1166,13 @@ useHead({
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.9rem;
-  font-weight: 900;
-  color: var(--jb-text);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #1a202c;
 }
 
 .jb-coupon-title svg {
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
 }
 
 .jb-coupon-input-row {
@@ -1200,26 +1189,26 @@ useHead({
 
 .jb-coupon-input {
   flex: 1;
-  padding: 11px 14px;
+  padding: 10px 12px;
   background: #fff;
-  border: 2px solid var(--jb-pink-200);
-  border-radius: 12px;
-  font-size: 0.85rem;
+  border: 1px solid rgba(14, 90, 58, 0.12);
+  border-radius: 6px;
+  font-size: 0.82rem;
   font-weight: 600;
-  color: var(--jb-text);
+  color: #1a202c;
   outline: none;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
   font-family: inherit;
 }
 
 .jb-coupon-input::placeholder {
-  color: var(--jb-text-muted);
+  color: #a0aec0;
   font-weight: 500;
 }
 
 .jb-coupon-input:focus {
-  border-color: var(--jb-fuchsia);
-  box-shadow: 0 0 0 4px rgba(214, 51, 132, 0.15);
+  border-color: #0e5a3a;
+  box-shadow: 0 0 0 3px rgba(14, 90, 58, 0.1);
 }
 
 .jb-coupon-input:disabled {
@@ -1228,10 +1217,24 @@ useHead({
 }
 
 .jb-coupon-btn {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  padding: 11px 24px !important;
-  font-size: 0.85rem !important;
+  padding: 10px 20px;
+  background: #0e5a3a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
   white-space: nowrap;
+}
+
+.jb-coupon-btn:hover:not(:disabled) {
+  background: #0b472e;
 }
 
 .jb-coupon-btn:disabled {
@@ -1243,12 +1246,12 @@ useHead({
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #c9184a;
-  font-size: 0.8rem;
-  font-weight: 700;
-  padding: 8px 12px;
-  background: #ffe0e8;
-  border-radius: 10px;
+  color: #c53030;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 6px 10px;
+  background: #fff5f5;
+  border-radius: 6px;
   width: fit-content;
 }
 
@@ -1256,12 +1259,12 @@ useHead({
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #16a34a;
-  font-size: 0.8rem;
-  font-weight: 700;
-  padding: 8px 12px;
-  background: #dcfce7;
-  border-radius: 10px;
+  color: #38a169;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 6px 10px;
+  background: #f0fff4;
+  border-radius: 6px;
   width: fit-content;
 }
 
@@ -1269,8 +1272,8 @@ useHead({
 .jb-summary-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  min-width: 260px;
+  gap: 8px;
+  min-width: 240px;
   flex: 1;
 }
 
@@ -1278,91 +1281,89 @@ useHead({
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   gap: 8px;
 }
 
 .jb-summary-label {
-  color: var(--jb-text-soft);
-  font-weight: 700;
+  color: #4a5568;
+  font-weight: 600;
 }
 
 .jb-summary-value {
-  color: var(--jb-text);
-  font-weight: 900;
+  color: #1a202c;
+  font-weight: 800;
   display: inline-flex;
   align-items: baseline;
   gap: 3px;
 }
 
 .jb-summary-unit {
-  font-size: 0.68rem;
-  color: var(--jb-text-muted);
-  font-weight: 600;
+  font-size: 0.65rem;
+  color: #a0aec0;
+  font-weight: 500;
 }
 
 .jb-summary-value-discount {
-  color: #16a34a;
+  color: #38a169;
 }
 
 .jb-summary-divider {
   height: 0;
-  border-top: 1.5px dashed var(--jb-pink-300);
+  border-top: 1px dashed rgba(14, 90, 58, 0.12);
   margin: 4px 0;
 }
 
 .jb-summary-row-total {
-  padding-top: 6px;
+  padding-top: 4px;
 }
 
 .jb-summary-label-total {
-  font-size: 0.95rem;
-  font-weight: 900;
-  color: var(--jb-text);
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #1a202c;
 }
 
 .jb-summary-value-total {
-  font-size: 1.2rem;
-  font-weight: 900;
-  color: var(--jb-pink-700);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0e5a3a;
   display: inline-flex;
   align-items: baseline;
-  gap: 4px;
+  gap: 3px;
 }
 
 /* =========================================================
    رزروهای فعال
    ========================================================= */
 .jb-reservations-box {
-  margin-top: 24px;
-  padding: 20px;
-  background: linear-gradient(135deg, #fff8fb, #ffeaf2);
-  border: 2px solid var(--jb-pink-200);
-  border-radius: 22px;
+  margin-top: 20px;
+  padding: 16px;
+  background: #f7fafc;
+  border: 1px solid rgba(14, 90, 58, 0.08);
+  border-radius: 8px;
 }
 
 .jb-res-loading {
   display: flex;
   align-items: center;
-  gap: 12px;
-  color: var(--jb-text-muted);
-  font-size: 0.85rem;
-  font-weight: 700;
+  gap: 10px;
+  color: #718096;
+  font-size: 0.82rem;
+  font-weight: 600;
 }
 
 .jb-res-spinner {
-  width: 20px;
-  height: 20px;
-  border: 3px solid var(--jb-pink-200);
-  border-top-color: var(--jb-fuchsia);
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(14, 90, 58, 0.15);
+  border-top-color: #0e5a3a;
   border-radius: 50%;
   animation: spin 0.9s linear infinite;
 }
 
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+  to { transform: rotate(360deg); }
 }
 
 /* هدر */
@@ -1371,31 +1372,20 @@ useHead({
   align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
   flex-wrap: wrap;
 }
 
 .jb-res-title {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 1rem;
-  font-weight: 900;
-  color: var(--jb-text);
-}
-
-.jb-res-title-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
-  box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.18);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #1a202c;
 }
 
 .jb-res-desc {
-  font-size: 0.8rem;
-  color: var(--jb-text-muted);
-  font-weight: 600;
+  font-size: 0.78rem;
+  color: #718096;
+  font-weight: 500;
   line-height: 1.7;
   margin-top: 4px;
 }
@@ -1403,14 +1393,12 @@ useHead({
 .jb-res-count {
   display: inline-flex;
   align-items: center;
-  padding: 6px 14px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  padding: 5px 12px;
+  background: #0e5a3a;
   color: #fff;
-  font-size: 0.75rem;
-  font-weight: 900;
-  border-radius: 999px;
-  box-shadow: 0 6px 16px rgba(214, 51, 132, 0.35);
-  border: 2px solid #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border-radius: 6px;
   white-space: nowrap;
 }
 
@@ -1418,7 +1406,7 @@ useHead({
 .jb-res-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
+  gap: 10px;
 }
 
 @media (min-width: 768px) {
@@ -1429,27 +1417,25 @@ useHead({
 
 /* کارت رزرو */
 .jb-res-card {
-  padding: 16px;
+  padding: 14px;
   background: #fff;
-  border: 2px solid var(--jb-pink-200);
-  border-radius: 18px;
+  border: 1px solid rgba(14, 90, 58, 0.1);
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   font-family: inherit;
   text-align: right;
   width: 100%;
 }
 
 .jb-res-card:hover {
-  border-color: var(--jb-pink-400);
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.15);
-  transform: translateY(-2px);
+  border-color: rgba(14, 90, 58, 0.25);
+  box-shadow: 0 4px 12px rgba(14, 90, 58, 0.06);
 }
 
 .jb-res-card.is-selected {
-  border-color: var(--jb-fuchsia);
-  background: linear-gradient(135deg, #fff8fb, #ffeaf2);
-  box-shadow: 0 10px 25px rgba(214, 51, 132, 0.2);
+  border-color: #0e5a3a;
+  background: #f7fafc;
 }
 
 .jb-res-card-top {
@@ -1462,46 +1448,44 @@ useHead({
 .jb-res-card-info {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 /* رادیو */
 .jb-res-radio {
   flex-shrink: 0;
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  border: 2.5px solid var(--jb-pink-300);
+  border: 2px solid rgba(14, 90, 58, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .jb-res-card.is-selected .jb-res-radio {
-  border-color: var(--jb-fuchsia);
-  background: rgba(214, 51, 132, 0.08);
+  border-color: #0e5a3a;
 }
 
 .jb-res-radio-dot {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
-  box-shadow: 0 2px 6px rgba(214, 51, 132, 0.4);
+  background: #0e5a3a;
 }
 
 .jb-res-card-title {
-  font-size: 0.9rem;
-  font-weight: 900;
-  color: var(--jb-text);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #1a202c;
 }
 
 .jb-res-card-sub {
-  font-size: 0.75rem;
-  color: var(--jb-text-muted);
-  font-weight: 600;
-  margin-top: 3px;
+  font-size: 0.72rem;
+  color: #718096;
+  font-weight: 500;
+  margin-top: 2px;
 }
 
 .jb-res-card-price {
@@ -1510,16 +1494,16 @@ useHead({
 }
 
 .jb-res-card-price-amount {
-  font-size: 1rem;
-  font-weight: 900;
-  color: var(--jb-pink-700);
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #0e5a3a;
   line-height: 1.1;
 }
 
 .jb-res-card-price-unit {
-  font-size: 0.65rem;
-  color: var(--jb-text-muted);
-  font-weight: 600;
+  font-size: 0.62rem;
+  color: #a0aec0;
+  font-weight: 500;
   text-align: left;
 }
 
@@ -1527,56 +1511,55 @@ useHead({
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 14px;
-  padding-top: 12px;
-  border-top: 1.5px dashed var(--jb-pink-200);
-  font-size: 0.78rem;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(14, 90, 58, 0.1);
+  font-size: 0.75rem;
 }
 
 .jb-res-card-bottom-label {
-  color: var(--jb-text-muted);
-  font-weight: 600;
+  color: #a0aec0;
+  font-weight: 500;
 }
 
 .jb-res-card-bottom-value {
-  color: var(--jb-text);
-  font-weight: 800;
+  color: #1a202c;
+  font-weight: 700;
 }
 
 /* بدون رزرو */
 .jb-res-no-reservation {
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 1.5px dashed var(--jb-pink-300);
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(14, 90, 58, 0.12);
 }
 
 .jb-res-no-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
+  gap: 6px;
+  padding: 9px 16px;
   background: #fff;
-  border: 2px solid var(--jb-pink-200);
-  border-radius: 12px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--jb-text-soft);
+  border: 1px solid rgba(14, 90, 58, 0.12);
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #4a5568;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
   font-family: inherit;
 }
 
 .jb-res-no-btn:hover {
-  border-color: var(--jb-pink-400);
-  background: var(--jb-pink-50);
-  color: var(--jb-fuchsia);
+  border-color: rgba(14, 90, 58, 0.25);
+  background: #f7fafc;
+  color: #0e5a3a;
 }
 
 .jb-res-no-btn.is-active {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: #0e5a3a;
   color: #fff;
   border-color: transparent;
-  box-shadow: 0 8px 20px rgba(214, 51, 132, 0.4);
 }
 
 /* =========================================================
@@ -1585,12 +1568,27 @@ useHead({
 .jb-cart-continue {
   display: flex;
   justify-content: flex-end;
-  margin-top: 24px;
+  margin-top: 20px;
 }
 
 .jb-cart-continue-btn {
-  padding: 14px 32px !important;
-  font-size: 0.92rem !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 28px;
+  background: #0e5a3a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.jb-cart-continue-btn:hover {
+  background: #0b472e;
 }
 
 /* =========================================================
@@ -1598,22 +1596,22 @@ useHead({
    ========================================================= */
 @media (max-width: 768px) {
   .jb-cart-card {
-    padding: 16px;
-    border-radius: 20px;
+    padding: 14px;
+    border-radius: 8px;
   }
 
   .jb-cart-row {
-    padding: 12px;
+    padding: 10px;
   }
 
   .jb-cart-row-img-wrap {
-    width: 72px;
-    height: 72px;
+    width: 66px;
+    height: 66px;
   }
 
   .jb-cart-summary-box {
-    padding: 16px;
-    border-radius: 18px;
+    padding: 14px;
+    border-radius: 6px;
   }
 
   .jb-summary-list {
@@ -1621,7 +1619,7 @@ useHead({
   }
 
   .jb-reservations-box {
-    padding: 16px;
+    padding: 14px;
   }
 
   .jb-res-header {
@@ -1639,7 +1637,6 @@ useHead({
 
   .jb-cart-continue-btn {
     width: 100%;
-    justify-content: center;
   }
 }
 </style>

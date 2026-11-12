@@ -42,15 +42,15 @@ function onSubmit() {
 <style scoped>
 .jb-search-box {
   background: rgba(255, 255, 255, 0.95);
-  border: 2px solid var(--jb-pink-200);
+  border: 2px solid rgba(14, 90, 58, 0.1);
   border-radius: 18px;
   padding: 14px 16px;
-  box-shadow: 0 4px 14px rgba(214, 51, 132, 0.06);
+  box-shadow: 0 4px 14px rgba(14, 90, 58, 0.06);
   transition: all 0.3s ease;
 }
 
 .jb-search-box:hover {
-  border-color: var(--jb-pink-300);
+  border-color: rgba(14, 90, 58, 0.2);
 }
 
 .jb-search-header {
@@ -64,14 +64,14 @@ function onSubmit() {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
-  box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.18);
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
+  box-shadow: 0 0 0 3px rgba(140, 198, 63, 0.18);
 }
 
 .jb-search-title {
   font-size: 0.9rem;
   font-weight: 900;
-  color: var(--jb-text);
+  color: #1a202c;
 }
 
 .jb-search-input-wrap {
@@ -82,23 +82,23 @@ function onSubmit() {
   width: 100%;
   padding: 11px 42px 11px 14px;
   background: #fff;
-  border: 2px solid var(--jb-pink-200);
+  border: 2px solid rgba(14, 90, 58, 0.1);
   border-radius: 12px;
   font-size: 0.82rem;
   font-weight: 600;
-  color: var(--jb-text);
+  color: #1a202c;
   transition: all 0.25s ease;
   outline: none;
 }
 
 .jb-search-input::placeholder {
-  color: var(--jb-text-muted);
+  color: #a0aec0;
   font-weight: 500;
 }
 
 .jb-search-input:focus {
-  border-color: var(--jb-fuchsia);
-  box-shadow: 0 0 0 4px rgba(214, 51, 132, 0.15);
+  border-color: #8cc63f;
+  box-shadow: 0 0 0 4px rgba(140, 198, 63, 0.15);
 }
 
 .jb-search-btn {
@@ -112,16 +112,16 @@ function onSubmit() {
   align-items: center;
   justify-content: center;
   border-radius: 9px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
   border: none;
   cursor: pointer;
   transition: all 0.25s ease;
-  box-shadow: 0 4px 12px rgba(214, 51, 132, 0.35);
+  box-shadow: 0 4px 12px rgba(14, 90, 58, 0.3);
 }
 
 .jb-search-btn:hover {
-  background: linear-gradient(135deg, var(--jb-pink-600), var(--jb-pink-800));
+  background: linear-gradient(135deg, #0b472e, #0e5a3a);
   transform: translateY(-50%) scale(1.05);
 }
 </style>

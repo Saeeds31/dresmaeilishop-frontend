@@ -8,18 +8,10 @@
       <div class="jb-modal-box" @click.stop>
         <!-- دکمه بستن -->
         <button class="jb-modal-close" @click="closeModal" aria-label="بستن">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
-
-        <!-- بج تزئینی بالا -->
-        <div class="jb-modal-badge">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
-              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-          </svg>
-        </div>
 
         <!-- ============================================================
              مرحله ۱: موبایل
@@ -52,7 +44,7 @@
             <button
               type="submit"
               :disabled="btnLoader || !isValidMobile"
-              class="jb-btn-linear jb-modal-submit"
+              class="jb-modal-submit"
             >
               <span v-if="!btnLoader">ادامه</span>
               <span v-else class="jb-modal-spinner-wrap">
@@ -97,7 +89,7 @@
             <button
               @click="verifyOtpCode"
               :disabled="btnLoader || otp.length !== 6"
-              class="jb-btn-linear jb-modal-submit jb-modal-submit-half"
+              class="jb-modal-submit jb-modal-submit-half"
             >
               <span v-if="!btnLoader">تأیید</span>
               <svg v-else class="jb-modal-spinner" viewBox="0 0 24 24">
@@ -165,7 +157,7 @@
             <button
               type="submit"
               :disabled="btnLoader || !isRegisterValid"
-              class="jb-btn-linear jb-modal-submit"
+              class="jb-modal-submit"
             >
               <span v-if="!btnLoader">ثبت‌نام</span>
               <span v-else class="jb-modal-spinner-wrap">
@@ -211,7 +203,7 @@
             <button
               type="submit"
               :disabled="btnLoader || password.length < 6"
-              class="jb-btn-linear jb-modal-submit"
+              class="jb-modal-submit"
             >
               <span v-if="!btnLoader">ورود</span>
               <span v-else class="jb-modal-spinner-wrap">
@@ -393,7 +385,7 @@ onUnmounted(() => clearTimer());
 
 <style scoped>
 /* =========================================================
-   مودال ورود/ثبت‌نام - تم پودری
+   مودال ورود/ثبت‌نام - مینیمال سبز
    ========================================================= */
 
 .jb-modal-overlay {
@@ -404,90 +396,62 @@ onUnmounted(() => clearTimer());
   align-items: center;
   justify-content: center;
   padding: 16px;
-  background: rgba(45, 20, 32, 0.55);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: rgba(14, 90, 58, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 /* ===== باکس مودال ===== */
 .jb-modal-box {
   position: relative;
   width: 100%;
-  max-width: 420px;
-  padding: 44px 28px 32px;
+  max-width: 400px;
+  padding: 32px 24px 24px;
   background: #fff;
-  border: 2px solid var(--jb-pink-300);
-  border-radius: 28px;
-  box-shadow:
-    0 25px 60px rgba(214, 51, 132, 0.3),
-    0 10px 25px rgba(255, 122, 160, 0.2);
-  animation: jbModalIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(14, 90, 58, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 10px 40px rgba(14, 90, 58, 0.15);
+  animation: jbModalIn 0.3s ease;
 }
 
 @keyframes jbModalIn {
   0% {
     opacity: 0;
-    transform: translateY(30px) scale(0.95);
+    transform: translateY(20px);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 
 /* ===== دکمه بستن ===== */
 .jb-modal-close {
   position: absolute;
-  top: 16px;
-  left: 16px;
-  width: 36px;
-  height: 36px;
+  top: 12px;
+  left: 12px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 11px;
-  background: var(--jb-pink-50);
-  border: 1.5px solid var(--jb-pink-200);
-  color: var(--jb-text-soft);
+  border-radius: 6px;
+  background: #f7fafc;
+  border: 1px solid rgba(14, 90, 58, 0.1);
+  color: #4a5568;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .jb-modal-close:hover {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: #0e5a3a;
   color: #fff;
   border-color: transparent;
-  transform: rotate(90deg);
-  box-shadow: 0 6px 16px rgba(214, 51, 132, 0.35);
-}
-
-/* ===== بج تزئینی بالا ===== */
-.jb-modal-badge {
-  position: absolute;
-  top: -28px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 58px;
-  height: 58px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 20px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
-  color: #fff;
-  border: 3px solid #fff;
-  box-shadow: 0 10px 25px rgba(214, 51, 132, 0.45);
-  animation: jbBadgeFloat 3s ease-in-out infinite;
-}
-
-@keyframes jbBadgeFloat {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50%      { transform: translateX(-50%) translateY(-6px); }
 }
 
 /* ===== هدر ===== */
 .jb-modal-header {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
@@ -501,24 +465,24 @@ onUnmounted(() => clearTimer());
 }
 
 .jb-modal-title {
-  font-size: 1.3rem;
-  font-weight: 900;
-  color: var(--jb-text);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #1a202c;
   letter-spacing: -0.3px;
   line-height: 1.4;
 }
 
 .jb-modal-desc {
-  font-size: 0.85rem;
-  color: var(--jb-text-muted);
-  font-weight: 600;
+  font-size: 0.82rem;
+  color: #718096;
+  font-weight: 500;
   line-height: 1.8;
   margin-top: 4px;
 }
 
 .jb-modal-mobile {
-  color: var(--jb-fuchsia);
-  font-weight: 900;
+  color: #0e5a3a;
+  font-weight: 800;
   direction: ltr;
   display: inline-block;
 }
@@ -527,31 +491,30 @@ onUnmounted(() => clearTimer());
 .jb-modal-edit-btn {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 5px 12px;
-  background: var(--jb-pink-50);
-  border: 1.5px solid var(--jb-pink-200);
-  border-radius: 999px;
-  color: var(--jb-fuchsia);
-  font-size: 0.72rem;
-  font-weight: 800;
+  gap: 4px;
+  padding: 4px 10px;
+  background: #f7fafc;
+  border: 1px solid rgba(14, 90, 58, 0.1);
+  border-radius: 4px;
+  color: #0e5a3a;
+  font-size: 0.7rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
   font-family: inherit;
   white-space: nowrap;
 }
 
 .jb-modal-edit-btn:hover {
-  background: var(--jb-pink-100);
-  border-color: var(--jb-fuchsia);
-  transform: translateY(-1px);
+  background: #f1f7f3;
+  border-color: rgba(14, 90, 58, 0.25);
 }
 
 /* ===== فرم ===== */
 .jb-modal-form {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 /* اینپوت با آیکون */
@@ -563,51 +526,49 @@ onUnmounted(() => clearTimer());
 
 .jb-input-icon {
   position: absolute;
-  right: 14px;
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 9px;
-  background: linear-gradient(135deg, #ffeaf2, #ffe0eb);
-  color: var(--jb-fuchsia);
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: #f7fafc;
+  color: #0e5a3a;
   pointer-events: none;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
   z-index: 1;
 }
 
 .jb-modal-input {
   width: 100%;
-  padding: 14px 54px 14px 16px;
+  padding: 12px 48px 12px 14px;
   background: #fff;
-  border: 2px solid var(--jb-pink-200);
-  border-radius: 14px;
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: var(--jb-text);
+  border: 1px solid rgba(14, 90, 58, 0.12);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1a202c;
   outline: none;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
   font-family: inherit;
 }
 
 .jb-modal-input::placeholder {
-  color: var(--jb-text-muted);
+  color: #a0aec0;
   font-weight: 500;
 }
 
 .jb-modal-input:focus {
-  border-color: var(--jb-fuchsia);
-  box-shadow: 0 0 0 4px rgba(214, 51, 132, 0.15);
+  border-color: #0e5a3a;
+  box-shadow: 0 0 0 3px rgba(14, 90, 58, 0.1);
 }
 
-.jb-modal-input:focus + .jb-input-icon,
 .jb-input-wrap:focus-within .jb-input-icon {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: #0e5a3a;
   color: #fff;
-  box-shadow: 0 4px 12px rgba(214, 51, 132, 0.35);
 }
 
 .jb-modal-input:disabled {
@@ -617,17 +578,29 @@ onUnmounted(() => clearTimer());
 
 /* ===== دکمه اصلی ===== */
 .jb-modal-submit {
-  width: 100%;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  padding: 14px 24px !important;
-  font-size: 0.92rem !important;
+  width: 100%;
+  padding: 11px 20px;
+  background: #0e5a3a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.jb-modal-submit:hover:not(:disabled) {
+  background: #0b472e;
 }
 
 .jb-modal-submit:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
-  transform: none !important;
-  box-shadow: 0 4px 14px rgba(214, 51, 132, 0.25) !important;
 }
 
 .jb-modal-submit-half {
@@ -643,8 +616,8 @@ onUnmounted(() => clearTimer());
 }
 
 .jb-modal-spinner {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   animation: jbSpin 0.9s linear infinite;
 }
 
@@ -656,12 +629,12 @@ onUnmounted(() => clearTimer());
 .jb-modal-otp-wrap {
   display: flex;
   justify-content: center;
-  margin: 8px 0 20px;
+  margin: 8px 0 16px;
 }
 
 .jb-modal-otp-actions {
   display: flex;
-  gap: 10px;
+  gap: 8px;
 }
 
 /* دکمه ثانویه */
@@ -670,24 +643,22 @@ onUnmounted(() => clearTimer());
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 13px 20px;
+  gap: 6px;
+  padding: 10px 16px;
   background: #fff;
-  border: 2px solid var(--jb-pink-300);
-  border-radius: 14px;
-  color: var(--jb-fuchsia);
-  font-size: 0.85rem;
-  font-weight: 800;
+  border: 1px solid rgba(14, 90, 58, 0.15);
+  border-radius: 6px;
+  color: #0e5a3a;
+  font-size: 0.82rem;
+  font-weight: 600;
   font-family: inherit;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .jb-modal-secondary-btn:hover:not(:disabled) {
-  background: var(--jb-pink-100);
-  border-color: var(--jb-fuchsia);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(214, 51, 132, 0.2);
+  background: #f7fafc;
+  border-color: rgba(14, 90, 58, 0.3);
 }
 
 .jb-modal-secondary-btn:disabled {
@@ -700,39 +671,27 @@ onUnmounted(() => clearTimer());
    ========================================================= */
 @media (max-width: 480px) {
   .jb-modal-box {
-    padding: 40px 20px 24px;
-    border-radius: 24px;
-  }
-
-  .jb-modal-badge {
-    width: 52px;
-    height: 52px;
-    top: -26px;
-    border-radius: 17px;
-  }
-
-  .jb-modal-badge svg {
-    width: 20px;
-    height: 20px;
+    padding: 28px 18px 20px;
+    border-radius: 8px;
   }
 
   .jb-modal-title {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
   }
 
   .jb-modal-desc {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
   }
 
   .jb-modal-input {
-    padding: 12px 48px 12px 14px;
+    padding: 11px 44px 11px 12px;
     font-size: 0.82rem;
   }
 
   .jb-input-icon {
     width: 26px;
     height: 26px;
-    right: 12px;
+    right: 10px;
   }
 
   .jb-modal-otp-actions {

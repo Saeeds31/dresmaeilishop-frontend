@@ -1,12 +1,15 @@
 <template>
-  <div class="jb-loader" :class="sizeClass">
-    <!-- هاله‌ی تزئینی پس‌زمینه -->
-    <span class="jb-loader-glow"></span>
+  <div class="jb-loader" :class="sizeClass" role="status" aria-label="در حال بارگذاری">
+    <!-- حالت حلقه‌ای برای سایزهای کوچک -->
+    <svg v-if="isSmall" class="jb-loader-ring" viewBox="0 0 50 50">
+      <circle class="jb-loader-ring-bg" cx="25" cy="25" r="20" fill="none" stroke-width="4" />
+      <circle class="jb-loader-ring-fg" cx="25" cy="25" r="20" fill="none" stroke-width="4" />
+    </svg>
 
-    <!-- سه حباب پودری -->
-    <span class="jb-loader-dot"></span>
-    <span class="jb-loader-dot"></span>
-    <span class="jb-loader-dot"></span>
+    <!-- حالت خطی برای سایزهای بزرگ -->
+    <div v-else class="jb-loader-bar">
+      <div class="jb-loader-bar-fill"></div>
+    </div>
   </div>
 </template>
 
@@ -22,73 +25,80 @@ const props = defineProps({
 });
 
 const sizeClass = computed(() => `size-${props.size}`);
+const isSmall = computed(() => ["xs", "sm"].includes(props.size));
 </script>
 
 <style scoped>
 /* =========================================================
-   لودر - سه حباب پودری با هاله‌ی گرادیانی
+   لودر - مینیمال سبز
    ========================================================= */
 
 .jb-loader {
-  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 6px 10px;
 }
 
-/* هاله‌ی نرم پشت حباب‌ها */
-.jb-loader-glow {
-  position: absolute;
-  inset: 0;
-  border-radius: 999px;
-  background: radial-gradient(
-    circle,
-    rgba(255, 122, 160, 0.25) 0%,
-    rgba(255, 122, 160, 0.08) 50%,
-    transparent 80%
-  );
-  animation: jbGlowPulse 1.6s ease-in-out infinite;
-  z-index: 0;
+/* ===== حالت حلقه‌ای (xs, sm) ===== */
+.jb-loader-ring {
+  animation: jbRotate 1.2s linear infinite;
 }
 
-@keyframes jbGlowPulse {
-  0%, 100% {
-    opacity: 0.6;
-    transform: scale(0.95);
+.jb-loader-ring-bg {
+  stroke: rgba(14, 90, 58, 0.12);
+}
+
+.jb-loader-ring-fg {
+  stroke: #0e5a3a;
+  stroke-linecap: round;
+  stroke-dasharray: 90, 150;
+  stroke-dashoffset: 0;
+  animation: jbDash 1.4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes jbRotate {
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes jbDash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
   }
   50% {
-    opacity: 1;
-    transform: scale(1.08);
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
   }
 }
 
-/* ===== حباب‌ها ===== */
-.jb-loader-dot {
-  position: relative;
-  z-index: 1;
-  display: block;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--jb-pink-400), var(--jb-fuchsia));
-  box-shadow:
-    0 4px 12px rgba(214, 51, 132, 0.4),
-    inset 0 -2px 4px rgba(110, 15, 46, 0.25),
-    inset 0 2px 3px rgba(255, 255, 255, 0.5);
-  animation: jbBounce 1.1s ease-in-out infinite both;
+/* ===== حالت خطی (md, lg, xl) ===== */
+.jb-loader-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(14, 90, 58, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
 }
 
-.jb-loader-dot:nth-child(2) { animation-delay: -0.2s; }
-.jb-loader-dot:nth-child(3) { animation-delay: -0.4s; }
+.jb-loader-bar-fill {
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(90deg, #0e5a3a, #1a7a50);
+  border-radius: 2px;
+  animation: jbBarMove 1.4s ease-in-out infinite;
+}
 
-@keyframes jbBounce {
-  0%, 80%, 100% {
-    transform: translateY(0) scale(1);
-    opacity: 0.7;
+@keyframes jbBarMove {
+  0% {
+    transform: translateX(-100%);
   }
-  40% {
-    transform: translateY(-45%) scale(1.15);
-    opacity: 1;
+  100% {
+    transform: translateX(350%);
   }
 }
 
@@ -97,52 +107,38 @@ const sizeClass = computed(() => `size-${props.size}`);
    ========================================================= */
 
 /* xs */
-.size-xs {
-  gap: 4px;
-  padding: 4px 6px;
-}
-.size-xs .jb-loader-dot {
-  width: 6px;
-  height: 6px;
+.size-xs .jb-loader-ring {
+  width: 18px;
+  height: 18px;
 }
 
 /* sm */
-.size-sm {
-  gap: 5px;
-  padding: 5px 8px;
-}
-.size-sm .jb-loader-dot {
-  width: 8px;
-  height: 8px;
+.size-sm .jb-loader-ring {
+  width: 24px;
+  height: 24px;
 }
 
 /* md */
 .size-md {
-  gap: 6px;
-  padding: 6px 10px;
+  width: 80px;
 }
-.size-md .jb-loader-dot {
-  width: 11px;
-  height: 11px;
+.size-md .jb-loader-bar {
+  height: 3px;
 }
 
 /* lg */
 .size-lg {
-  gap: 8px;
-  padding: 8px 14px;
+  width: 120px;
 }
-.size-lg .jb-loader-dot {
-  width: 15px;
-  height: 15px;
+.size-lg .jb-loader-bar {
+  height: 4px;
 }
 
 /* xl */
 .size-xl {
-  gap: 10px;
-  padding: 10px 18px;
+  width: 180px;
 }
-.size-xl .jb-loader-dot {
-  width: 20px;
-  height: 20px;
+.size-xl .jb-loader-bar {
+  height: 5px;
 }
 </style>

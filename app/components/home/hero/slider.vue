@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-[420px] md:h-[450px] overflow-hidden rounded-3xl jb-shadow">
+  <div class="w-full h-[420px] md:h-[450px] overflow-hidden rounded-3xl shadow-md border border-gray-100">
     <Swiper
       :modules="[Autoplay, Pagination, Navigation]"
       :slides-per-view="1"
@@ -21,7 +21,7 @@
         <nuxt-link
           :to="slide.link"
           class="relative w-full h-full rounded-3xl px-8 py-9 flex justify-between overflow-hidden"
-          style="background: linear-gradient(135deg, #fff0f5 0%, #ffe0eb 50%, #ffd0e0 100%);"
+          style="background: linear-gradient(135deg, #f4f9f6 0%, #e3f1e8 50%, #d1e8db 100%);"
         >
           <div :class="slide.type" class="absolute inset-0 flex z-0">
             <img
@@ -78,25 +78,25 @@ defineProps<{ slides: any[] }>();
   opacity: 0.85;
   border-radius: 50%;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 6px rgba(214, 51, 132, 0.35);
+  box-shadow: 0 2px 6px rgba(14, 90, 58, 0.35);
 }
 
 :deep(.swiper-pagination-bullet-active) {
   width: 26px;
   height: 10px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   border-radius: 999px;
   opacity: 1;
-  box-shadow: 0 4px 12px rgba(214, 51, 132, 0.55);
+  box-shadow: 0 4px 12px rgba(14, 90, 58, 0.55);
 }
 
 /* ===== دکمه‌های ناوبری ===== */
 :deep(.custom-nav-btn) {
   width: 42px;
   height: 42px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #1a7a50);
   border-radius: 14px;
-  box-shadow: 0 6px 18px rgba(214, 51, 132, 0.45);
+  box-shadow: 0 6px 18px rgba(14, 90, 58, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -110,9 +110,9 @@ defineProps<{ slides: any[] }>();
 }
 
 :deep(.custom-nav-btn:hover) {
-  background: linear-gradient(135deg, var(--jb-pink-600), var(--jb-pink-800));
+  background: linear-gradient(135deg, #0b472e, #0e5a3a);
   transform: translateY(-50%) scale(1.08);
-  box-shadow: 0 10px 25px rgba(214, 51, 132, 0.6);
+  box-shadow: 0 10px 25px rgba(14, 90, 58, 0.6);
 }
 
 :deep(.custom-nav-btn img) {
@@ -132,10 +132,10 @@ defineProps<{ slides: any[] }>();
 /* ===== حالت غیرفعال ===== */
 :deep(.custom-nav-btn.swiper-button-disabled) {
   background: rgba(255, 255, 255, 0.9) !important;
-  border: 2px solid var(--jb-pink-300) !important;
+  border: 2px solid #8cc63f !important;
   opacity: 0.75;
   cursor: not-allowed;
-  box-shadow: 0 4px 12px rgba(214, 51, 132, 0.15);
+  box-shadow: 0 4px 12px rgba(14, 90, 58, 0.15);
   transform: translateY(-50%) scale(1);
 }
 

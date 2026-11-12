@@ -5,7 +5,11 @@
       <!-- تیتر -->
       <div class="jb-faq-header">
         <h2 class="jb-faq-title">
-          <span class="jb-faq-icon">❓</span>
+          <span class="jb-faq-icon">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </span>
           سوالات <span class="jb-faq-title-strong">متداول</span>
         </h2>
         <div class="jb-faq-line"></div>
@@ -91,7 +95,7 @@ const faqs = ref([
   {
     id: 7,
     question: "اگر مشکلی در خرید داشتیم چطور میتونیم با شما در ارتباط باشیم؟",
-    answer: "برای ارتباط با پشتیبانی کافیه در تایم کاری ۱۰ صبح تا ۵ عصر تماس برقرار کنید: 09375015769 یا از طریق تلگرام و روبیکا برامون پیام بزارید🙏",
+    answer: "برای ارتباط با پشتیبانی کافیه در تایم کاری ۱۰ صبح تا ۵ عصر تماس برقرار کنید: 09112788834 یا از طریق تلگرام و روبیکا برامون پیام بزارید🙏",
   },
 ]);
 
@@ -104,7 +108,7 @@ function toggle(id) {
 
 <style scoped>
 /* =========================================================
-   سکشن سوالات متداول - تم پودری
+   سکشن سوالات متداول - تم سبز لوکس
    ========================================================= */
 
 .jb-faq-section {
@@ -127,7 +131,7 @@ function toggle(id) {
   gap: 10px;
   font-size: 1.2rem;
   font-weight: 900;
-  color: var(--jb-text);
+  color: #1a202c;
   letter-spacing: -0.3px;
 }
 
@@ -138,14 +142,13 @@ function toggle(id) {
   width: 38px;
   height: 38px;
   border-radius: 12px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
-  font-size: 1rem;
-  box-shadow: 0 6px 18px rgba(214, 51, 132, 0.35);
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
+  box-shadow: 0 6px 18px rgba(14, 90, 58, 0.35);
   border: 2px solid #fff;
 }
 
 .jb-faq-title-strong {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -158,16 +161,16 @@ function toggle(id) {
   border-radius: 999px;
   background: linear-gradient(
     90deg,
-    var(--jb-pink-400),
-    var(--jb-fuchsia),
-    var(--jb-pink-400)
+    #8cc63f,
+    #0e5a3a,
+    #8cc63f
   );
-  box-shadow: 0 2px 8px rgba(214, 51, 132, 0.25);
+  box-shadow: 0 2px 8px rgba(14, 90, 58, 0.2);
 }
 
 .jb-faq-subtitle {
   font-size: 0.88rem;
-  color: var(--jb-text-muted);
+  color: #4a5568;
   font-weight: 500;
   line-height: 1.8;
 }
@@ -182,23 +185,23 @@ function toggle(id) {
 /* ===== آیتم ===== */
 .jb-faq-item {
   background: #ffffff;
-  border: 2px solid var(--jb-pink-200);
+  border: 2px solid rgba(14, 90, 58, 0.1);
   border-radius: 20px;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 14px rgba(214, 51, 132, 0.06);
+  box-shadow: 0 4px 14px rgba(14, 90, 58, 0.06);
 }
 
 .jb-faq-item:hover {
-  border-color: var(--jb-pink-400);
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.14);
+  border-color: rgba(14, 90, 58, 0.25);
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.12);
   transform: translateY(-2px);
 }
 
 .jb-faq-item.is-active {
-  border-color: var(--jb-fuchsia);
-  box-shadow: 0 12px 28px rgba(214, 51, 132, 0.22);
-  background: linear-gradient(180deg, #fff 0%, #fff8fb 100%);
+  border-color: #8cc63f;
+  box-shadow: 0 12px 28px rgba(14, 90, 58, 0.15);
+  background: linear-gradient(180deg, #fff 0%, #f8fcf9 100%);
 }
 
 /* ===== دکمه سوال ===== */
@@ -225,20 +228,20 @@ function toggle(id) {
   align-items: center;
   justify-content: center;
   border-radius: 12px;
-  background: var(--jb-pink-100);
-  color: var(--jb-pink-700);
+  background: #f1f7f3;
+  color: #0e5a3a;
   font-size: 0.8rem;
   font-weight: 900;
   letter-spacing: 0.5px;
   transition: all 0.3s ease;
-  border: 1.5px solid var(--jb-pink-200);
+  border: 1.5px solid rgba(14, 90, 58, 0.1);
 }
 
 .jb-faq-item.is-active .jb-faq-num {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
   border-color: transparent;
-  box-shadow: 0 6px 16px rgba(214, 51, 132, 0.4);
+  box-shadow: 0 6px 16px rgba(14, 90, 58, 0.35);
 }
 
 /* سوال */
@@ -246,14 +249,14 @@ function toggle(id) {
   flex: 1;
   font-size: 0.92rem;
   font-weight: 700;
-  color: var(--jb-text);
+  color: #1a202c;
   line-height: 1.7;
   transition: color 0.25s ease;
   text-align: right;
 }
 
 .jb-faq-item.is-active .jb-faq-question {
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
   font-weight: 800;
 }
 
@@ -266,16 +269,16 @@ function toggle(id) {
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  background: var(--jb-pink-100);
-  color: var(--jb-pink-600);
+  background: #f1f7f3;
+  color: #0e5a3a;
   transition: all 0.3s ease;
 }
 
 .jb-faq-arrow.is-open {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
   transform: rotate(180deg);
-  box-shadow: 0 6px 16px rgba(214, 51, 132, 0.4);
+  box-shadow: 0 6px 16px rgba(14, 90, 58, 0.35);
 }
 
 /* ===== جواب ===== */
@@ -286,7 +289,7 @@ function toggle(id) {
 
 .jb-faq-dashed {
   height: 0;
-  border-top: 1.5px dashed var(--jb-pink-300);
+  border-top: 1.5px dashed rgba(140, 198, 63, 0.4);
   margin-bottom: 14px;
   position: relative;
 }
@@ -299,7 +302,7 @@ function toggle(id) {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--jb-pink-400);
+  background: #8cc63f;
   box-shadow: 0 0 0 2px #fff;
 }
 
@@ -309,7 +312,7 @@ function toggle(id) {
 .jb-faq-answer {
   font-size: 0.86rem;
   line-height: 2;
-  color: var(--jb-text-soft);
+  color: #4a5568;
   font-weight: 500;
   padding-right: 52px;
   text-align: right;
@@ -346,7 +349,6 @@ function toggle(id) {
   .jb-faq-icon {
     width: 32px;
     height: 32px;
-    font-size: 0.85rem;
   }
 
   .jb-faq-line {

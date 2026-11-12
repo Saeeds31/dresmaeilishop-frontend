@@ -225,7 +225,6 @@ useHead({
 })
 </script>
 
-
 <template>
   <div class="container jb-shipping-page">
     <SharedBreadCrumb :items="[
@@ -235,16 +234,10 @@ useHead({
     <CartProgressSteps :current-step="2" />
 
     <div class="jb-shipping-card">
-      <!-- ============================================================
-           هدر: مکان تحویل
-      ============================================================ -->
+      <!-- هدر -->
       <div class="jb-shipping-header">
         <div>
-          <h3 class="jb-shipping-title">
-            <span class="jb-shipping-title-dot"></span>
-            مکان تحویل سفارش
-          </h3>
-
+          <h3 class="jb-shipping-title">مکان تحویل سفارش</h3>
           <p v-if="reservationMode" class="jb-shipping-subtitle">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
@@ -262,18 +255,16 @@ useHead({
         </button>
       </div>
 
-      <!-- خط بریده‌بریده -->
+      <!-- خط جداکننده -->
       <div class="jb-divider"></div>
 
-      <!-- ============================================================
-           حالت‌های لودینگ / خطا / خالی
-      ============================================================ -->
+      <!-- حالت‌ها -->
       <div v-if="loading" class="jb-state-block">
         <SharedLoadingSpinner size="lg" />
       </div>
 
       <div v-else-if="error" class="jb-state-block jb-state-error">
-        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
             d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
         </svg>
@@ -282,7 +273,7 @@ useHead({
 
       <div v-else-if="addresses.length === 0" class="jb-state-block jb-state-empty">
         <div class="jb-state-icon">
-          <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
               d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -292,17 +283,13 @@ useHead({
         <span>هنوز آدرسی ثبت نشده است</span>
       </div>
 
-      <!-- ============================================================
-           رزرو مود
-      ============================================================ -->
+      <!-- رزرو مود -->
       <div v-else-if="reservationMode" class="jb-reservation-address">
         <div v-for="address in addresses.filter((a) => a.id === selectedAddress)" :key="address.id"
           class="jb-address-card jb-address-reserved">
           <div class="jb-address-card-inner">
             <div class="jb-address-radio-wrap">
-              <div class="jb-address-radio is-checked">
-                <div class="jb-address-radio-dot"></div>
-              </div>
+              <div class="jb-address-radio is-checked"></div>
             </div>
 
             <div class="jb-address-info">
@@ -341,19 +328,12 @@ useHead({
               </div>
             </div>
 
-            <div class="jb-badge-reserved">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-              </svg>
-              آدرس رزرو
-            </div>
+            <div class="jb-badge-reserved">آدرس رزرو</div>
           </div>
         </div>
       </div>
 
-      <!-- ============================================================
-           حالت عادی: انتخاب آدرس
-      ============================================================ -->
+      <!-- حالت عادی -->
       <div v-else class="jb-address-grid">
         <label v-for="address in addresses" :key="address.id" class="jb-address-card"
           :class="{ 'is-selected': selectedAddress === address.id }">
@@ -362,9 +342,7 @@ useHead({
 
           <div class="jb-address-card-inner">
             <div class="jb-address-radio-wrap">
-              <div class="jb-address-radio" :class="{ 'is-checked': selectedAddress === address.id }">
-                <div v-if="selectedAddress === address.id" class="jb-address-radio-dot"></div>
-              </div>
+              <div class="jb-address-radio" :class="{ 'is-checked': selectedAddress === address.id }"></div>
             </div>
 
             <div class="jb-address-info">
@@ -424,17 +402,12 @@ useHead({
         </label>
       </div>
 
-      <!-- خط بریده‌بریده بزرگ */
+      <!-- خط جداکننده بزرگ -->
       <div class="jb-divider jb-divider-lg"></div>
 
-      <!-- ============================================================
-           شیوه ارسال
-      ============================================================ -->
+      <!-- شیوه ارسال -->
       <div class="jb-shipping-methods">
-        <h3 class="jb-shipping-methods-title">
-          <span class="jb-shipping-title-dot"></span>
-          شیوه ارسال
-        </h3>
+        <h3 class="jb-shipping-methods-title">شیوه ارسال</h3>
 
         <div v-if="shippingLoading" class="jb-state-block">
           <SharedLoadingSpinner size="sm" />
@@ -452,9 +425,7 @@ useHead({
 
             <div class="jb-shipping-card-inner">
               <div class="jb-shipping-card-header">
-                <div class="jb-address-radio" :class="{ 'is-checked': selectedShipping === method.id }">
-                  <div v-if="selectedShipping === method.id" class="jb-address-radio-dot"></div>
-                </div>
+                <div class="jb-address-radio" :class="{ 'is-checked': selectedShipping === method.id }"></div>
                 <span class="jb-shipping-card-name">{{ method.name }}</span>
               </div>
 
@@ -474,9 +445,7 @@ useHead({
         </div>
       </div>
 
-      <!-- ============================================================
-           دکمه‌های ناوبری
-      ============================================================ -->
+      <!-- دکمه‌های ناوبری -->
       <div class="jb-shipping-actions">
         <NuxtLink to="/cart" class="jb-shipping-btn-secondary">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -485,7 +454,7 @@ useHead({
           مرحله قبل
         </NuxtLink>
 
-        <button @click="handleNextStep" class="jb-btn-linear jb-shipping-btn-primary">
+        <button @click="handleNextStep" class="jb-shipping-btn-primary">
           <span>مرحله بعد</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
@@ -498,9 +467,12 @@ useHead({
       @save="addNewAddress" />
   </div>
 </template>
+
+
+
 <style scoped>
 /* =========================================================
-   صفحه ارسال - تم پودری
+   صفحه ارسال - مینیمال سبز
    ========================================================= */
 
 .jb-shipping-page {
@@ -508,11 +480,11 @@ useHead({
 }
 
 .jb-shipping-card {
-  background: rgba(255, 255, 255, 0.95);
-  border: 2px solid var(--jb-pink-200);
-  border-radius: 26px;
-  padding: 24px;
-  box-shadow: 0 10px 30px rgba(214, 51, 132, 0.1);
+  background: #fff;
+  border: 1px solid rgba(14, 90, 58, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(14, 90, 58, 0.04);
 }
 
 /* ===== هدر ===== */
@@ -525,92 +497,56 @@ useHead({
 }
 
 .jb-shipping-title {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 1.05rem;
-  font-weight: 900;
-  color: var(--jb-text);
-}
-
-.jb-shipping-title-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
-  box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.18);
-  flex-shrink: 0;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1a202c;
 }
 
 .jb-shipping-subtitle {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.78rem;
-  color: var(--jb-text-muted);
-  font-weight: 600;
+  font-size: 0.75rem;
+  color: #718096;
+  font-weight: 500;
   margin-top: 6px;
 }
 
 .jb-shipping-subtitle svg {
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
 }
 
 /* دکمه افزودن آدرس */
 .jb-btn-add-address {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  gap: 6px;
+  padding: 9px 16px;
+  background: #0e5a3a;
   color: #fff;
   border: none;
-  border-radius: 14px;
-  font-size: 0.82rem;
-  font-weight: 800;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
   font-family: inherit;
   cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 6px 18px rgba(214, 51, 132, 0.35);
+  transition: all 0.2s ease;
   white-space: nowrap;
 }
 
 .jb-btn-add-address:hover {
-  background: linear-gradient(135deg, var(--jb-pink-600), var(--jb-pink-800));
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(214, 51, 132, 0.5);
+  background: #0b472e;
 }
 
 /* خط جداکننده */
 .jb-divider {
   height: 0;
-  border-top: 2px dashed var(--jb-pink-200);
-  margin: 20px 0;
-  position: relative;
-}
-
-.jb-divider::before,
-.jb-divider::after {
-  content: "";
-  position: absolute;
-  top: -5px;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--jb-pink-400);
-  box-shadow: 0 0 0 3px #fff;
-}
-
-.jb-divider::before {
-  right: -4px;
-}
-
-.jb-divider::after {
-  left: -4px;
+  border-top: 1px dashed rgba(14, 90, 58, 0.15);
+  margin: 16px 0;
 }
 
 .jb-divider-lg {
-  margin: 32px 0;
+  margin: 24px 0;
 }
 
 /* ===== حالت لودینگ / خطا / خالی ===== */
@@ -619,30 +555,30 @@ useHead({
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
+  padding: 32px 20px;
   text-align: center;
-  gap: 12px;
-  color: var(--jb-text-muted);
-  font-size: 0.88rem;
-  font-weight: 600;
+  gap: 10px;
+  color: #718096;
+  font-size: 0.85rem;
+  font-weight: 500;
 }
 
 .jb-state-error {
-  color: #c9184a;
-  font-weight: 800;
+  color: #c53030;
+  font-weight: 600;
 }
 
 .jb-state-icon {
-  width: 80px;
-  height: 80px;
+  width: 64px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #ffeaf2, #ffe0eb);
-  border: 3px dashed var(--jb-pink-300);
-  color: var(--jb-pink-400);
-  margin-bottom: 6px;
+  border-radius: 8px;
+  background: #f7fafc;
+  border: 1px solid rgba(14, 90, 58, 0.08);
+  color: #a0aec0;
+  margin-bottom: 4px;
 }
 
 /* =========================================================
@@ -651,7 +587,7 @@ useHead({
 .jb-address-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
+  gap: 10px;
 }
 
 @media (min-width: 768px) {
@@ -663,30 +599,27 @@ useHead({
 .jb-address-card {
   position: relative;
   display: block;
-  padding: 16px;
+  padding: 14px;
   background: #fff;
-  border: 2px solid var(--jb-pink-200);
-  border-radius: 18px;
+  border: 1px solid rgba(14, 90, 58, 0.1);
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .jb-address-card:hover {
-  border-color: var(--jb-pink-400);
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.14);
-  transform: translateY(-2px);
+  border-color: rgba(14, 90, 58, 0.25);
 }
 
 .jb-address-card.is-selected {
-  border-color: var(--jb-fuchsia);
-  background: linear-gradient(135deg, #fff8fb, #ffeaf2);
-  box-shadow: 0 10px 25px rgba(214, 51, 132, 0.22);
+  border-color: #0e5a3a;
+  background: #f7fafc;
 }
 
 .jb-address-card-inner {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 10px;
 }
 
 /* رادیو مخفی */
@@ -704,34 +637,25 @@ useHead({
 }
 
 .jb-address-radio {
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  border: 2.5px solid var(--jb-pink-300);
+  border: 2px solid rgba(14, 90, 58, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
   background: #fff;
 }
 
 .jb-address-card.is-selected .jb-address-radio,
 .jb-shipping-card.is-selected .jb-address-radio {
-  border-color: var(--jb-fuchsia);
-  background: rgba(214, 51, 132, 0.08);
+  border-color: #0e5a3a;
 }
 
 .jb-address-radio.is-checked {
-  border-color: var(--jb-fuchsia);
-  background: rgba(214, 51, 132, 0.08);
-}
-
-.jb-address-radio-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
-  box-shadow: 0 2px 6px rgba(214, 51, 132, 0.4);
+  border-color: #0e5a3a;
+  background: #0e5a3a;
 }
 
 /* اطلاعات */
@@ -739,7 +663,7 @@ useHead({
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   min-width: 0;
 }
 
@@ -747,9 +671,9 @@ useHead({
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 700;
-  color: var(--jb-text);
+  color: #1a202c;
   line-height: 1.6;
 }
 
@@ -757,9 +681,9 @@ useHead({
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.78rem;
-  color: var(--jb-text-muted);
-  font-weight: 600;
+  font-size: 0.75rem;
+  color: #718096;
+  font-weight: 500;
 }
 
 .jb-address-receiver {
@@ -767,9 +691,9 @@ useHead({
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
-  font-size: 0.78rem;
-  color: var(--jb-text-soft);
-  font-weight: 700;
+  font-size: 0.75rem;
+  color: #4a5568;
+  font-weight: 600;
 }
 
 .jb-address-icon {
@@ -777,12 +701,12 @@ useHead({
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
   margin-top: 1px;
 }
 
 .jb-sep {
-  color: var(--jb-pink-300);
+  color: #cbd5e1;
   font-weight: 400;
 }
 
@@ -790,60 +714,56 @@ useHead({
 .jb-address-actions {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   flex-shrink: 0;
 }
 
 .jb-address-action-btn {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: all 0.25s ease;
-  border: 1.5px solid transparent;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
 }
 
 .jb-delete-btn {
-  background: #fff5f8;
-  border-color: #ffb8c8;
-  color: #c9184a;
+  background: #fff5f5;
+  border-color: #fed7d7;
+  color: #e53e3e;
 }
 
 .jb-delete-btn:hover {
-  background: linear-gradient(135deg, #ff4d6d, #c9184a);
+  background: #e53e3e;
   color: #fff;
   border-color: transparent;
-  transform: scale(1.08);
-  box-shadow: 0 6px 16px rgba(201, 24, 74, 0.35);
 }
 
 .jb-edit-btn {
-  background: var(--jb-pink-50);
-  border-color: var(--jb-pink-200);
-  color: var(--jb-fuchsia);
+  background: #f7fafc;
+  border-color: rgba(14, 90, 58, 0.08);
+  color: #0e5a3a;
 }
 
 .jb-edit-btn:hover {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: #0e5a3a;
   color: #fff;
   border-color: transparent;
-  transform: scale(1.08);
-  box-shadow: 0 6px 16px rgba(214, 51, 132, 0.35);
 }
 
 /* =========================================================
    آدرس رزرو شده
    ========================================================= */
 .jb-reservation-address {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .jb-address-reserved {
-  background: linear-gradient(135deg, #fff8fb, #ffeaf2);
-  border-color: var(--jb-fuchsia);
+  background: #f7fafc;
+  border-color: #0e5a3a;
   cursor: default;
 }
 
@@ -855,15 +775,12 @@ useHead({
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 6px 12px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  padding: 4px 10px;
+  background: #0e5a3a;
   color: #fff;
-  font-size: 0.7rem;
-  font-weight: 800;
-  border-radius: 999px;
-  box-shadow: 0 6px 16px rgba(214, 51, 132, 0.35);
-  border: 2px solid #fff;
+  font-size: 0.68rem;
+  font-weight: 600;
+  border-radius: 4px;
   align-self: flex-start;
 }
 
@@ -871,23 +788,20 @@ useHead({
    شیوه ارسال
    ========================================================= */
 .jb-shipping-methods {
-  margin-top: 8px;
+  margin-top: 6px;
 }
 
 .jb-shipping-methods-title {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 1rem;
-  font-weight: 900;
-  color: var(--jb-text);
-  margin-bottom: 16px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #1a202c;
+  margin-bottom: 14px;
 }
 
 .jb-shipping-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
+  gap: 10px;
 }
 
 @media (min-width: 768px) {
@@ -899,30 +813,27 @@ useHead({
 .jb-shipping-card {
   position: relative;
   display: block;
-  padding: 16px;
+  padding: 14px;
   background: #fff;
-  border: 2px solid var(--jb-pink-200);
-  border-radius: 18px;
+  border: 1px solid rgba(14, 90, 58, 0.1);
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .jb-shipping-card:hover {
-  border-color: var(--jb-pink-400);
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.14);
-  transform: translateY(-2px);
+  border-color: rgba(14, 90, 58, 0.25);
 }
 
 .jb-shipping-card.is-selected {
-  border-color: var(--jb-fuchsia);
-  background: linear-gradient(135deg, #fff8fb, #ffeaf2);
-  box-shadow: 0 10px 25px rgba(214, 51, 132, 0.22);
+  border-color: #0e5a3a;
+  background: #f7fafc;
 }
 
 .jb-shipping-card-inner {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .jb-shipping-card-header {
@@ -932,15 +843,15 @@ useHead({
 }
 
 .jb-shipping-card-name {
-  font-size: 0.9rem;
-  font-weight: 800;
-  color: var(--jb-text);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1a202c;
 }
 
 .jb-shipping-card-desc {
-  font-size: 0.75rem;
-  color: var(--jb-text-muted);
-  font-weight: 600;
+  font-size: 0.72rem;
+  color: #718096;
+  font-weight: 500;
   line-height: 1.8;
   min-height: 2.4em;
 }
@@ -950,29 +861,29 @@ useHead({
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  padding-top: 10px;
-  border-top: 1.5px dashed var(--jb-pink-200);
+  padding-top: 8px;
+  border-top: 1px dashed rgba(14, 90, 58, 0.1);
 }
 
 .jb-shipping-cost-label {
-  font-size: 0.78rem;
-  color: var(--jb-text-muted);
-  font-weight: 600;
+  font-size: 0.75rem;
+  color: #718096;
+  font-weight: 500;
 }
 
 .jb-shipping-cost-value {
-  font-size: 0.95rem;
-  font-weight: 900;
-  color: var(--jb-pink-700);
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #0e5a3a;
   display: inline-flex;
   align-items: baseline;
   gap: 3px;
 }
 
 .jb-shipping-cost-unit {
-  font-size: 0.68rem;
-  color: var(--jb-text-muted);
-  font-weight: 600;
+  font-size: 0.65rem;
+  color: #a0aec0;
+  font-weight: 500;
 }
 
 /* =========================================================
@@ -980,8 +891,8 @@ useHead({
    ========================================================= */
 .jb-shipping-actions {
   display: flex;
-  gap: 12px;
-  margin-top: 28px;
+  gap: 10px;
+  margin-top: 24px;
   flex-wrap: wrap;
 }
 
@@ -992,32 +903,45 @@ useHead({
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 13px 24px;
+  padding: 10px 20px;
   background: #fff;
-  border: 2px solid var(--jb-pink-300);
-  border-radius: 14px;
-  color: var(--jb-fuchsia);
-  font-size: 0.88rem;
-  font-weight: 800;
+  border: 1px solid rgba(14, 90, 58, 0.15);
+  border-radius: 6px;
+  color: #0e5a3a;
+  font-size: 0.85rem;
+  font-weight: 700;
   font-family: inherit;
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .jb-shipping-btn-secondary:hover {
-  background: var(--jb-pink-100);
-  border-color: var(--jb-fuchsia);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(214, 51, 132, 0.2);
+  background: #f7fafc;
+  border-color: rgba(14, 90, 58, 0.3);
 }
 
 .jb-shipping-btn-primary {
   flex: 1;
   min-width: 160px;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  padding: 13px 24px !important;
-  font-size: 0.9rem !important;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #0e5a3a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.jb-shipping-btn-primary:hover {
+  background: #0b472e;
 }
 
 /* =========================================================
@@ -1025,12 +949,12 @@ useHead({
    ========================================================= */
 @media (max-width: 640px) {
   .jb-shipping-card {
-    padding: 16px;
-    border-radius: 20px;
+    padding: 14px;
+    border-radius: 8px;
   }
 
   .jb-shipping-title {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 
   .jb-btn-add-address {
@@ -1039,7 +963,7 @@ useHead({
   }
 
   .jb-address-card {
-    padding: 14px;
+    padding: 12px;
   }
 
   .jb-address-actions {

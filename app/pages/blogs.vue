@@ -59,7 +59,7 @@
             </h1>
           </div>
           <p class="jb-blogs-desc">
-            راهنماها، نکات و تجربه‌های ارزشمند برای والدین و کوچولوی عزیزتان
+            راهنماها، نکات و تجربه‌های ارزشمند برای سلامت و زیبایی شما
           </p>
         </div>
 
@@ -153,15 +153,15 @@ const currentPageUrl = computed(() => {
 useSeoMeta({
   title: () =>
     currentPage.value > 1
-      ? `مقالات فروشگاه دکتر اسماعیلی - صفحه ${currentPage.value} | راهنمای خرید و نگهداری لوازم نوزاد`
-      : "مقالات فروشگاه دکتر اسماعیلی | راهنمای خرید و نگهداری لوازم نوزاد",
+      ? `مقالات فروشگاه دکتر اسماعیلی - صفحه ${currentPage.value} | راهنمای سلامت و زیبایی`
+      : "مقالات فروشگاه دکتر اسماعیلی | راهنمای سلامت و زیبایی",
   description:
-    "مجموعه مقالات آموزشی و راهنمای خرید سیسمونی، لباس نوزاد و لوازم ایمنی. نکات و تجربه‌های ارزشمند برای والدین از فروشگاه فروشگاه دکتر اسماعیلی.",
+    "مجموعه مقالات آموزشی و راهنمای خرید محصولات مراقبت از پوست، مو، مکمل‌های غذایی و لوازم بهداشتی. نکات و تجربه‌های ارزشمند برای سلامت و زیبایی شما از فروشگاه دکتر اسماعیلی.",
   ogTitle: () =>
     currentPage.value > 1
       ? `مقالات فروشگاه دکتر اسماعیلی - صفحه ${currentPage.value}`
       : "مقالات فروشگاه دکتر اسماعیلی",
-  ogDescription: "راهنماها و نکات کاربردی برای والدین در زمینه سیسمونی و لوازم نوزاد.",
+  ogDescription: "راهنماها و نکات کاربردی برای سلامت و زیبایی شما.",
   ogImage: "https://dresmaeilishop.ir/_nuxt/logo.BGpC-RES.png",
   ogUrl: () => currentPageUrl.value,
   ogType: "website",
@@ -200,12 +200,12 @@ useHead({
 
 <style scoped>
 /* =========================================================
-   صفحه مقالات - تم پودری
+   صفحه مقالات - تم سبز لوکس
    ========================================================= */
 
 .jb-blogs-page {
   padding-bottom: 80px;
-  background: linear-gradient(135deg, #fff8fb 0%, #fff0f5 50%, #ffeaf2 100%);
+  background: linear-gradient(135deg, #f8fcf9 0%, #e8f3ec 50%, #d1e8db 100%);
   background-attachment: fixed;
   min-height: 100vh;
   padding-top: 20px;
@@ -236,9 +236,9 @@ useHead({
   width: 42px;
   height: 42px;
   border-radius: 14px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.35);
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.3);
   border: 3px solid #fff;
   flex-shrink: 0;
 }
@@ -246,12 +246,12 @@ useHead({
 .jb-blogs-title {
   font-size: 1.5rem;
   font-weight: 900;
-  color: var(--jb-text);
+  color: #1a202c;
   letter-spacing: -0.5px;
 }
 
 .jb-blogs-title-strong {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -259,7 +259,7 @@ useHead({
 
 .jb-blogs-desc {
   font-size: 0.88rem;
-  color: var(--jb-text-muted);
+  color: #4a5568;
   font-weight: 600;
   line-height: 1.9;
   padding-right: 54px;
@@ -268,7 +268,7 @@ useHead({
 /* خط بریده‌بریده */
 .jb-divider {
   height: 0;
-  border-top: 2px dashed var(--jb-pink-200);
+  border-top: 2px dashed rgba(14, 90, 58, 0.15);
   margin: 24px 0;
   position: relative;
 }
@@ -281,7 +281,7 @@ useHead({
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: var(--jb-pink-400);
+  background: #8cc63f;
   box-shadow: 0 0 0 3px #fff;
 }
 
@@ -307,12 +307,12 @@ useHead({
   top: -10px;
   right: 20px;
   padding: 6px 16px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
   font-size: 0.72rem;
   font-weight: 900;
   border-radius: 999px;
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.4);
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.35);
   border: 2px solid #fff;
   z-index: 10;
 }
@@ -351,23 +351,23 @@ useHead({
 .jb-skeleton-featured {
   height: 340px;
   border-radius: 28px;
-  background: linear-gradient(90deg, #f5e6ee 0%, #ffeaf2 50%, #f5e6ee 100%);
+  background: linear-gradient(90deg, #e8f3ec 0%, #f8fcf9 50%, #e8f3ec 100%);
   background-size: 200% 100%;
   animation: jbShimmer 1.6s ease-in-out infinite;
   margin-bottom: 32px;
-  border: 2px solid var(--jb-pink-200);
+  border: 2px solid rgba(14, 90, 58, 0.1);
 }
 
 .jb-skeleton-card {
   background: #fff;
-  border: 2px solid var(--jb-pink-200);
+  border: 2px solid rgba(14, 90, 58, 0.1);
   border-radius: 24px;
   overflow: hidden;
 }
 
 .jb-skeleton-img {
   height: 200px;
-  background: linear-gradient(90deg, #f5e6ee 0%, #ffeaf2 50%, #f5e6ee 100%);
+  background: linear-gradient(90deg, #e8f3ec 0%, #f8fcf9 50%, #e8f3ec 100%);
   background-size: 200% 100%;
   animation: jbShimmer 1.6s ease-in-out infinite;
 }
@@ -382,7 +382,7 @@ useHead({
 .jb-skeleton-line {
   height: 14px;
   border-radius: 8px;
-  background: linear-gradient(90deg, #f5e6ee 0%, #ffeaf2 50%, #f5e6ee 100%);
+  background: linear-gradient(90deg, #e8f3ec 0%, #f8fcf9 50%, #e8f3ec 100%);
   background-size: 200% 100%;
   animation: jbShimmer 1.6s ease-in-out infinite;
 }
@@ -433,17 +433,17 @@ useHead({
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: linear-gradient(135deg, #ffe0e8, #ffc2d6);
-  border: 3px dashed #ff9db8;
-  color: #c9184a;
+  background: linear-gradient(135deg, #e8f3ec, #d1e8db);
+  border: 3px dashed rgba(14, 90, 58, 0.25);
+  color: #0e5a3a;
   margin-bottom: 8px;
   animation: jbEmptyFloat 3s ease-in-out infinite;
 }
 
 .jb-empty-icon {
-  background: linear-gradient(135deg, #ffeaf2, #ffe0eb);
-  border-color: var(--jb-pink-300);
-  color: var(--jb-pink-400);
+  background: linear-gradient(135deg, #f8fcf9, #e8f3ec);
+  border-color: rgba(140, 198, 63, 0.5);
+  color: #8cc63f;
 }
 
 @keyframes jbEmptyFloat {
@@ -462,17 +462,17 @@ useHead({
 .jb-empty-title {
   font-size: 1.15rem;
   font-weight: 900;
-  color: var(--jb-text);
+  color: #1a202c;
 }
 
 .jb-error-title {
-  color: #c9184a;
+  color: #0e5a3a;
 }
 
 .jb-error-desc,
 .jb-empty-desc {
   font-size: 0.88rem;
-  color: var(--jb-text-muted);
+  color: #4a5568;
   font-weight: 600;
   line-height: 1.9;
   max-width: 400px;

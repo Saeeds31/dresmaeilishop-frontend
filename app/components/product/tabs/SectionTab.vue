@@ -1,3 +1,19 @@
+
+<script setup>
+import { ref } from "vue";
+import { toast } from "vue3-toastify";
+
+const props = defineProps({
+  specifications: Array,
+  description: { type: String, default: "" },
+  comments: { type: Object, default: null },
+  productId: { type: [String, Number], required: true },
+
+});
+
+const activeTab = ref("text");
+const comments = ref([]);
+</script>
 <template>
   <div class="jb-tabs-wrapper" dir="rtl">
     <!-- هدر تب‌ها -->
@@ -56,29 +72,13 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
-import { toast } from "vue3-toastify";
-
-const props = defineProps({
-  specifications: Array,
-  description: { type: String, default: "" },
-  comments: { type: Object, default: null },
-  productId: { type: [String, Number], required: true },
-
-});
-
-const activeTab = ref("text");
-const comments = ref([]);
-</script>
-
 <style scoped>
 .jb-tabs-wrapper {
   background: rgba(255, 255, 255, 0.95);
-  border: 2px solid var(--jb-pink-200);
-  border-radius: 24px;
+  border: 2px solid rgba(14, 90, 58, 0.1);
+  border-radius: 28px;
   overflow: hidden;
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.08);
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.06);
 }
 
 /* ===== تب‌ها ===== */
@@ -87,44 +87,44 @@ const comments = ref([]);
   gap: 8px;
   padding: 16px;
   flex-wrap: wrap;
-  background: linear-gradient(135deg, #fff8fb, #ffeaf2);
+  background: linear-gradient(135deg, #f8fcf9, #e8f3ec);
 }
 
 .jb-tab-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 20px;
+  padding: 11px 22px;
   background: #fff;
-  border: 2px solid var(--jb-pink-200);
+  border: 2px solid rgba(14, 90, 58, 0.1);
   border-radius: 14px;
   font-size: 0.88rem;
   font-weight: 800;
-  color: var(--jb-text-soft);
+  color: #4a5568;
   cursor: pointer;
   transition: all 0.25s ease;
   font-family: inherit;
 }
 
 .jb-tab-btn:hover {
-  border-color: var(--jb-pink-400);
-  background: var(--jb-pink-50);
-  color: var(--jb-fuchsia);
+  border-color: rgba(14, 90, 58, 0.25);
+  background: #f1f7f3;
+  color: #0e5a3a;
   transform: translateY(-2px);
 }
 
 .jb-tab-btn.is-active {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
   border-color: transparent;
-  box-shadow: 0 8px 20px rgba(214, 51, 132, 0.4);
+  box-shadow: 0 8px 20px rgba(14, 90, 58, 0.3);
   transform: translateY(-2px);
 }
 
 /* خط بریده‌بریده */
 .jb-tabs-dashed {
   height: 0;
-  border-top: 2px dashed var(--jb-pink-200);
+  border-top: 2px dashed rgba(14, 90, 58, 0.12);
   margin: 0 16px;
   position: relative;
 }
@@ -137,21 +137,16 @@ const comments = ref([]);
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: var(--jb-pink-400);
+  background: #8cc63f;
   box-shadow: 0 0 0 3px #fff;
 }
 
-.jb-tabs-dashed::before {
-  right: -4px;
-}
-
-.jb-tabs-dashed::after {
-  left: -4px;
-}
+.jb-tabs-dashed::before { right: -4px; }
+.jb-tabs-dashed::after { left: -4px; }
 
 /* ===== محتوا ===== */
 .jb-tabs-content {
-  padding: 24px;
+  padding: 28px;
 }
 
 .jb-tab-panel {
@@ -159,56 +154,50 @@ const comments = ref([]);
 }
 
 @keyframes jbFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ===== لیست مشخصات ===== */
 .jb-spec-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .jb-spec-item {
   display: grid;
   grid-template-columns: minmax(140px, 200px) 1fr;
   gap: 12px;
-  border-radius: 14px;
+  border-radius: 16px;
   overflow: hidden;
-  border: 1.5px solid var(--jb-pink-200);
+  border: 1.5px solid rgba(14, 90, 58, 0.08);
   transition: all 0.25s ease;
+  background: #fff;
 }
 
 .jb-spec-item:hover {
-  border-color: var(--jb-pink-400);
-  box-shadow: 0 6px 16px rgba(214, 51, 132, 0.12);
+  border-color: rgba(14, 90, 58, 0.2);
+  box-shadow: 0 6px 16px rgba(14, 90, 58, 0.08);
 }
 
 .jb-spec-title {
-  padding: 14px 18px;
-  background: linear-gradient(135deg, #ffeaf2, #ffe0eb);
-  font-size: 0.85rem;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #f4f9f6, #e8f3ec);
+  font-size: 0.88rem;
   font-weight: 800;
-  color: var(--jb-text);
+  color: #0e5a3a;
   display: flex;
   align-items: center;
-  border-left: 2px dashed var(--jb-pink-300);
+  border-left: 2px dashed rgba(14, 90, 58, 0.15);
 }
 
 .jb-spec-value {
-  padding: 14px 18px;
+  padding: 16px 20px;
   background: #fff;
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   font-weight: 600;
-  color: var(--jb-text-soft);
+  color: #4a5568;
   display: flex;
   align-items: center;
 }
@@ -226,22 +215,9 @@ const comments = ref([]);
 }
 
 @media (max-width: 640px) {
-  .jb-tabs-content {
-    padding: 16px;
-  }
-
-  .jb-tab-btn {
-    padding: 8px 14px;
-    font-size: 0.8rem;
-  }
-
-  .jb-spec-item {
-    grid-template-columns: 1fr;
-  }
-
-  .jb-spec-title {
-    border-left: none;
-    border-bottom: 2px dashed var(--jb-pink-300);
-  }
+  .jb-tabs-content { padding: 18px; }
+  .jb-tab-btn { padding: 9px 16px; font-size: 0.8rem; }
+  .jb-spec-item { grid-template-columns: 1fr; }
+  .jb-spec-title { border-left: none; border-bottom: 2px dashed rgba(14, 90, 58, 0.15); }
 }
 </style>

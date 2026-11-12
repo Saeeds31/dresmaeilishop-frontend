@@ -1,11 +1,13 @@
 <template>
-  <main class="jb-contact-page">
+  <SharedBreadCrumb  :items="[{ label: 'تماس با ما', href: '/contact-us' }]" />
+  <main class="jb-contact-page pt-6">
     <div class="container mx-auto px-4 md:px-8 lg:px-12 xl:px-28">
-      <SharedBreadCrumb class="mb-8" :items="[{ label: 'تماس با ما', href: '/contact-us' }]" />
 
       <ContactHeroSection :contact-info="contactInfo" />
 
       <ContactFormSection class="mt-16" :model="form" :loading="loading" @submit="submitForm" />
+      <AboutFAQSection />
+
     </div>
   </main>
 </template>
@@ -20,9 +22,9 @@ const apiBase = (config.public.apiBase || config.public.baseURL || "").replace(
 );
 
 const defaultContactInfo = {
-  address: "گرگان - خیابان سرخواجه , مجتمع آفتاب سه طبقه همکف",
-  mobile: "09112808522",
-  phone: "01732330749",
+  address: "گلستان - شهر فاضل آباد خیابان رحمت آباد جنب درمانگاه شبانه روزی ابن سینا",
+  mobile: "09112788834",
+  phone: "017-xxxxxxxx",
   supportHours: "۰۹:۰۰ تا ۱۷:۰۰",
   storeHours: "۰۹:۰۰ تا ۲۱:۰۰",
   telegram: "https://t.me/dresmaeilishop",
@@ -124,10 +126,10 @@ const submitForm = async () => {
   }
 };
 useSeoMeta({
-  title: 'تماس با فروشگاه دکتر اسماعیلی | آدرس و شماره تماس فروشگاه در گرگان',
-  description: 'راه‌های ارتباط با فروشگاه فروشگاه دکتر اسماعیلی. آدرس: گرگان، خیابان سرخواجه، مجتمع آفتاب. شماره تماس: ۰۹۳۷۵۰۱۵۷۶۹. ساعات کاری فروشگاه و پشتیبانی.',
+  title: 'تماس با فروشگاه دکتر اسماعیلی | آدرس و شماره تماس داروخانه در گرگان',
+  description: 'راه‌های ارتباط با فروشگاه دکتر اسماعیلی. آدرس: گرگان، خیابان سرخواجه، مجتمع آفتاب. شماره تماس: ۰۹۳۷۵۰۱۵۷۶۹. ساعات کاری داروخانه و پشتیبانی.',
   ogTitle: 'تماس با فروشگاه دکتر اسماعیلی',
-  ogDescription: 'آدرس فروشگاه، شماره تماس و فرم ارتباط با فروشگاه دکتر اسماعیلی در گرگان.',
+  ogDescription: 'آدرس داروخانه، شماره تماس و فرم ارتباط با فروشگاه دکتر اسماعیلی در گرگان.',
   ogUrl: 'https://dresmaeilishop.ir/contact-us',
   ogType: 'website',
   robots: 'index, follow',
@@ -143,7 +145,7 @@ useHead({
         '@context': 'https://schema.org',
         '@type': 'ContactPage',
         'mainEntity': {
-          '@type': 'LocalBusiness',
+          '@type': 'Pharmacy',
           'name': 'فروشگاه دکتر اسماعیلی',
           'url': 'https://dresmaeilishop.ir',
           'telephone': '+989375015769',
@@ -176,7 +178,7 @@ useHead({
 <style scoped>
 .jb-contact-page {
   padding-bottom: 80px;
-  background: linear-gradient(135deg, #fff8fb 0%, #fff0f5 50%, #ffeaf2 100%);
+  background: linear-gradient(135deg, #f8fcf9 0%, #e8f3ec 50%, #d1e8db 100%);
   background-attachment: fixed;
   min-height: 100vh;
 }

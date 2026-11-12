@@ -87,7 +87,6 @@ const selectOption = (option) => {
   emit("update:modelValue", option.id);
 };
 </script>
-
 <template>
   <div class="jb-weight-block">
     <!-- لیبل -->
@@ -152,13 +151,13 @@ const selectOption = (option) => {
 
 <style scoped>
 /* =========================================================
-   گزینه‌های تنوع - تم پودری
+   گزینه‌های تنوع - تم سبز لوکس
    ========================================================= */
 
 .jb-weight-block {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 /* لیبل */
@@ -172,22 +171,22 @@ const selectOption = (option) => {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
-  box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.18);
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
+  box-shadow: 0 0 0 3px rgba(140, 198, 63, 0.18);
 }
 
 .jb-weight-label {
   font-size: 0.9rem;
   font-weight: 800;
-  color: var(--jb-text);
+  color: #1a202c;
 }
 
 .jb-weight-error-tag {
   font-size: 0.68rem;
   font-weight: 800;
-  color: #c9184a;
+  color: #c53030;
   padding: 2px 8px;
-  background: #ffe0e8;
+  background: #ffe8e8;
   border-radius: 999px;
 }
 
@@ -195,7 +194,7 @@ const selectOption = (option) => {
 .jb-weight-options {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
+  gap: 10px;
 }
 
 /* خود گزینه */
@@ -204,55 +203,55 @@ const selectOption = (option) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 8px;
+  padding: 12px 10px;
   background: #fff;
-  border: 2px solid var(--jb-pink-200);
+  border: 2px solid rgba(14, 90, 58, 0.12);
   border-radius: 14px;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 800;
-  color: var(--jb-text-soft);
+  color: #4a5568;
   cursor: pointer;
   transition: all 0.25s ease;
   font-family: inherit;
   overflow: hidden;
-  min-height: 46px;
+  min-height: 50px;
 }
 
 .jb-weight-option:hover:not(.is-disabled):not(.is-selected) {
-  border-color: var(--jb-pink-400);
-  background: var(--jb-pink-50);
-  color: var(--jb-fuchsia);
+  border-color: rgba(14, 90, 58, 0.3);
+  background: #f1f7f3;
+  color: #0e5a3a;
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(214, 51, 132, 0.15);
+  box-shadow: 0 6px 16px rgba(14, 90, 58, 0.1);
 }
 
 /* گزینه انتخاب‌شده */
 .jb-weight-option.is-selected {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
   border-color: transparent;
-  box-shadow: 0 8px 20px rgba(214, 51, 132, 0.45);
+  box-shadow: 0 8px 20px rgba(14, 90, 58, 0.3);
   transform: translateY(-2px);
 }
 
 /* گزینه ناموجود */
 .jb-weight-option.is-unavailable {
   opacity: 0.55;
-  background: #f8f4f6;
+  background: #f8f9fa;
 }
 
 .jb-weight-option.is-unavailable .jb-weight-option-text {
   text-decoration: line-through;
-  text-decoration-color: #ff4d6d;
+  text-decoration-color: #fc8181;
   text-decoration-thickness: 2px;
-  color: var(--jb-text-muted);
+  color: #a0aec0;
 }
 
 /* گزینه disabled */
 .jb-weight-option.is-disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  background: #f8f4f6;
+  background: #f8f9fa;
 }
 
 /* متن گزینه */
@@ -269,29 +268,29 @@ const selectOption = (option) => {
   margin: auto;
   width: 26px;
   height: 26px;
-  color: #ff4d6d;
+  color: #fc8181;
   pointer-events: none;
   opacity: 0.9;
 }
 
-/* تیک گزینه انتخاب‌شده (اختیاری) */
+/* تیک گزینه انتخاب‌شده */
 .jb-weight-option-check {
   position: absolute;
-  top: 4px;
-  left: 4px;
+  top: 6px;
+  left: 6px;
   width: 14px;
   height: 14px;
   color: #fff;
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 /* پیام خطا */
 .jb-weight-error-msg {
   font-size: 0.78rem;
   font-weight: 700;
-  color: #c9184a;
+  color: #c53030;
   padding: 6px 12px;
-  background: #ffe0e8;
+  background: #ffe8e8;
   border-radius: 10px;
   display: inline-block;
   width: fit-content;
@@ -303,9 +302,9 @@ const selectOption = (option) => {
     grid-template-columns: repeat(3, 1fr);
   }
   .jb-weight-option {
-    font-size: 0.76rem;
-    padding: 10px 6px;
-    min-height: 42px;
+    font-size: 0.78rem;
+    padding: 10px 8px;
+    min-height: 46px;
   }
 }
 </style>

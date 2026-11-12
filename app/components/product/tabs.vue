@@ -1,22 +1,4 @@
-<template>
-  <Section class="jb-tabs-section flex flex-col lg:flex-row gap-4 mt-8">
-    <div class="w-full">
-      <ProductTabsSectionTab
-      :productId="props.productId"
-        :specifications="props.specifications"
-        :description="props.description"
-      />
-    </div>
-  </Section>
 
-  <section class="relative pt-10">
-    <h2 class="jb-related-title">
-      <span class="jb-related-title-dot"></span>
-      {{ title }}
-    </h2>
-    <HomeSlidersHomeOfferSlider :products="similarProducts" />
-  </section>
-</template>
 
 <script setup>
 import { onMounted, ref, computed } from "vue";
@@ -46,23 +28,39 @@ const similarProducts = computed(() => {
   return similarData.value?.data?.similar_products || [];
 });
 </script>
+<template>
+  <Section class="jb-tabs-section flex flex-col lg:flex-row gap-4 mt-8">
+    <div class="w-full">
+      <ProductTabsSectionTab
+        :productId="props.productId"
+        :specifications="props.specifications"
+        :description="props.description"
+      />
+    </div>
+  </Section>
+
+  <section class="relative pt-10 mt-8">
+
+    <HomeSlidersHomeOfferSlider :mainTitle="title" :products="similarProducts" />
+  </section>
+</template>
 
 <style scoped>
 .jb-related-title {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 16px;
-  font-size: 1.15rem;
+  margin-bottom: 20px;
+  font-size: 1.25rem;
   font-weight: 900;
-  color: var(--jb-text);
+  color: #1a202c;
 }
 
 .jb-related-title-dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
-  box-shadow: 0 0 0 4px rgba(214, 51, 132, 0.18);
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
+  box-shadow: 0 0 0 4px rgba(140, 198, 63, 0.18);
 }
 </style>

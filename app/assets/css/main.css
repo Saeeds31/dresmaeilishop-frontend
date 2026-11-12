@@ -2,38 +2,44 @@
 @import "tailwindcss/utilities";
 
 :root {
-  /* 🎨 رنگ‌های اصلی (Light Theme) */
-  --bg-primary: #fff;
-  --bg-secondary: #72b742;
-  --accent: #eaeeef;
+  /* 🎨 رنگ‌های اصلی (Light Theme) - هماهنگ با لوگو */
+  --bg-primary: #ffffff;
+  --bg-secondary: #0e5a3a; /* سبز تیره لوگو */
+  --accent: #f4f7f6; /* خاکستری مایل به سبز بسیار ملایم */
 
   /* 🌿 نسخه‌های کم‌رنگ */
-  /* --bg-primary-fade: #E1EFD8; */
-  --bg-secondary-fade: #c8e3b6;
-  --accent-fade: #f5f5f5;
+  --bg-primary-fade: #e8f3ec;
+  --bg-secondary-fade: #d1e8db;
+  --accent-fade: #f9fbfa;
 
   /* 📝 رنگ‌های متن */
-  --text: #000;
-  --text-strong: #72b742;
-  --text-muted: #848484;
-  --text-primery: #fff;
+  --text: #1a1a1a;
+  --text-strong: #0e5a3a;
+  --text-muted: #6b7280;
+  --text-primery: #ffffff;
 
   /* ⚙️ رنگ بردر */
-  --border: #848484;
-  --border-light: #d6d6d6;
+  --border: #d1d5db;
+  --border-light: #e5e7eb;
+  
   /* 🌤 سایه‌ها */
-  --shadow: 0px 0px 7.5px 0px rgba(0, 0, 0, 0.25);
+  --shadow: 0px 4px 12px rgba(14, 90, 58, 0.08);
+  --shadow-hover: 0px 8px 24px rgba(14, 90, 58, 0.12);
 
-  /* رنگ های مختلف در سایت  */
-  --red: #ce1515;
-  --gold: #f79f00;
+  /* رنگ های مختلف در سایت */
+  --red: #ef4444;
+  --gold: #f59e0b;
 
-  --rounded: 24px;
+  --rounded: 16px;
+  
+  /* رنگ اختصاصی برای هدر جدید */
+  --brand-light: #8cc63f;
 }
 
 body {
   background-color: var(--bg-primary);
   color: var(--text);
+  font-family: 'Vazirmatn', 'IRANSans', sans-serif; /* پیشنهاد می‌شود فونت فارسی را اضافه کنید */
 }
 
 .container {
@@ -41,44 +47,44 @@ body {
   margin: 0 auto;
 }
 
-.icon-btn {
-  /* background-color: var(--bg-secondary-fade); */
-  /* transition: background-color 0.4s ease; */
-}
+/* ==================== استایل‌های اختصاصی هدر جدید ==================== */
 
-.icon-btn:hover {
+/* دکمه دسته‌بندی (Mega Menu) */
+.brand-dropdown-btn {
   background-color: var(--bg-secondary);
+  color: var(--bg-primary);
+  transition: all 0.3s ease;
+}
+.brand-dropdown-btn:hover {
+  background-color: var(--text-strong);
+  box-shadow: 0 4px 12px rgba(14, 90, 58, 0.2);
 }
 
-/* فاصله گذاری */
-
-.gap {
-  margin-top: 130px;
+/* آیتم‌های منوی کشویی */
+.mega-menu-item {
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+}
+.mega-menu-item:hover {
+  color: var(--bg-secondary);
+  background-color: var(--bg-primary-fade);
 }
 
-.pad {
-  padding: 10px 14px;
+/* نشانگر سبد خرید */
+.cart-badge {
+  background-color: var(--brand-light);
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.rounded {
-  border-radius: var(--rounded);
-}
+/* ======================================================== */
 
-.rounded-inner {
-  border-radius: 8px;
-}
-
-/* بردر */
-
-.border {
-  border: 1px solid var(--border-light);
-}
-.border-b {
-  border-bottom: 1px solid var(--border-light);
-}
-
-/* دکمه اصلی */
-
+/* دکمه‌ها */
 .btn {
   background-color: var(--bg-secondary);
   color: var(--bg-primary);
@@ -111,7 +117,7 @@ body {
 .btnborderBlack {
   background-color: var(--bg-primary);
   color: var(--text);
-  border: 1px solid var(--text);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 8px 34px;
   font-size: 16px;
@@ -126,7 +132,6 @@ body {
 }
 
 /* سایه ها */
-
 .shadow {
   box-shadow: var(--shadow);
 }
@@ -140,51 +145,20 @@ body {
 }
 
 /* رنگ های background */
-
-.bg-primary {
-  background-color: var(--bg-primary);
-}
-
-.bg-secondary {
-  background-color: var(--bg-secondary);
-}
-
-.bg-accent {
-  background-color: var(--accent);
-}
-
-.bg-primary-fade {
-  background-color: var(--bg-primary-fade);
-}
-
-.bg-secondary-fade {
-  background-color: var(--bg-secondary-fade);
-}
-
-.bg-accent-fade {
-  background-color: var(--accent-fade);
-}
+.bg-primary { background-color: var(--bg-primary); }
+.bg-secondary { background-color: var(--bg-secondary); }
+.bg-accent { background-color: var(--accent); }
+.bg-primary-fade { background-color: var(--bg-primary-fade); }
+.bg-secondary-fade { background-color: var(--bg-secondary-fade); }
+.bg-accent-fade { background-color: var(--accent-fade); }
 
 /* رنگ های متن */
-
-.text {
-  color: var(--text);
-}
-
-.text-strong {
-  color: var(--text-strong);
-}
-
-.text-muted {
-  color: var(--text-muted);
-}
-
-.text-primery {
-  color: var(--text-primery);
-}
+.text { color: var(--text); }
+.text-strong { color: var(--text-strong); }
+.text-muted { color: var(--text-muted); }
+.text-primery { color: var(--text-primery); }
 
 /* استایل دکمه‌های رادیویی */
-
 input[type="radio"] {
   appearance: none;
   -webkit-appearance: none;
@@ -241,7 +215,7 @@ input[type="radio"]:disabled {
 .custom-nav-btn {
   width: 32px;
   height: 32px;
-  background: #1c1395;
+  background: var(--bg-secondary); /* تغییر به رنگ برند */
   border-radius: 8px;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
 
@@ -250,9 +224,7 @@ input[type="radio"]:disabled {
   justify-content: center;
 
   cursor: pointer;
-  transition:
-    background 0.25s ease,
-    opacity 0.25s ease;
+  transition: background 0.25s ease, opacity 0.25s ease;
 }
 
 /* disabled */
@@ -269,21 +241,10 @@ input[type="radio"]:disabled {
 }
 
 /* Hero / Special Offers Navigation Position */
-.hero-nav {
-  position: absolute;
-  top: -42px;
-  left: 40px;
-  display: flex;
-  gap: 8px;
-  z-index: 30;
-}
+
 
 @media (max-width: 768px) {
-  .hero-nav {
-    top: -42px;
-    left: 32px;
-    gap: 6px;
-  }
+
 
   .custom-nav-btn {
     width: 28px;

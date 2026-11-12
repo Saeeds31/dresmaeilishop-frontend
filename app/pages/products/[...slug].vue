@@ -58,10 +58,10 @@ const { loadPageWithBase } = usePageLoading();
 const route = useRoute();
 const router = useRouter();
 const config = useRuntimeConfig();
-const siteUrl = config.public.siteUrl   // از nuxt.config تعریف کن
+const siteUrl = config.public.siteUrl || "https://dresmaeilishop.ir";
 
 // ✅ مقدار امن برای آدرس تصاویر (قبل از هر await)
-const siteImageUrl = config.public.siteImageUrl || "https://your-default-domain.com";
+const siteImageUrl = config.public.siteImageUrl || "https://dresmaeilishop.ir";
 
 const slugArray = computed(() => {
   const s = route.params.slug;
@@ -110,7 +110,6 @@ const { data, pending, error, refresh } = await useAsyncData(
 );
 
 // ✅ wishlist را جداگانه و بدون await در setup اصلی لود می‌کنیم
-// اگر نیاز به await دارید، آن را داخل useAsyncData دیگری بگذارید
 onMounted(() => {
   fetchWishlist().catch(() => { });
 });
@@ -126,8 +125,8 @@ const hasCategory = computed(() => !!category.value?.id);
 // ✅ حالا useSeoMeta را قبل از هر await (که دیگر وجود ندارد) صدا می‌زنیم
 const pageTitle = computed(() =>
   hasCategory.value
-    ? category.value.meta_title || `${category.value.title} | سیمون جاوید`
-    : "همه محصولات | سیمون جاوید"
+    ? category.value.meta_title || `${category.value.title} | فروشگاه دکتر اسماعیلی`
+    : "همه محصولات | فروشگاه دکتر اسماعیلی"
 );
 
 const pageDescription = computed(() =>
@@ -135,8 +134,8 @@ const pageDescription = computed(() =>
     ? category.value.meta_description ||
     (category.value.description
       ? category.value.description.replace(/<[^>]*>/g, "").slice(0, 160).trim()
-      : `خرید ${category.value.title} از سیمون جاوید با ارسال سریع.`)
-    : "مشاهده‌ی همه‌ی محصولات فروشگاه سیمون جاوید با امکان فیلتر بر اساس دسته‌بندی، قیمت و موجودی."
+      : `خرید ${category.value.title} از فروشگاه دکتر اسماعیلی با ارسال سریع.`)
+    : "مشاهده‌ی همه‌ی محصولات فروشگاه دکتر اسماعیلی با امکان فیلتر بر اساس دسته‌بندی، قیمت و موجودی."
 );
 
 const canonicalUrl = computed(() => {
@@ -289,7 +288,7 @@ watch(
   color: var(--jb-text, #1f2937);
   margin: 1.5rem 0 0.75rem;
   padding-right: 12px;
-  border-right: 4px solid var(--jb-pink-400, #f472b6);
+  border-right: 4px solid #8cc63f;
 }
 
 .category-description :deep(p) {
@@ -311,31 +310,31 @@ watch(
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  border: 1.5px solid var(--jb-pink-200, #fbcfe8);
+  border: 1.5px solid rgba(14, 90, 58, 0.15);
   border-radius: 14px;
   overflow: hidden;
   margin: 1.25rem 0;
 }
 
 .category-description :deep(thead) {
-  background: linear-gradient(135deg, #ffeaf2, #ffe0eb);
+  background: linear-gradient(135deg, #f4f9f6, #e8f3ec);
 }
 
 .category-description :deep(th) {
   padding: 14px 18px;
   font-weight: 800;
   font-size: 0.85rem;
-  color: var(--jb-text, #1f2937);
+  color: #1a202c;
   text-align: right;
-  border-bottom: 2px dashed var(--jb-pink-300, #f9a8d4);
+  border-bottom: 2px dashed rgba(14, 90, 58, 0.2);
 }
 
 .category-description :deep(td) {
   padding: 14px 18px;
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--jb-text-soft, #6b7280);
-  border-bottom: 1px solid var(--jb-pink-100, #fce7f3);
+  color: #4a5568;
+  border-bottom: 1px solid rgba(14, 90, 58, 0.08);
 }
 
 .category-description :deep(tr:last-child td) {
@@ -343,6 +342,6 @@ watch(
 }
 
 .category-description :deep(tbody tr:hover) {
-  background: var(--jb-pink-50, #fdf2f8);
+  background: #f1f7f3;
 }
 </style>

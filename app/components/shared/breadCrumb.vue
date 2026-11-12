@@ -54,30 +54,30 @@ defineProps({
 
 <style scoped>
 /* =========================================================
-   Breadcrumb - تم پودری
+   Breadcrumb - تم سبز لوکس (تمام عرض)
    ========================================================= */
 
 .jb-breadcrumb {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
+  width: 100%;
   padding: 10px 16px;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 2px solid var(--jb-pink-200);
-  border-radius: 14px;
-  box-shadow: 0 4px 14px rgba(214, 51, 132, 0.08);
+  border-bottom: 2px solid rgba(14, 90, 58, 0.1);
+  box-shadow: 0 4px 14px rgba(14, 90, 58, 0.05);
   font-size: 0.78rem;
   font-weight: 700;
   transition: all 0.3s ease;
-  margin: 20px 0;
+  margin: 0 0;
 }
 
 .jb-breadcrumb:hover {
-  border-color: var(--jb-pink-300);
-  box-shadow: 0 6px 18px rgba(214, 51, 132, 0.12);
+  border-bottom-color: rgba(14, 90, 58, 0.2);
+  box-shadow: 0 6px 18px rgba(14, 90, 58, 0.08);
 }
 
 /* ===== آیتم خانه ===== */
@@ -87,15 +87,15 @@ defineProps({
   gap: 8px;
   padding: 5px 10px;
   border-radius: 10px;
-  color: var(--jb-text-soft);
+  color: #4a5568;
   transition: all 0.25s ease;
   text-decoration: none;
   font-weight: 700;
 }
 
 .jb-breadcrumb-home:hover {
-  background: var(--jb-pink-100);
-  color: var(--jb-fuchsia);
+  background: #f1f7f3;
+  color: #0e5a3a;
   transform: translateY(-1px);
 }
 
@@ -106,15 +106,15 @@ defineProps({
   width: 24px;
   height: 24px;
   border-radius: 8px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
-  box-shadow: 0 4px 10px rgba(214, 51, 132, 0.35);
+  box-shadow: 0 4px 10px rgba(14, 90, 58, 0.3);
   transition: all 0.25s ease;
 }
 
 .jb-breadcrumb-home:hover .jb-breadcrumb-home-icon {
   transform: scale(1.08) rotate(-4deg);
-  box-shadow: 0 6px 14px rgba(214, 51, 132, 0.5);
+  box-shadow: 0 6px 14px rgba(14, 90, 58, 0.45);
 }
 
 /* ===== جداکننده ===== */
@@ -122,7 +122,7 @@ defineProps({
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--jb-pink-400);
+  color: #8cc63f;
   opacity: 0.8;
 }
 
@@ -130,15 +130,15 @@ defineProps({
 .jb-breadcrumb-link {
   padding: 5px 10px;
   border-radius: 10px;
-  color: var(--jb-text-soft);
+  color: #4a5568;
   transition: all 0.25s ease;
   text-decoration: none;
   font-weight: 700;
 }
 
 .jb-breadcrumb-link:hover {
-  background: var(--jb-pink-100);
-  color: var(--jb-fuchsia);
+  background: #f1f7f3;
+  color: #0e5a3a;
   transform: translateY(-1px);
 }
 
@@ -149,11 +149,8 @@ defineProps({
   gap: 8px;
   padding: 6px 14px;
   border-radius: 10px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
-  color: #fff;
+  color: #0e5a3a;
   font-weight: 800;
-  box-shadow: 0 6px 16px rgba(214, 51, 132, 0.4);
-  animation: breadcrumbPulse 2.5s ease-in-out infinite;
 }
 
 .jb-breadcrumb-current-dot {
@@ -164,14 +161,6 @@ defineProps({
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35);
 }
 
-@keyframes breadcrumbPulse {
-  0%, 100% {
-    box-shadow: 0 6px 16px rgba(214, 51, 132, 0.4);
-  }
-  50% {
-    box-shadow: 0 8px 22px rgba(214, 51, 132, 0.6);
-  }
-}
 
 /* ===== ریسپانسیو ===== */
 @media (min-width: 640px) {

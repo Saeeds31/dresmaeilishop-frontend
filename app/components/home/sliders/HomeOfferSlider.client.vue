@@ -2,7 +2,14 @@
 <template>
   <div class="relative w-full h-full mb-4 newProductHome">
     <!-- هدر: فقط دکمه‌های ناوبری -->
-    <div class="flex items-center gap-2 justify-end mb-4">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-2 mb-4">
+      <div  class="relative z-10 flex items-center justify-center gap-3 ">
+        <div class="w-[6px] h-[64px] rounded-full bg-gradient-to-b from-[#0e5a3a] to-[#8cc63f]"></div>
+        <h2 class="text-lg md:text-2xl font-black text-[#0e5a3a] text-center">
+          {{ mainTitle }}
+        </h2>
+        <!-- خط تزئینی زیر عنوان -->
+      </div>
       <div class="hero-nav flex gap-2">
         <div class="hero-prev custom-nav-btn">
           <img src="/icons/arrow.svg" alt="قبلی" />
@@ -13,24 +20,16 @@
       </div>
     </div>
 
-    <Swiper
-      dir="rtl"
-      :modules="[Navigation, Pagination]"
-      :slides-per-view="1.2"
-      :space-between="12"
-      :breakpoints="{
-        480:  { slidesPerView: 1.2, spaceBetween: 16 },
-        640:  { slidesPerView: 2.2, spaceBetween: 20 },
-        768:  { slidesPerView: 2.4, spaceBetween: 24 },
-        1024: { slidesPerView: 3.2, spaceBetween: 28 },
-        1280: { slidesPerView: 4.2, spaceBetween: 32 },
-      }"
-      :navigation="{
-        nextEl: '.hero-next',
-        prevEl: '.hero-prev',
-      }"
-      class="hero-swiper"
-    >
+    <Swiper dir="rtl" :modules="[Navigation, Pagination]" :slides-per-view="3" :space-between="16" :breakpoints="{
+      320: { slidesPerView: 1.2, spaceBetween: 16 },
+      480: { slidesPerView: 2, spaceBetween: 20 },
+      768: { slidesPerView: 2.5, spaceBetween: 24 },
+      1024: { slidesPerView: 3, spaceBetween: 24 },
+      1280: { slidesPerView: 3, spaceBetween: 24 },
+    }" :navigation="{
+      nextEl: '.newProductHome .hero-next',
+      prevEl: '.newProductHome .hero-prev',
+    }" class="hero-swiper">
       <SwiperSlide v-for="item in products" :key="item.id">
         <SharedProductCard :product="item" />
       </SwiperSlide>
@@ -51,13 +50,17 @@ defineProps({
     type: Array,
     default: () => [],
   },
+  mainTitle: {
+    type: String,
+    default: "جدیدترین‌های فروشگاه دکتر اسماعیلی",
+  },
 });
 </script>
 
 <style>
 /* ===== دکمه‌های ناوبری اسلایدر محصولات ===== */
 .newProductHome .custom-nav-btn {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia)) !important;
+  background: linear-gradient(135deg, #0e5a3a, #1a7a50) !important;
   width: 42px;
   height: 42px;
   border-radius: 14px;
@@ -66,14 +69,14 @@ defineProps({
   justify-content: center;
   cursor: pointer;
   transition: all 0.25s ease;
-  box-shadow: 0 6px 18px rgba(214, 51, 132, 0.4);
+  box-shadow: 0 6px 18px rgba(14, 90, 58, 0.4);
   border: 2px solid rgba(255, 255, 255, 0.6);
 }
 
 .newProductHome .custom-nav-btn:hover {
-  background: linear-gradient(135deg, var(--jb-pink-600), var(--jb-pink-800)) !important;
+  background: linear-gradient(135deg, #0b472e, #0e5a3a) !important;
   transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(214, 51, 132, 0.55);
+  box-shadow: 0 10px 25px rgba(14, 90, 58, 0.55);
 }
 
 .newProductHome .custom-nav-btn img {
@@ -84,10 +87,10 @@ defineProps({
 
 .newProductHome .custom-nav-btn.swiper-button-disabled {
   background: rgba(255, 255, 255, 0.9) !important;
-  border: 2px solid var(--jb-pink-300) !important;
+  border: 2px solid #8cc63f !important;
   opacity: 0.7;
   cursor: not-allowed;
-  box-shadow: 0 4px 12px rgba(214, 51, 132, 0.15);
+  box-shadow: 0 4px 12px rgba(14, 90, 58, 0.15);
 }
 
 .newProductHome .custom-nav-btn.swiper-button-disabled img {

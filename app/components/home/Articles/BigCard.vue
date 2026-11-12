@@ -82,26 +82,26 @@ const formatDate = (date) => {
 
 <style scoped>
 /* =========================================================
-   کارت مقاله (BigCard) - تم پودری
+   کارت مقاله (BigCard) - تم سبز لوکس
    ========================================================= */
 
 .jb-article-card {
   display: flex;
   flex-direction: column;
   background: rgba(255, 255, 255, 0.95);
-  border: 2px solid var(--jb-pink-200);
+  border: 2px solid rgba(14, 90, 58, 0.1);
   border-radius: 24px;
   overflow: hidden;
   text-decoration: none;
   color: inherit;
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.1);
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.06);
   height: 100%;
 }
 
 .jb-article-card:hover {
-  border-color: var(--jb-pink-400);
-  box-shadow: 0 16px 40px rgba(214, 51, 132, 0.22);
+  border-color: rgba(14, 90, 58, 0.25);
+  box-shadow: 0 16px 40px rgba(14, 90, 58, 0.15);
   transform: translateY(-6px);
 }
 
@@ -111,7 +111,7 @@ const formatDate = (date) => {
   width: 100%;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background: linear-gradient(135deg, #fff5f8, #ffe0eb);
+  background: linear-gradient(135deg, #f8fcf9, #e8f3ec);
   flex-shrink: 0;
 }
 
@@ -133,7 +133,7 @@ const formatDate = (date) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--jb-pink-400);
+  color: #8cc63f;
 }
 
 .jb-article-overlay {
@@ -141,7 +141,7 @@ const formatDate = (date) => {
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(110, 15, 46, 0.25) 0%,
+    rgba(14, 90, 58, 0.2) 0%,
     transparent 50%
   );
   pointer-events: none;
@@ -162,10 +162,10 @@ const formatDate = (date) => {
   align-items: center;
   gap: 5px;
   padding: 4px 10px;
-  background: var(--jb-pink-50);
-  border: 1.5px solid var(--jb-pink-200);
+  background: #f1f7f3;
+  border: 1.5px solid rgba(14, 90, 58, 0.1);
   border-radius: 999px;
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
   font-size: 0.68rem;
   font-weight: 800;
   width: fit-content;
@@ -175,7 +175,7 @@ const formatDate = (date) => {
 .jb-article-title {
   font-size: 0.95rem;
   font-weight: 900;
-  color: var(--jb-text);
+  color: #1a202c;
   line-height: 1.65;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -186,14 +186,14 @@ const formatDate = (date) => {
 }
 
 .jb-article-card:hover .jb-article-title {
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
 }
 
 /* توضیحات */
 .jb-article-desc {
   font-size: 0.78rem;
   line-height: 1.9;
-  color: var(--jb-text-soft);
+  color: #4a5568;
   font-weight: 600;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -208,8 +208,8 @@ const formatDate = (date) => {
   gap: 6px;
   margin-top: auto;
   padding-top: 12px;
-  border-top: 1.5px dashed var(--jb-pink-200);
-  color: var(--jb-fuchsia);
+  border-top: 1.5px dashed rgba(14, 90, 58, 0.15);
+  color: #0e5a3a;
   font-size: 0.78rem;
   font-weight: 900;
   transition: all 0.25s ease;
@@ -220,7 +220,7 @@ const formatDate = (date) => {
 }
 
 .jb-article-card:hover .jb-article-cta {
-  color: var(--jb-pink-700);
+  color: #8cc63f;
 }
 
 .jb-article-card:hover .jb-article-cta svg {

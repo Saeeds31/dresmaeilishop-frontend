@@ -12,7 +12,7 @@
       <div class="jb-advantages-row">
         <!-- لوگو -->
         <NuxtLink to="/" class="jb-footer-logo">
-          <img src="~/assets/images/logoGreen.png" :alt="siteName" />
+          <img src="/images/logo.png" :alt="siteName" />
         </NuxtLink>
 
         <!-- مزیت‌ها -->
@@ -169,10 +169,9 @@ const advantages = [
 const fallbackQuickAccess = [
   { label: "درباره ما", href: "/about-us" },
   { label: "تماس با ما", href: "/contact-us" },
-  { label: "قوانین و مقررات", href: "/terms" },
-  { label: "حریم خصوصی", href: "/privacy" },
-  { label: "سوالات متداول", href: "/faq" },
+  { label: "مقالات", href: "/blogs" },
   { label: "پیگیری سفارش", href: "/panel/orders" },
+  { label: "فروشگاه", href: "/products" },
 ];
 
 const flatQuickAccess = computed(() => {
@@ -189,12 +188,11 @@ const flatQuickAccess = computed(() => {
    دسته‌بندی‌ها
 ============================================================ */
 const fallbackCategories = [
-  { label: "لباس نوزاد", href: "/category/baby-clothes" },
-  { label: "اسباب‌بازی", href: "/category/toys" },
-  { label: "لوازم بهداشتی", href: "/category/hygiene" },
-  { label: "کالسکه و تخت", href: "/category/stroller" },
-  { label: "شیشه شیر", href: "/category/bottle" },
-  { label: "پوشک و دستمال", href: "/category/diaper" },
+  { label: "مراقبت پوست", href: "/products/مراقبت-پوست" },
+  { label: "مراقبت مو", href: "/products/مراقبت-مو" },
+  { label: "مراقبت چشم", href: "/products/مراقبت-چشم" },
+  { label: "مکمل ها", href: "/products/مکمل-ها" },
+  { label: "محصولات مراقبتی کودک", href: "/products/محصولات-مراقبتی-کودک" },
 ];
 
 const flatCategories = computed(() => fallbackCategories);
@@ -275,44 +273,23 @@ const scrollTop = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
 </script>
+
 <style scoped>
 /* =========================================================
-   فوتر - پس‌زمینه خنثی + لهجه‌های سبز از لوگو
-   پالت خنثی:        #1A1D1F → #2A2E31 → #383D41
-   متن خنثی روشن:    #E5E7EB
-   متن خنثی کم‌رنگ:  #9CA3AF
-   لهجه سبز لوگو:    #7DBFA3 / #5FA689 / #A8D5BD
+   فوتر - تم سفید و روشن با لهجه‌های سبز لوگو
    ========================================================= */
 
 .jb-footer {
-  /* پالت خنثی */
-  --jb-neutral-900: #1A1D1F;
-  --jb-neutral-800: #22262A;
-  --jb-neutral-700: #2A2E31;
-  --jb-neutral-600: #383D41;
-  --jb-neutral-500: #4B5157;
-  --jb-neutral-400: #6B7280;
-  --jb-neutral-300: #9CA3AF;
-  --jb-neutral-200: #D1D5DB;
-  --jb-neutral-100: #E5E7EB;
-  --jb-neutral-50: #F3F4F6;
-
-  /* لهجه سبز لوگو */
-  --jb-accent-light: #A8D5BD;
-  --jb-accent: #7DBFA3;
-  --jb-accent-dark: #5FA689;
-  --jb-accent-deep: #4A8F73;
-
   position: relative;
-  background: linear-gradient(180deg, #1A1D1F 0%, #22262A 50%, #2A2E31 100%);
-  color: var(--jb-neutral-100);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fcf9 100%);
+  color: #1a202c;
   padding: 56px 0 20px;
   overflow: hidden;
   border-top: 3px solid transparent;
-  border-image: linear-gradient(90deg, transparent, var(--jb-accent), transparent) 1;
+  border-image: linear-gradient(90deg, transparent, #8cc63f, transparent) 1;
 }
 
-/* حباب‌های تزئینی - خیلی ملایم با لهجه سبز */
+/* حباب‌های تزئینی - بسیار ملایم با لهجه سبز */
 .jb-footer-bubble {
   position: absolute;
   border-radius: 50%;
@@ -323,7 +300,7 @@ const scrollTop = () => {
 .jb-footer-bubble-1 {
   width: 380px;
   height: 380px;
-  background: radial-gradient(circle, rgba(125, 191, 163, 0.08), transparent 70%);
+  background: radial-gradient(circle, rgba(140, 198, 63, 0.08), transparent 70%);
   top: -140px;
   right: -100px;
 }
@@ -331,7 +308,7 @@ const scrollTop = () => {
 .jb-footer-bubble-2 {
   width: 280px;
   height: 280px;
-  background: radial-gradient(circle, rgba(168, 213, 189, 0.05), transparent 70%);
+  background: radial-gradient(circle, rgba(14, 90, 58, 0.05), transparent 70%);
   bottom: -100px;
   left: -80px;
 }
@@ -352,18 +329,18 @@ const scrollTop = () => {
   margin: 0 auto;
   padding: 18px;
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 2px dashed rgba(125, 191, 163, 0.35);
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px dashed rgba(14, 90, 58, 0.15);
   transition: all 0.3s ease;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
 
 .jb-footer-logo:hover {
-  background: rgba(125, 191, 163, 0.08);
-  border-color: rgba(125, 191, 163, 0.6);
+  background: #fff;
+  border-color: rgba(14, 90, 58, 0.3);
   transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(95, 166, 137, 0.2);
+  box-shadow: 0 12px 30px rgba(14, 90, 58, 0.1);
 }
 
 .jb-footer-logo img {
@@ -380,8 +357,8 @@ const scrollTop = () => {
 }
 
 .jb-advantage-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1.5px solid rgba(14, 90, 58, 0.08);
   border-radius: 16px;
   padding: 16px 12px;
   text-align: center;
@@ -391,10 +368,10 @@ const scrollTop = () => {
 }
 
 .jb-advantage-card:hover {
-  background: rgba(125, 191, 163, 0.08);
-  border-color: rgba(125, 191, 163, 0.45);
+  background: #fff;
+  border-color: rgba(14, 90, 58, 0.2);
   transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(95, 166, 137, 0.2);
+  box-shadow: 0 10px 25px rgba(14, 90, 58, 0.1);
 }
 
 .jb-advantage-icon {
@@ -405,45 +382,50 @@ const scrollTop = () => {
   align-items: center;
   justify-content: center;
   border-radius: 13px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1.5px solid rgba(125, 191, 163, 0.4);
+  background: #f1f7f3;
+  border: 1.5px solid rgba(14, 90, 58, 0.15);
   transition: all 0.3s ease;
 }
 
 .jb-advantage-card:hover .jb-advantage-icon {
-  background: linear-gradient(135deg, var(--jb-accent), var(--jb-accent-dark));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   border-color: transparent;
-  box-shadow: 0 8px 20px rgba(95, 166, 137, 0.45);
+  box-shadow: 0 8px 20px rgba(14, 90, 58, 0.25);
   transform: scale(1.08) rotate(-4deg);
 }
 
 .jb-advantage-icon img {
   width: 22px;
   height: 22px;
-  filter: brightness(0) invert(1);
+  filter: brightness(0) saturate(100%) invert(24%) sepia(15%) saturate(1435%) hue-rotate(101deg) brightness(95%) contrast(91%);
   opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.jb-advantage-card:hover .jb-advantage-icon img {
+  filter: brightness(0) invert(1);
 }
 
 .jb-advantage-title {
   font-size: 0.82rem;
   font-weight: 800;
-  color: var(--jb-neutral-100);
+  color: #1a202c;
   margin-bottom: 4px;
 }
 
 .jb-advantage-subtitle {
   font-size: 0.68rem;
-  color: var(--jb-neutral-300);
+  color: #718096;
   line-height: 1.5;
   font-weight: 500;
 }
 
 /* =========================================================
-   خط بریده‌بریده - با لهجه سبز
+   خط بریده‌بریده
    ========================================================= */
 .jb-footer-divider {
   height: 0;
-  border-top: 1.5px dashed rgba(255, 255, 255, 0.12);
+  border-top: 1.5px dashed rgba(14, 90, 58, 0.15);
   margin: 40px 0;
   position: relative;
 }
@@ -456,8 +438,8 @@ const scrollTop = () => {
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: var(--jb-accent);
-  box-shadow: 0 0 0 3px #1A1D1F;
+  background: #8cc63f;
+  box-shadow: 0 0 0 3px #fff;
 }
 
 .jb-footer-divider::before {
@@ -483,7 +465,7 @@ const scrollTop = () => {
   gap: 8px;
   font-size: 0.9rem;
   font-weight: 800;
-  color: var(--jb-neutral-100);
+  color: #1a202c;
   margin-bottom: 18px;
   position: relative;
   padding-bottom: 10px;
@@ -497,19 +479,19 @@ const scrollTop = () => {
   width: 40px;
   height: 2.5px;
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--jb-accent), var(--jb-accent-dark));
-  box-shadow: 0 2px 8px rgba(95, 166, 137, 0.5);
+  background: linear-gradient(90deg, #0e5a3a, #8cc63f);
+  box-shadow: 0 2px 8px rgba(14, 90, 58, 0.3);
 }
 
 .jb-footer-col-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--jb-accent), var(--jb-accent-dark));
-  box-shadow: 0 0 0 3px rgba(125, 191, 163, 0.2);
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
+  box-shadow: 0 0 0 3px rgba(140, 198, 63, 0.2);
 }
 
-/* ===== لینک‌ها - متن خنثی، هاور سبز ===== */
+/* ===== لینک‌ها ===== */
 .jb-footer-links {
   display: flex;
   flex-direction: column;
@@ -521,19 +503,19 @@ const scrollTop = () => {
   align-items: center;
   gap: 8px;
   font-size: 0.82rem;
-  color: var(--jb-neutral-300);
+  color: #4a5568;
   font-weight: 500;
   transition: all 0.25s ease;
   position: relative;
 }
 
 .jb-footer-link:hover {
-  color: var(--jb-accent-light);
+  color: #0e5a3a;
   transform: translateX(-4px);
 }
 
 .jb-footer-arrow {
-  color: var(--jb-accent);
+  color: #8cc63f;
   font-size: 1.1rem;
   line-height: 1;
   transition: all 0.25s ease;
@@ -541,13 +523,13 @@ const scrollTop = () => {
 }
 
 .jb-footer-link:hover .jb-footer-arrow {
-  color: var(--jb-accent-light);
+  color: #0e5a3a;
   opacity: 1;
   transform: translateX(-2px);
 }
 
 /* =========================================================
-   شبکه‌های اجتماعی - کارت‌های خنثی با لهجه سبز
+   شبکه‌های اجتماعی
    ========================================================= */
 .jb-footer-socials {
   display: flex;
@@ -560,22 +542,22 @@ const scrollTop = () => {
   align-items: center;
   gap: 10px;
   padding: 9px 14px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1.5px solid rgba(14, 90, 58, 0.08);
   border-radius: 12px;
   font-size: 0.8rem;
   font-weight: 600;
-  color: var(--jb-neutral-300);
+  color: #4a5568;
   transition: all 0.25s ease;
   width: fit-content;
 }
 
 .jb-social-card:hover {
-  background: linear-gradient(135deg, var(--jb-accent), var(--jb-accent-dark));
+  background: linear-gradient(135deg, #0e5a3a, #1a7a50);
   border-color: transparent;
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(95, 166, 137, 0.4);
+  box-shadow: 0 8px 20px rgba(14, 90, 58, 0.3);
 }
 
 .jb-social-card img {
@@ -591,7 +573,7 @@ const scrollTop = () => {
 }
 
 /* =========================================================
-   اطلاعات تماس - آیکون‌ها با لهجه سبز
+   اطلاعات تماس
    ========================================================= */
 .jb-footer-contacts {
   display: flex;
@@ -614,35 +596,40 @@ const scrollTop = () => {
   align-items: center;
   justify-content: center;
   border-radius: 11px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1.5px solid rgba(125, 191, 163, 0.35);
+  background: #f1f7f3;
+  border: 1.5px solid rgba(14, 90, 58, 0.15);
   margin-top: 1px;
   transition: all 0.25s ease;
 }
 
 .jb-contact-item:hover .jb-contact-icon {
-  background: linear-gradient(135deg, var(--jb-accent), var(--jb-accent-dark));
+  background: linear-gradient(135deg, #0e5a3a, #1a7a50);
   border-color: transparent;
-  box-shadow: 0 6px 16px rgba(95, 166, 137, 0.4);
+  box-shadow: 0 6px 16px rgba(14, 90, 58, 0.3);
   transform: scale(1.05);
 }
 
 .jb-contact-icon img {
   width: 15px;
   height: 15px;
-  filter: brightness(0) invert(1);
+  filter: brightness(0) saturate(100%) invert(24%) sepia(15%) saturate(1435%) hue-rotate(101deg) brightness(95%) contrast(91%);
   opacity: 0.9;
+  transition: all 0.25s ease;
+}
+
+.jb-contact-item:hover .jb-contact-icon img {
+  filter: brightness(0) invert(1);
 }
 
 .jb-contact-text {
-  color: var(--jb-neutral-300);
+  color: #4a5568;
   font-weight: 500;
   line-height: 1.8;
   transition: color 0.25s ease;
 }
 
 a.jb-contact-text:hover {
-  color: var(--jb-accent-light);
+  color: #0e5a3a;
 }
 
 /* =========================================================
@@ -658,28 +645,28 @@ a.jb-contact-text:hover {
 
 .jb-footer-copy {
   font-size: 0.8rem;
-  color: var(--jb-neutral-400);
+  color: #718096;
   font-weight: 500;
   line-height: 1.8;
 }
 
 .jb-footer-copy-link {
-  color: var(--jb-accent);
+  color: #0e5a3a;
   font-weight: 700;
   transition: color 0.25s ease;
 }
 
 .jb-footer-copy-link:hover {
-  color: var(--jb-accent-light);
+  color: #8cc63f;
 }
 
-/* دکمه برگشت به بالا - با لهجه سبز */
+/* دکمه برگشت به بالا */
 .jb-scroll-top {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 11px 24px;
-  background: linear-gradient(135deg, var(--jb-accent), var(--jb-accent-dark));
+  background: linear-gradient(135deg, #0e5a3a, #1a7a50);
   color: #fff;
   border: 2px solid rgba(255, 255, 255, 0.15);
   border-radius: 999px;
@@ -688,7 +675,7 @@ a.jb-contact-text:hover {
   font-family: inherit;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 22px rgba(95, 166, 137, 0.4);
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.3);
   margin-top: 6px;
   position: relative;
   overflow: hidden;
@@ -708,9 +695,9 @@ a.jb-contact-text:hover {
 }
 
 .jb-scroll-top:hover {
-  background: linear-gradient(135deg, var(--jb-accent-dark), var(--jb-accent-deep));
+  background: linear-gradient(135deg, #0b472e, #0e5a3a);
   transform: translateY(-3px);
-  box-shadow: 0 14px 32px rgba(95, 166, 137, 0.55);
+  box-shadow: 0 14px 32px rgba(14, 90, 58, 0.4);
 }
 
 /* =========================================================

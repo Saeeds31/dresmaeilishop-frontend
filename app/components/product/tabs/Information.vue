@@ -1,3 +1,9 @@
+
+<script setup>
+const props = defineProps({
+  description: { type: String, default: "" },
+});
+</script>
 <template>
   <div class="jb-description-wrapper">
     <!-- خط تزئینی بالای متن -->
@@ -17,15 +23,9 @@
   </div>
 </template>
 
-<script setup>
-const props = defineProps({
-  description: { type: String, default: "" },
-});
-</script>
-
 <style scoped>
 /* =========================================================
-   توضیحات محصول - تم پودری با تایپوگرافی خوانا
+   توضیحات محصول - تم سبز لوکس
    ========================================================= */
 
 .jb-description-wrapper {
@@ -44,7 +44,7 @@ const props = defineProps({
 .jb-desc-line {
   flex: 1;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--jb-pink-300), transparent);
+  background: linear-gradient(90deg, transparent, rgba(140, 198, 63, 0.5), transparent);
   border-radius: 999px;
 }
 
@@ -55,9 +55,9 @@ const props = defineProps({
   width: 40px;
   height: 40px;
   border-radius: 14px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.35);
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.3);
   border: 2px solid #fff;
   flex-shrink: 0;
 }
@@ -69,7 +69,7 @@ const props = defineProps({
 .jb-description-content {
   font-size: 0.95rem;
   line-height: 2.15;
-  color: var(--jb-text-soft);
+  color: #4a5568;
   font-weight: 500;
   word-break: break-word;
 }
@@ -84,11 +84,10 @@ const props = defineProps({
   margin-bottom: 0;
 }
 
-/* اولین پاراگراف پررنگ‌تر */
 .jb-description-content :deep(p:first-of-type) {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--jb-text);
+  color: #1a202c;
   line-height: 2.25;
 }
 
@@ -100,7 +99,7 @@ const props = defineProps({
 .jb-description-content :deep(h5),
 .jb-description-content :deep(h6) {
   position: relative;
-  color: var(--jb-text);
+  color: #1a202c;
   font-weight: 900;
   line-height: 1.6;
   margin-top: 32px;
@@ -116,7 +115,6 @@ const props = defineProps({
   margin-top: 0;
 }
 
-/* خط عمودی گرادیانی کنار تیترها */
 .jb-description-content :deep(h1::before),
 .jb-description-content :deep(h2::before),
 .jb-description-content :deep(h3::before),
@@ -130,11 +128,10 @@ const props = defineProps({
   bottom: 0.4em;
   width: 5px;
   border-radius: 999px;
-  background: linear-gradient(180deg, var(--jb-pink-500), var(--jb-fuchsia));
-  box-shadow: 0 4px 12px rgba(214, 51, 132, 0.35);
+  background: linear-gradient(180deg, #0e5a3a, #8cc63f);
+  box-shadow: 0 4px 12px rgba(14, 90, 58, 0.3);
 }
 
-/* خط تزئینی زیر تیتر */
 .jb-description-content :deep(h1::after),
 .jb-description-content :deep(h2::after),
 .jb-description-content :deep(h3::after) {
@@ -144,7 +141,7 @@ const props = defineProps({
   right: 18px;
   left: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--jb-pink-300), transparent);
+  background: linear-gradient(90deg, rgba(140, 198, 63, 0.5), transparent);
   border-radius: 999px;
 }
 
@@ -172,7 +169,6 @@ const props = defineProps({
   padding-right: 8px;
 }
 
-/* بولت سفارشی برای ul */
 .jb-description-content :deep(ul) {
   list-style: none;
   padding-right: 8px;
@@ -190,11 +186,10 @@ const props = defineProps({
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
-  box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.15);
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
+  box-shadow: 0 0 0 3px rgba(140, 198, 63, 0.15);
 }
 
-/* شماره‌ها برای ol */
 .jb-description-content :deep(ol) {
   counter-reset: jb-counter;
   list-style: none;
@@ -217,15 +212,14 @@ const props = defineProps({
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
   font-size: 0.72rem;
   font-weight: 900;
-  box-shadow: 0 4px 10px rgba(214, 51, 132, 0.35);
+  box-shadow: 0 4px 10px rgba(14, 90, 58, 0.3);
   line-height: 1;
 }
 
-/* لیست تو در تو */
 .jb-description-content :deep(li > ul),
 .jb-description-content :deep(li > ol) {
   margin-top: 10px;
@@ -235,44 +229,44 @@ const props = defineProps({
 /* ===== بولد و ایتالیک ===== */
 .jb-description-content :deep(strong),
 .jb-description-content :deep(b) {
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
   font-weight: 900;
 }
 
 .jb-description-content :deep(em),
 .jb-description-content :deep(i) {
-  color: var(--jb-pink-700);
+  color: #4a5568;
   font-style: italic;
 }
 
 /* ===== لینک‌ها ===== */
 .jb-description-content :deep(a) {
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
   font-weight: 800;
   text-decoration: none;
-  border-bottom: 2px dashed var(--jb-pink-400);
+  border-bottom: 2px dashed rgba(140, 198, 63, 0.6);
   transition: all 0.25s ease;
 }
 
 .jb-description-content :deep(a:hover) {
-  color: var(--jb-pink-600);
-  border-bottom-color: var(--jb-fuchsia);
+  color: #8cc63f;
+  border-bottom-color: #0e5a3a;
 }
 
 /* ===== نقل‌قول ===== */
 .jb-description-content :deep(blockquote) {
   position: relative;
   margin: 24px 0;
-  padding: 18px 22px 18px 22px;
-  background: linear-gradient(135deg, #fff8fb, #ffeaf2);
+  padding: 18px 22px;
+  background: linear-gradient(135deg, #f8fcf9, #e8f3ec);
   border-right: 4px solid transparent;
-  border-image: linear-gradient(180deg, var(--jb-pink-500), var(--jb-fuchsia)) 1;
+  border-image: linear-gradient(180deg, #0e5a3a, #8cc63f) 1;
   border-radius: 16px;
-  color: var(--jb-text);
+  color: #1a202c;
   font-weight: 700;
   font-style: italic;
   line-height: 2;
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.1);
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.08);
 }
 
 .jb-description-content :deep(blockquote::before) {
@@ -281,7 +275,7 @@ const props = defineProps({
   top: -12px;
   right: 16px;
   font-size: 2.2rem;
-  color: var(--jb-pink-400);
+  color: #8cc63f;
   line-height: 1;
   background: #fff;
   padding: 0 8px;
@@ -294,27 +288,27 @@ const props = defineProps({
 
 /* ===== کد ===== */
 .jb-description-content :deep(code) {
-  background: linear-gradient(135deg, #ffeaf2, #ffe0eb);
-  color: var(--jb-pink-800);
+  background: linear-gradient(135deg, #f4f9f6, #e8f3ec);
+  color: #0e5a3a;
   padding: 2px 10px;
   border-radius: 8px;
   font-family: "Vazirmatn", monospace;
   font-size: 0.85em;
   font-weight: 700;
-  border: 1.5px solid var(--jb-pink-200);
+  border: 1.5px solid rgba(14, 90, 58, 0.1);
 }
 
 .jb-description-content :deep(pre) {
   margin: 20px 0;
   padding: 16px 18px;
-  background: linear-gradient(135deg, #2d1420, #3d1a2b);
-  color: #ffd0e0;
+  background: linear-gradient(135deg, #1a202c, #2d3748);
+  color: #e2e8f0;
   border-radius: 16px;
   overflow-x: auto;
   font-size: 0.85rem;
   line-height: 1.9;
-  border: 2px solid var(--jb-pink-700);
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.2);
+  border: 2px solid rgba(14, 90, 58, 0.3);
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.15);
 }
 
 .jb-description-content :deep(pre code) {
@@ -332,13 +326,13 @@ const props = defineProps({
   margin: 22px auto;
   border-radius: 20px;
   border: 3px solid #fff;
-  box-shadow: 0 12px 30px rgba(214, 51, 132, 0.2);
+  box-shadow: 0 12px 30px rgba(14, 90, 58, 0.15);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .jb-description-content :deep(img:hover) {
   transform: scale(1.02);
-  box-shadow: 0 18px 40px rgba(214, 51, 132, 0.3);
+  box-shadow: 0 18px 40px rgba(14, 90, 58, 0.25);
 }
 
 /* ===== جدول ===== */
@@ -349,12 +343,12 @@ const props = defineProps({
   border-spacing: 0;
   border-radius: 16px;
   overflow: hidden;
-  border: 2px solid var(--jb-pink-200);
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.1);
+  border: 2px solid rgba(14, 90, 58, 0.1);
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.08);
 }
 
 .jb-description-content :deep(thead) {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #1a7a50);
   color: #fff;
 }
 
@@ -368,18 +362,18 @@ const props = defineProps({
 .jb-description-content :deep(td) {
   padding: 12px 16px;
   font-size: 0.85rem;
-  border-top: 1.5px dashed var(--jb-pink-200);
+  border-top: 1.5px dashed rgba(14, 90, 58, 0.1);
   background: #fff;
-  color: var(--jb-text-soft);
+  color: #4a5568;
   font-weight: 600;
 }
 
 .jb-description-content :deep(tbody tr:hover td) {
-  background: var(--jb-pink-50);
+  background: #f1f7f3;
 }
 
 .jb-description-content :deep(tbody tr:nth-child(even) td) {
-  background: #fffafc;
+  background: #f8fcf9;
 }
 
 /* ===== خط افقی ===== */
@@ -387,7 +381,7 @@ const props = defineProps({
   margin: 28px 0;
   border: none;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--jb-pink-300), transparent);
+  background: linear-gradient(90deg, transparent, rgba(140, 198, 63, 0.5), transparent);
   border-radius: 999px;
 }
 
@@ -399,37 +393,18 @@ const props = defineProps({
   margin: 22px 0;
   border-radius: 20px;
   border: 3px solid #fff;
-  box-shadow: 0 12px 30px rgba(214, 51, 132, 0.2);
+  box-shadow: 0 12px 30px rgba(14, 90, 58, 0.15);
 }
 
 /* ===== واکنش‌گرا ===== */
 @media (max-width: 768px) {
-  .jb-description-content {
-    font-size: 0.88rem;
-    line-height: 2.05;
-  }
-
+  .jb-description-content { font-size: 0.88rem; line-height: 2.05; }
   .jb-description-content :deep(h1) { font-size: 1.25rem; }
   .jb-description-content :deep(h2) { font-size: 1.1rem; }
   .jb-description-content :deep(h3) { font-size: 1rem; }
-
-  .jb-description-content :deep(p:first-of-type) {
-    font-size: 0.92rem;
-  }
-
-  .jb-desc-top-line {
-    margin-bottom: 20px;
-  }
-
-  .jb-desc-icon {
-    width: 34px;
-    height: 34px;
-    border-radius: 11px;
-  }
-
-  .jb-description-content :deep(img) {
-    border-radius: 16px;
-    margin: 18px auto;
-  }
+  .jb-description-content :deep(p:first-of-type) { font-size: 0.92rem; }
+  .jb-desc-top-line { margin-bottom: 20px; }
+  .jb-desc-icon { width: 34px; height: 34px; border-radius: 11px; }
+  .jb-description-content :deep(img) { border-radius: 16px; margin: 18px auto; }
 }
 </style>

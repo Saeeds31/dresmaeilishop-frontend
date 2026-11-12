@@ -139,7 +139,6 @@ const zoomImageStyle = computed(() => {
 // فقط در دسکتاپ اجازه‌ی زوم می‌دیم
 const allowHoverZoom = computed(() => isDesktop.value);
 </script>
-
 <template>
   <div class="jb-product-gallery">
     <!-- اسلایدر اصلی -->
@@ -167,7 +166,7 @@ const allowHoverZoom = computed(() => isDesktop.value);
             @click="openZoom(index)"
           />
 
-          <!-- آیکون ذره‌بین (فقط دسکتاپ، قبل از هاور) -->
+          <!-- آیکون ذره‌بین -->
           <span
             v-if="allowHoverZoom && !hoverActive"
             class="jb-zoom-hint"
@@ -283,7 +282,7 @@ const allowHoverZoom = computed(() => isDesktop.value);
 
 <style scoped>
 /* =========================================================
-   گالری تصاویر محصول - تم پودری
+   گالری تصاویر محصول - تم سبز لوکس
    ========================================================= */
 
 .jb-product-gallery {
@@ -292,11 +291,11 @@ const allowHoverZoom = computed(() => isDesktop.value);
 
 /* ===== اسلایدر اصلی ===== */
 :deep(.jb-main-swiper) {
-  border-radius: 24px;
+  border-radius: 28px;
   overflow: hidden;
-  border: 2px solid var(--jb-pink-200);
+  border: 2px solid rgba(14, 90, 58, 0.1);
   background: #fff;
-  box-shadow: 0 12px 30px rgba(214, 51, 132, 0.12);
+  box-shadow: 0 12px 30px rgba(14, 90, 58, 0.08);
 }
 
 .jb-main-slide {
@@ -310,10 +309,9 @@ const allowHoverZoom = computed(() => isDesktop.value);
   transition: box-shadow 0.3s ease;
 }
 
-/* وقتی زوم فعاله */
 .jb-main-slide.jb-zoom-active {
   cursor: crosshair;
-  box-shadow: inset 0 0 0 2px rgba(214, 51, 132, 0.3);
+  box-shadow: inset 0 0 0 2px rgba(14, 90, 58, 0.2);
 }
 
 .jb-main-img {
@@ -323,23 +321,21 @@ const allowHoverZoom = computed(() => isDesktop.value);
   cursor: zoom-in;
   transition: transform 0.15s ease-out;
   aspect-ratio: 1 / 1;
-  border-radius: 16px;
+  border-radius: 20px;
   will-change: transform;
 }
 
-/* هاور روی دسکتاپ (بدون زوم) */
 .jb-main-img:hover:not(.jb-main-img-zooming) {
   transform: scale(1.06);
 }
 
-/* حالت زوم فعال */
 .jb-main-img.jb-main-img-zooming {
   cursor: zoom-out;
   border-radius: 0;
   transition: transform 0.1s ease-out;
 }
 
-/* آیکون ذره‌بین (راهنمای زوم) */
+/* آیکون ذره‌بین */
 .jb-zoom-hint {
   position: absolute;
   top: 16px;
@@ -353,23 +349,17 @@ const allowHoverZoom = computed(() => isDesktop.value);
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  color: var(--jb-fuchsia);
-  border: 2px solid var(--jb-pink-200);
-  box-shadow: 0 6px 16px rgba(214, 51, 132, 0.2);
+  color: #0e5a3a;
+  border: 2px solid rgba(14, 90, 58, 0.15);
+  box-shadow: 0 6px 16px rgba(14, 90, 58, 0.15);
   pointer-events: none;
   z-index: 5;
   animation: jbHintPulse 2.5s ease-in-out infinite;
 }
 
 @keyframes jbHintPulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.95;
-  }
-  50% {
-    transform: scale(1.08);
-    opacity: 1;
-  }
+  0%, 100% { transform: scale(1); opacity: 0.95; }
+  50% { transform: scale(1.08); opacity: 1; }
 }
 
 /* دکمه پلی ویدیو */
@@ -383,10 +373,10 @@ const allowHoverZoom = computed(() => isDesktop.value);
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
   border: 3px solid #fff;
-  box-shadow: 0 10px 25px rgba(214, 51, 132, 0.5);
+  box-shadow: 0 10px 25px rgba(14, 90, 58, 0.4);
   cursor: pointer;
   z-index: 10;
   transition: all 0.3s ease;
@@ -395,7 +385,7 @@ const allowHoverZoom = computed(() => isDesktop.value);
 
 .jb-video-play-btn:hover {
   transform: scale(1.1);
-  box-shadow: 0 14px 32px rgba(214, 51, 132, 0.7);
+  box-shadow: 0 14px 32px rgba(14, 90, 58, 0.6);
 }
 
 .jb-video-play-btn svg {
@@ -405,12 +395,8 @@ const allowHoverZoom = computed(() => isDesktop.value);
 }
 
 @keyframes jbPulse {
-  0%, 100% {
-    box-shadow: 0 10px 25px rgba(214, 51, 132, 0.5), 0 0 0 0 rgba(214, 51, 132, 0.4);
-  }
-  50% {
-    box-shadow: 0 10px 25px rgba(214, 51, 132, 0.5), 0 0 0 18px rgba(214, 51, 132, 0);
-  }
+  0%, 100% { box-shadow: 0 10px 25px rgba(14, 90, 58, 0.4), 0 0 0 0 rgba(14, 90, 58, 0.4); }
+  50% { box-shadow: 0 10px 25px rgba(14, 90, 58, 0.4), 0 0 0 18px rgba(14, 90, 58, 0); }
 }
 
 /* ===== thumbnail ها ===== */
@@ -430,18 +416,18 @@ const allowHoverZoom = computed(() => isDesktop.value);
   justify-content: center;
   border-radius: 12px;
   background: #fff;
-  border: 2px solid var(--jb-pink-200);
-  color: var(--jb-fuchsia);
+  border: 2px solid rgba(14, 90, 58, 0.1);
+  color: #0e5a3a;
   cursor: pointer;
   transition: all 0.25s ease;
 }
 
 .jb-thumb-nav:hover {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
   border-color: transparent;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(214, 51, 132, 0.35);
+  box-shadow: 0 8px 20px rgba(14, 90, 58, 0.3);
 }
 
 :deep(.jb-thumbs-swiper) {
@@ -456,7 +442,7 @@ const allowHoverZoom = computed(() => isDesktop.value);
 .jb-thumb-figure {
   background: #fff;
   border-radius: 14px;
-  border: 2px solid var(--jb-pink-200);
+  border: 2px solid rgba(14, 90, 58, 0.1);
   overflow: hidden;
   transition: all 0.25s ease;
   aspect-ratio: 3 / 4;
@@ -467,9 +453,9 @@ const allowHoverZoom = computed(() => isDesktop.value);
 }
 
 .jb-thumb-figure:hover {
-  border-color: var(--jb-pink-400);
+  border-color: rgba(14, 90, 58, 0.25);
   transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(214, 51, 132, 0.2);
+  box-shadow: 0 8px 20px rgba(14, 90, 58, 0.15);
 }
 
 .jb-thumb-img {
@@ -478,10 +464,9 @@ const allowHoverZoom = computed(() => isDesktop.value);
   object-fit: contain;
 }
 
-/* thumbnail فعال */
 :deep(.swiper-slide-thumb-active .jb-thumb-figure) {
-  border-color: var(--jb-fuchsia);
-  box-shadow: 0 0 0 4px rgba(214, 51, 132, 0.18);
+  border-color: #8cc63f;
+  box-shadow: 0 0 0 4px rgba(140, 198, 63, 0.18);
   transform: scale(1.05);
 }
 
@@ -493,7 +478,7 @@ const allowHoverZoom = computed(() => isDesktop.value);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(26, 13, 24, 0.9);
+  background: rgba(14, 90, 58, 0.9);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   padding: 16px;
@@ -523,7 +508,7 @@ const allowHoverZoom = computed(() => isDesktop.value);
 }
 
 .jb-modal-close:hover {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   border-color: transparent;
   transform: rotate(90deg);
 }
@@ -580,7 +565,7 @@ const allowHoverZoom = computed(() => isDesktop.value);
 }
 
 .jb-zoom-nav:hover {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   border-color: transparent;
   transform: translateY(-50%) scale(1.08);
 }
@@ -594,12 +579,12 @@ const allowHoverZoom = computed(() => isDesktop.value);
   left: 50%;
   transform: translateX(-50%);
   padding: 8px 20px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
   font-size: 0.82rem;
   font-weight: 800;
   border-radius: 999px;
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.5);
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.4);
 }
 
 /* ===== ریسپانسیو ===== */
@@ -613,13 +598,8 @@ const allowHoverZoom = computed(() => isDesktop.value);
   .jb-zoom-next { right: 10px; }
 }
 
-/* 🖱️ در موبایل/تبلت، هاور زوم غیرفعال */
 @media (hover: none), (pointer: coarse) {
-  .jb-main-img:hover {
-    transform: none !important;
-  }
-  .jb-zoom-hint {
-    display: none;
-  }
+  .jb-main-img:hover { transform: none !important; }
+  .jb-zoom-hint { display: none; }
 }
 </style>

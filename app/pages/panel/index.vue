@@ -1,6 +1,6 @@
 <template>
   <div class="jb-profile-card">
-    <!-- ===== هدر ===== -->
+    <!-- هدر -->
     <div class="jb-profile-header">
       <h2 class="jb-profile-header-title">
         <span class="jb-profile-header-icon">
@@ -13,15 +13,15 @@
       </h2>
     </div>
 
-    <!-- خط بریده‌بریده -->
+    <!-- خط جداکننده -->
     <div class="jb-divider"></div>
 
-    <!-- ===== لودینگ ===== -->
+    <!-- لودینگ -->
     <div v-if="profilePending" class="jb-state-block">
       <SharedLoadingSpinner size="lg" />
     </div>
 
-    <!-- ===== اطلاعات ===== -->
+    <!-- اطلاعات -->
     <div v-else-if="profileData" class="jb-profile-grid">
       <!-- نام و نام خانوادگی -->
       <div class="jb-profile-field">
@@ -88,9 +88,9 @@
       </div>
     </div>
 
-    <!-- ===== دکمه ویرایش ===== -->
+    <!-- دکمه ویرایش -->
     <div v-if="profileData" class="jb-profile-actions">
-      <button class="jb-btn-linear jb-edit-btn" @click="showModal = true">
+      <button class="jb-edit-btn" @click="showModal = true">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
             d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -148,7 +148,6 @@ useSeoMeta({
 
 useHead({
   link: [{ rel: 'canonical', href: 'https://dresmaeilishop.ir/panel' }],
-  // 🔹 جلوگیری از ایندکس شدن با متا تگ اضافی برای اطمینان بیشتر
   meta: [
     { name: 'robots', content: 'noindex, nofollow, noarchive, nosnippet' },
   ],
@@ -157,15 +156,15 @@ useHead({
 
 <style scoped>
 /* =========================================================
-   صفحه پروفایل - تم پودری
+   صفحه پروفایل - مینیمال سبز
    ========================================================= */
 
 .jb-profile-card {
-  background: rgba(255, 255, 255, 0.95);
-  border: 2px solid var(--jb-pink-200);
-  border-radius: 24px;
-  padding: 24px;
-  box-shadow: 0 10px 30px rgba(214, 51, 132, 0.1);
+  background: #fff;
+  border: 1px solid rgba(14, 90, 58, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(14, 90, 58, 0.04);
 }
 
 /* ===== هدر ===== */
@@ -176,51 +175,28 @@ useHead({
 .jb-profile-header-title {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  font-size: 1.15rem;
-  font-weight: 900;
-  color: var(--jb-text);
+  gap: 10px;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1a202c;
 }
 
 .jb-profile-header-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: #0e5a3a;
   color: #fff;
-  box-shadow: 0 6px 16px rgba(214, 51, 132, 0.35);
-  border: 2px solid #fff;
 }
 
-/* خط بریده‌بریده */
+/* خط جداکننده */
 .jb-divider {
   height: 0;
-  border-top: 2px dashed var(--jb-pink-200);
-  margin: 16px 0 24px;
-  position: relative;
-}
-
-.jb-divider::before,
-.jb-divider::after {
-  content: "";
-  position: absolute;
-  top: -5px;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--jb-pink-400);
-  box-shadow: 0 0 0 3px #fff;
-}
-
-.jb-divider::before {
-  right: -4px;
-}
-
-.jb-divider::after {
-  left: -4px;
+  border-top: 1px dashed rgba(14, 90, 58, 0.15);
+  margin: 14px 0 20px;
 }
 
 /* ===== حالت لودینگ ===== */
@@ -228,23 +204,17 @@ useHead({
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 48px 20px;
+  padding: 40px 20px;
 }
 
 /* ===== گرید اطلاعات ===== */
 .jb-profile-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 14px;
+  gap: 12px;
 }
 
 @media (min-width: 768px) {
-  .jb-profile-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
   .jb-profile-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -254,52 +224,48 @@ useHead({
 .jb-profile-field {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 16px;
-  background: linear-gradient(135deg, #fff8fb, #ffeaf2);
-  border: 2px solid var(--jb-pink-200);
-  border-radius: 16px;
-  transition: all 0.3s ease;
+  gap: 12px;
+  padding: 14px;
+  background: #f7fafc;
+  border: 1px solid rgba(14, 90, 58, 0.08);
+  border-radius: 8px;
+  transition: all 0.2s ease;
 }
 
 .jb-profile-field:hover {
-  border-color: var(--jb-pink-400);
-  box-shadow: 0 8px 22px rgba(214, 51, 132, 0.14);
-  transform: translateY(-2px);
+  border-color: rgba(14, 90, 58, 0.2);
 }
 
 .jb-field-icon {
   flex-shrink: 0;
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 13px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  border-radius: 6px;
+  background: #0e5a3a;
   color: #fff;
-  box-shadow: 0 6px 16px rgba(214, 51, 132, 0.35);
-  border: 2px solid #fff;
 }
 
 .jb-field-content {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
   min-width: 0;
 }
 
 .jb-field-label {
-  font-size: 0.75rem;
-  color: var(--jb-text-muted);
-  font-weight: 700;
+  font-size: 0.72rem;
+  color: #718096;
+  font-weight: 500;
 }
 
 .jb-field-value {
-  font-size: 0.9rem;
-  color: var(--jb-text);
-  font-weight: 800;
+  font-size: 0.85rem;
+  color: #1a202c;
+  font-weight: 700;
   word-break: break-word;
 }
 
@@ -312,14 +278,30 @@ useHead({
 .jb-profile-actions {
   display: flex;
   justify-content: flex-start;
-  margin-top: 24px;
-  padding-top: 20px;
-  border-top: 1.5px dashed var(--jb-pink-200);
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px dashed rgba(14, 90, 58, 0.15);
 }
 
 .jb-edit-btn {
-  padding: 12px 26px !important;
-  font-size: 0.88rem !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #0e5a3a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.jb-edit-btn:hover {
+  background: #0b472e;
 }
 
 /* =========================================================
@@ -327,30 +309,30 @@ useHead({
    ========================================================= */
 @media (max-width: 640px) {
   .jb-profile-card {
-    padding: 16px;
-    border-radius: 20px;
+    padding: 14px;
+    border-radius: 8px;
   }
 
   .jb-profile-header-title {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .jb-profile-header-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .jb-profile-field {
+    padding: 12px;
+  }
+
+  .jb-field-icon {
     width: 32px;
     height: 32px;
   }
 
-  .jb-profile-field {
-    padding: 14px;
-  }
-
-  .jb-field-icon {
-    width: 38px;
-    height: 38px;
-  }
-
   .jb-field-value {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
 
   .jb-profile-actions {
@@ -359,7 +341,6 @@ useHead({
 
   .jb-edit-btn {
     width: 100%;
-    justify-content: center;
   }
 }
 </style>

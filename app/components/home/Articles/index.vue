@@ -2,54 +2,24 @@
   <section class="container gap mb-10">
     <homeTitleSection
       titleBlack="مجله   "
-      titleStrong="ویتامیکس فروت"
-      description="جدیدترین مقالات و نکات مفید درباره میوه‌های خشک و سبک زندگی سالم"
+      titleStrong="دکتر اسماعیلی"
+      description="جدیدترین مقالات و نکات مفید درباره سلامت، زیبایی و سبک زندگی سالم"
     />
 
-    <div class="hidden lg:grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <!-- دو کارت بزرگ -->
+    <!-- گرید ۴ تایی کارت‌های بزرگ -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
       <BigCard
-        v-for="(item, index) in list.slice(0, 2)"
+        v-for="(item, index) in list.slice(0, 4)"
         :key="index"
         :card="item"
       />
-
-      <!-- Swiper سمت چپ -->
-      <div class="h-[500px]">
-        <Swiper
-          direction="vertical"
-          slides-per-view="auto"
-          :space-between="16"
-          :mousewheel="true"
-          :free-mode="true"
-          class="h-full"
-        >
-          <SwiperSlide
-            v-for="(item, index) in list"
-            :key="index"
-            class="!h-auto"
-          >
-            <SmallCard :smallcard="item" />
-          </SwiperSlide>
-        </Swiper>
-      </div>
-    </div>
-
-    <div class="lg:hidden w-full">
-      <Swiper :slides-per-view="1.2" :space-between="16" class="w-full">
-        <SwiperSlide v-for="(item, index) in list" :key="index" class="!h-auto">
-          <BigCard :card="item" />
-        </SwiperSlide>
-      </Swiper>
     </div>
   </section>
 </template>
 
 <script setup>
-import { Swiper, SwiperSlide } from "swiper/vue";
-import "swiper/css";
 import BigCard from "./BigCard.vue";
-import SmallCard from "./SmallCard.vue";
+
 defineProps({
   list: {
     type: Array,

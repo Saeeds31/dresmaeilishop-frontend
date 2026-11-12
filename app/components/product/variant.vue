@@ -201,7 +201,6 @@ watch(quantity, (newQuantity) => {
   emit("update:quantity", newQuantity);
 });
 </script>
-
 <template>
   <div class="jb-variant-container">
     <ProductVerityWeight
@@ -241,8 +240,7 @@ watch(quantity, (newQuantity) => {
 .jb-variant-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 20px 0;
+  gap: 24px;
 }
 
 /* پیام خطا */
@@ -251,13 +249,13 @@ watch(quantity, (newQuantity) => {
   align-items: center;
   gap: 10px;
   padding: 12px 16px;
-  background: linear-gradient(135deg, #fff5f8, #ffe0e8);
-  border: 2px solid #ffb8c8;
+  background: linear-gradient(135deg, #fff5f5, #ffe8e8);
+  border: 2px solid #feb2b2;
   border-radius: 14px;
-  color: #c9184a;
+  color: #c53030;
   font-size: 0.85rem;
   font-weight: 700;
-  box-shadow: 0 4px 14px rgba(201, 24, 74, 0.12);
+  box-shadow: 0 4px 14px rgba(197, 48, 48, 0.1);
 }
 
 .jb-variant-error-icon {
@@ -268,9 +266,9 @@ watch(quantity, (newQuantity) => {
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  background: linear-gradient(135deg, #ff4d6d, #c9184a);
+  background: linear-gradient(135deg, #f56565, #c53030);
   color: #fff;
-  box-shadow: 0 4px 12px rgba(201, 24, 74, 0.35);
+  box-shadow: 0 4px 12px rgba(197, 48, 48, 0.3);
 }
 
 .jb-error-slide-enter-active,

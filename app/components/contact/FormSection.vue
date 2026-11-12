@@ -17,7 +17,7 @@
       <div class="jb-form-info">
         <div class="jb-form-logo-wrap">
           <img
-            src="~/assets/images/logo.png"
+            src="/images/logo.png"
             alt="لوگو"
             class="jb-form-logo"
           />
@@ -41,7 +41,7 @@
           </li>
           <li class="jb-form-info-item jb-info-highlight">
             <span class="jb-form-info-dot"></span>
-            منتظر دیدگاه‌های گرم شما هستیم! 🌸
+            منتظر دیدگاه‌های گرم شما هستیم! 🌿
           </li>
         </ul>
       </div>
@@ -168,7 +168,7 @@ const onSubmit = () => {
 
 <style scoped>
 /* =========================================================
-   فرم تماس با ما - تم پودری
+   فرم تماس با ما - تم سبز لوکس
    ========================================================= */
 
 .jb-contact-form-section {
@@ -177,9 +177,9 @@ const onSubmit = () => {
   gap: 32px;
   padding: 32px;
   background: rgba(255, 255, 255, 0.95);
-  border: 2px solid var(--jb-pink-200);
+  border: 2px solid rgba(14, 90, 58, 0.1);
   border-radius: 28px;
-  box-shadow: 0 12px 35px rgba(214, 51, 132, 0.12);
+  box-shadow: 0 12px 35px rgba(14, 90, 58, 0.08);
 }
 
 @media (min-width: 1024px) {
@@ -207,8 +207,8 @@ const onSubmit = () => {
 .jb-form-character-wrap {
   padding: 16px;
   border-radius: 24px;
-  background: linear-gradient(135deg, #fff8fb, #ffeaf2);
-  border: 2px dashed var(--jb-pink-300);
+  background: linear-gradient(135deg, #f8fcf9, #e8f3ec);
+  border: 2px dashed rgba(140, 198, 63, 0.5);
   animation: jbCharFloat 4s ease-in-out infinite;
 }
 
@@ -263,8 +263,8 @@ const onSubmit = () => {
   .jb-form-logo-wrap {
     display: block;
     padding: 12px;
-    background: linear-gradient(135deg, #fff8fb, #ffeaf2);
-    border: 2px solid var(--jb-pink-200);
+    background: linear-gradient(135deg, #f8fcf9, #e8f3ec);
+    border: 2px solid rgba(14, 90, 58, 0.1);
     border-radius: 18px;
     width: fit-content;
   }
@@ -282,15 +282,15 @@ const onSubmit = () => {
   gap: 10px;
   font-size: 1rem;
   font-weight: 900;
-  color: var(--jb-text);
+  color: #1a202c;
 }
 
 .jb-title-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
-  box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.18);
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
+  box-shadow: 0 0 0 3px rgba(140, 198, 63, 0.18);
   flex-shrink: 0;
 }
 
@@ -309,7 +309,7 @@ const onSubmit = () => {
   gap: 12px;
   font-size: 0.88rem;
   line-height: 2;
-  color: var(--jb-text-soft);
+  color: #4a5568;
   font-weight: 600;
 }
 
@@ -318,13 +318,13 @@ const onSubmit = () => {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
-  box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.18);
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
+  box-shadow: 0 0 0 3px rgba(140, 198, 63, 0.18);
   margin-top: 0.7em;
 }
 
 .jb-info-highlight {
-  color: var(--jb-fuchsia);
+  color: #0e5a3a;
   font-weight: 800;
 }
 
@@ -355,7 +355,7 @@ const onSubmit = () => {
   gap: 10px;
   font-size: 1.15rem;
   font-weight: 900;
-  color: var(--jb-text);
+  color: #1a202c;
 }
 
 .jb-form-title-icon {
@@ -365,15 +365,15 @@ const onSubmit = () => {
   width: 34px;
   height: 34px;
   border-radius: 11px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
-  box-shadow: 0 6px 16px rgba(214, 51, 132, 0.35);
+  box-shadow: 0 6px 16px rgba(14, 90, 58, 0.3);
   border: 2px solid #fff;
 }
 
 .jb-form-subtitle {
   font-size: 0.82rem;
-  color: var(--jb-text-muted);
+  color: #718096;
   font-weight: 600;
   padding-right: 44px;
 }
@@ -408,15 +408,15 @@ const onSubmit = () => {
   gap: 8px;
   font-size: 0.85rem;
   font-weight: 800;
-  color: var(--jb-text);
+  color: #1a202c;
 }
 
 .jb-form-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
-  box-shadow: 0 0 0 2px rgba(214, 51, 132, 0.18);
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
+  box-shadow: 0 0 0 2px rgba(140, 198, 63, 0.18);
 }
 
 .jb-input-wrap {
@@ -436,8 +436,8 @@ const onSubmit = () => {
   width: 30px;
   height: 30px;
   border-radius: 9px;
-  background: linear-gradient(135deg, #ffeaf2, #ffe0eb);
-  color: var(--jb-fuchsia);
+  background: linear-gradient(135deg, #f8fcf9, #e8f3ec);
+  color: #0e5a3a;
   pointer-events: none;
   z-index: 1;
   transition: all 0.25s ease;
@@ -447,30 +447,30 @@ const onSubmit = () => {
   width: 100%;
   padding: 13px 54px 13px 16px;
   background: #fff;
-  border: 2px solid var(--jb-pink-200);
+  border: 2px solid rgba(14, 90, 58, 0.1);
   border-radius: 14px;
   font-size: 0.88rem;
   font-weight: 700;
-  color: var(--jb-text);
+  color: #1a202c;
   outline: none;
   transition: all 0.25s ease;
   font-family: inherit;
 }
 
 .jb-form-input::placeholder {
-  color: var(--jb-text-muted);
+  color: #a0aec0;
   font-weight: 500;
 }
 
 .jb-form-input:focus {
-  border-color: var(--jb-fuchsia);
-  box-shadow: 0 0 0 4px rgba(214, 51, 132, 0.15);
+  border-color: #8cc63f;
+  box-shadow: 0 0 0 4px rgba(140, 198, 63, 0.15);
 }
 
 .jb-input-wrap:focus-within .jb-input-icon {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   color: #fff;
-  box-shadow: 0 4px 12px rgba(214, 51, 132, 0.35);
+  box-shadow: 0 4px 12px rgba(14, 90, 58, 0.3);
 }
 
 .jb-form-textarea {
@@ -490,6 +490,38 @@ const onSubmit = () => {
 .jb-form-submit {
   padding: 13px 32px !important;
   font-size: 0.9rem !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 999px;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(90deg, #0e5a3a 0%, #1a7a50 50%, #0e5a3a 100%);
+  background-size: 200% auto;
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.35);
+  transition: all 0.4s ease;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.jb-form-submit::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.35) 50%, transparent 100%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.jb-form-submit:hover {
+  background-position: 100% center;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(14, 90, 58, 0.5);
+}
+
+.jb-form-submit:hover::before {
+  transform: translateX(100%);
 }
 
 .jb-form-submit:disabled {

@@ -3,11 +3,10 @@
     <!-- ===== بخش پروفایل ===== -->
     <div class="jb-profile-card">
       <div class="jb-profile-avatar">
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
             d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
         </svg>
-        <span class="jb-profile-avatar-ring"></span>
       </div>
 
       <p class="jb-profile-name">
@@ -18,31 +17,21 @@
       </p>
     </div>
 
-    <!-- خط بریده‌بریده -->
+    <!-- خط جداکننده -->
     <div class="jb-sidebar-divider"></div>
 
     <!-- ===== منوها ===== -->
     <ul class="jb-panel-menu">
-      <li
-        v-for="(item, index) in menu"
-        :key="index"
-      >
-        <NuxtLink
-          :to="item.to"
-          class="jb-panel-menu-item"
-          :class="{ 'is-active': route.path === item.to }"
-          @click="handleMenuClick(item.to)"
-        >
+      <li v-for="(item, index) in menu" :key="index">
+        <NuxtLink :to="item.to" class="jb-panel-menu-item" :class="{ 'is-active': route.path === item.to }"
+          @click="handleMenuClick(item.to)">
           <span class="jb-panel-menu-icon">
             <component :is="item.icon" class="w-4 h-4" />
           </span>
           <span class="jb-panel-menu-label">{{ item.label }}</span>
 
-          <svg
-            v-if="route.path === item.to"
-            class="jb-panel-menu-arrow"
-            fill="none" stroke="currentColor" viewBox="0 0 24 24"
-          >
+          <svg v-if="route.path === item.to" class="jb-panel-menu-arrow" fill="none" stroke="currentColor"
+            viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
           </svg>
         </NuxtLink>
@@ -154,18 +143,18 @@ const logout = () => {
 
 <style scoped>
 /* =========================================================
-   سایدبار پنل کاربری - تم پودری
+   سایدبار پنل کاربری - مینیمال سبز
    ========================================================= */
 
 .jb-panel-sidebar {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.95);
-  border: 2px solid var(--jb-pink-200);
-  border-radius: 24px;
-  box-shadow: 0 10px 30px rgba(214, 51, 132, 0.1);
+  gap: 16px;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid rgba(14, 90, 58, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(14, 90, 58, 0.04);
 }
 
 /* =========================================================
@@ -175,88 +164,47 @@ const logout = () => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  padding: 12px 0;
+  gap: 6px;
+  padding: 10px 0;
 }
 
 .jb-profile-avatar {
-  position: relative;
-  width: 80px;
-  height: 80px;
+  width: 64px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  border-radius: 8px;
+  background: #0e5a3a;
   color: #fff;
-  box-shadow:
-    0 12px 30px rgba(214, 51, 132, 0.35),
-    inset 0 -3px 6px rgba(110, 15, 46, 0.2),
-    inset 0 3px 6px rgba(255, 255, 255, 0.3);
-  border: 4px solid #fff;
-  margin-bottom: 6px;
-  animation: jbAvatarFloat 3.5s ease-in-out infinite;
-}
-
-@keyframes jbAvatarFloat {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-4px); }
-}
-
-.jb-profile-avatar-ring {
-  position: absolute;
-  inset: -10px;
-  border-radius: 50%;
-  border: 2px dashed var(--jb-pink-400);
-  animation: jbRingRotate 12s linear infinite;
-  pointer-events: none;
-}
-
-@keyframes jbRingRotate {
-  to { transform: rotate(360deg); }
+  margin-bottom: 4px;
 }
 
 .jb-profile-name {
-  font-size: 1rem;
-  font-weight: 900;
-  color: var(--jb-text);
-  margin-top: 4px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #1a202c;
+  margin-top: 2px;
 }
 
 .jb-profile-mobile {
-  font-size: 0.78rem;
-  color: var(--jb-text-muted);
-  font-weight: 700;
+  font-size: 0.75rem;
+  color: #718096;
+  font-weight: 600;
   font-family: 'Courier New', monospace;
   letter-spacing: 0.5px;
-  padding: 4px 12px;
-  background: var(--jb-pink-50);
-  border-radius: 999px;
-  border: 1.5px solid var(--jb-pink-200);
+  padding: 3px 10px;
+  background: #f7fafc;
+  border-radius: 4px;
+  border: 1px solid rgba(14, 90, 58, 0.08);
 }
 
-/* خط بریده‌بریده */
+/* خط جداکننده */
 .jb-sidebar-divider {
   height: 0;
-  border-top: 1.5px dashed var(--jb-pink-300);
-  position: relative;
-  margin: 4px 0;
+  border-top: 1px dashed rgba(14, 90, 58, 0.15);
+  margin: 2px 0;
 }
-
-.jb-sidebar-divider::before,
-.jb-sidebar-divider::after {
-  content: "";
-  position: absolute;
-  top: -4px;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--jb-pink-400);
-  box-shadow: 0 0 0 2px #fff;
-}
-
-.jb-sidebar-divider::before { right: -3px; }
-.jb-sidebar-divider::after  { left: -3px; }
 
 /* =========================================================
    منو
@@ -264,7 +212,7 @@ const logout = () => {
 .jb-panel-menu {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -274,47 +222,44 @@ const logout = () => {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 11px 14px;
-  border-radius: 14px;
-  color: var(--jb-text-soft);
-  font-size: 0.88rem;
-  font-weight: 700;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 6px;
+  color: #4a5568;
+  font-size: 0.85rem;
+  font-weight: 600;
   text-decoration: none;
-  transition: all 0.25s ease;
-  border: 1.5px solid transparent;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
 }
 
 .jb-panel-menu-item:hover {
-  background: var(--jb-pink-50);
-  color: var(--jb-fuchsia);
-  border-color: var(--jb-pink-200);
-  transform: translateX(-3px);
+  background: #f7fafc;
+  color: #0e5a3a;
+  border-color: rgba(14, 90, 58, 0.08);
 }
 
 .jb-panel-menu-item.is-active {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: #0e5a3a;
   color: #fff;
   border-color: transparent;
-  box-shadow: 0 8px 20px rgba(214, 51, 132, 0.4);
-  transform: translateX(0);
 }
 
 .jb-panel-menu-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 10px;
-  background: var(--jb-pink-100);
-  color: var(--jb-fuchsia);
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: #f7fafc;
+  color: #0e5a3a;
   flex-shrink: 0;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .jb-panel-menu-item.is-active .jb-panel-menu-icon {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
   color: #fff;
 }
 
@@ -327,52 +272,44 @@ const logout = () => {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
-  animation: jbArrowSlide 1.5s ease-in-out infinite;
-}
-
-@keyframes jbArrowSlide {
-  0%, 100% { transform: translateX(0); }
-  50%      { transform: translateX(-4px); }
 }
 
 /* =========================================================
    دکمه خروج
    ========================================================= */
 .jb-panel-logout-li {
-  margin-top: 8px;
-  padding-top: 12px;
-  border-top: 1.5px dashed var(--jb-pink-200);
+  margin-top: 6px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(14, 90, 58, 0.1);
 }
 
 .jb-panel-logout-btn {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 11px 14px;
-  background: #fff5f8;
-  border: 1.5px solid #ffb8c8;
-  border-radius: 14px;
-  color: #c9184a;
-  font-size: 0.88rem;
-  font-weight: 800;
+  gap: 10px;
+  padding: 9px 12px;
+  background: #fff5f5;
+  border: 1px solid #fed7d7;
+  border-radius: 6px;
+  color: #c53030;
+  font-size: 0.85rem;
+  font-weight: 700;
   font-family: inherit;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .jb-panel-logout-btn:hover {
-  background: linear-gradient(135deg, #ff4d6d, #c9184a);
+  background: #c53030;
   color: #fff;
   border-color: transparent;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(201, 24, 74, 0.35);
 }
 
 .jb-panel-logout-icon {
-  background: #ffe0e8;
-  color: #c9184a;
-  transition: all 0.25s ease;
+  background: #ffe8e8;
+  color: #c53030;
+  transition: all 0.2s ease;
 }
 
 .jb-panel-logout-btn:hover .jb-panel-logout-icon {
@@ -385,28 +322,28 @@ const logout = () => {
    ========================================================= */
 @media (max-width: 768px) {
   .jb-panel-sidebar {
-    padding: 16px;
-    border-radius: 20px;
+    padding: 14px;
+    border-radius: 8px;
   }
 
   .jb-profile-avatar {
-    width: 68px;
-    height: 68px;
+    width: 56px;
+    height: 56px;
   }
 
   .jb-profile-avatar svg {
-    width: 26px;
-    height: 26px;
+    width: 22px;
+    height: 22px;
   }
 
   .jb-panel-menu-item {
-    padding: 10px 12px;
-    font-size: 0.84rem;
+    padding: 8px 10px;
+    font-size: 0.8rem;
   }
 
   .jb-panel-menu-icon {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
   }
 }
 </style>

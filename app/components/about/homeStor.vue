@@ -5,14 +5,16 @@
       <div class="jb-about-card">
         <!-- آیکون تزئینی بالا -->
         <div class="jb-about-badge">
-          <span>🍼</span>
+          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
         </div>
 
         <!-- تایتل -->
         <h1 class="jb-about-title">
           فروشگاه
-          <span class="jb-about-title-strong">فروشگاه دکتر اسماعیلی</span>
-          ، انتخابی شایسته
+          <span class="jb-about-title-strong">دکتر اسماعیلی</span>
+          ، انتخابی شایسته برای سلامت و زیبایی
         </h1>
 
         <!-- خط تزئینی -->
@@ -38,10 +40,10 @@
 <script setup lang="ts">
 // ⛳️ بعداً فقط این data میاد از API / store
 const aboutData = {
-  title: "فروشگاه فروشگاه دکتر اسماعیلی انتخابی شایسته",
-  description: `در فروشگاه دکتر اسماعیلی، هر وسیله‌ای که برای کوچولوی شما لازم است، با دقت و وسواس انتخاب شده؛
-  از لباس‌های نرم و راحت گرفته تا اسباب‌بازی‌های رنگارنگ و لوازم بهداشتی.
-  هدف ما این است که تجربه‌ی خرید سیسمونی را برای شما ساده، دلنشین و به‌یادماندنی کنیم.`,
+  title: "فروشگاه دکتر اسماعیلی انتخابی شایسته",
+  description: `در فروشگاه دکتر اسماعیلی، هر محصولی که برای سلامت و زیبایی شما لازم است، با دقت و وسواس انتخاب شده؛
+  از محصولات مراقبت از پوست و مو گرفته تا مکمل‌های غذایی و لوازم بهداشتی.
+  هدف ما این است که تجربه‌ی خریدی امن، دلنشین و به‌یادماندنی را برای شما فراهم کنیم.`,
   ctaText: "بیشتر بدانید",
   ctaLink: "/about-us",
 };
@@ -49,22 +51,20 @@ const aboutData = {
 
 <style scoped>
 /* =========================================================
-   سکشن درباره فروشگاه - تم پودری
+   سکشن درباره فروشگاه - تم سبز لوکس
    ========================================================= */
 
 .jb-about-section {
   padding: 64px 0;
-  background: linear-gradient(
-    135deg,
-    #fff8fb 0%,
-    #ffeaf2 50%,
-    #ffe0eb 100%
-  );
+  background: linear-gradient(135deg,
+      #f8fcf9 0%,
+      #e8f3ec 50%,
+      #d1e8db 100%);
   position: relative;
   overflow: hidden;
 }
 
-/* حباب‌های تزئینی پس‌زمینه */
+/* حباب‌های تزئینی پس‌زمینه (سبز ملایم) */
 .jb-about-section::before,
 .jb-about-section::after {
   content: "";
@@ -77,7 +77,7 @@ const aboutData = {
 .jb-about-section::before {
   width: 280px;
   height: 280px;
-  background: radial-gradient(circle, rgba(255, 122, 160, 0.18), transparent 70%);
+  background: radial-gradient(circle, rgba(140, 198, 63, 0.15), transparent 70%);
   top: -80px;
   right: -60px;
 }
@@ -85,7 +85,7 @@ const aboutData = {
 .jb-about-section::after {
   width: 220px;
   height: 220px;
-  background: radial-gradient(circle, rgba(214, 51, 132, 0.12), transparent 70%);
+  background: radial-gradient(circle, rgba(14, 90, 58, 0.08), transparent 70%);
   bottom: -60px;
   left: -40px;
 }
@@ -100,11 +100,11 @@ const aboutData = {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 2px solid rgba(255, 184, 207, 0.7);
+  border: 2px solid rgba(140, 198, 63, 0.25);
   border-radius: 32px;
   box-shadow:
-    0 25px 55px rgba(214, 51, 132, 0.15),
-    0 10px 25px rgba(255, 122, 160, 0.18),
+    0 25px 55px rgba(14, 90, 58, 0.08),
+    0 10px 25px rgba(140, 198, 63, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
   text-align: center;
   transition: all 0.35s ease;
@@ -112,8 +112,8 @@ const aboutData = {
 
 .jb-about-card:hover {
   box-shadow:
-    0 30px 65px rgba(214, 51, 132, 0.22),
-    0 12px 30px rgba(255, 122, 160, 0.22),
+    0 30px 65px rgba(14, 90, 58, 0.12),
+    0 12px 30px rgba(140, 198, 63, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
   transform: translateY(-3px);
 }
@@ -130,16 +130,22 @@ const aboutData = {
   align-items: center;
   justify-content: center;
   border-radius: 20px;
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
-  box-shadow: 0 10px 25px rgba(214, 51, 132, 0.45);
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
+  box-shadow: 0 10px 25px rgba(14, 90, 58, 0.35);
   border: 3px solid #fff;
   animation: floatBadge 3s ease-in-out infinite;
-  font-size: 1.5rem;
 }
 
 @keyframes floatBadge {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50%      { transform: translateX(-50%) translateY(-6px); }
+
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-6px);
+  }
 }
 
 /* ===== تایتل ===== */
@@ -147,7 +153,7 @@ const aboutData = {
   font-size: 1.2rem;
   font-weight: 900;
   line-height: 1.7;
-  color: var(--jb-text);
+  color: #1a202c;
   margin-bottom: 16px;
   display: inline-flex;
   flex-wrap: wrap;
@@ -158,7 +164,7 @@ const aboutData = {
 }
 
 .jb-about-title-strong {
-  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-fuchsia));
+  background: linear-gradient(135deg, #0e5a3a, #8cc63f);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -171,22 +177,20 @@ const aboutData = {
   height: 3px;
   margin: 0 auto 24px;
   border-radius: 999px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--jb-pink-400),
-    var(--jb-fuchsia),
-    var(--jb-pink-400),
-    transparent
-  );
-  box-shadow: 0 2px 8px rgba(214, 51, 132, 0.25);
+  background: linear-gradient(90deg,
+      transparent,
+      #8cc63f,
+      #0e5a3a,
+      #8cc63f,
+      transparent);
+  box-shadow: 0 2px 8px rgba(14, 90, 58, 0.2);
 }
 
 /* ===== متن ===== */
 .jb-about-desc {
   font-size: 0.95rem;
   line-height: 2.1;
-  color: var(--jb-text-soft);
+  color: #4a5568;
   font-weight: 500;
   max-width: 680px;
   margin: 0 auto 32px;
@@ -196,8 +200,48 @@ const aboutData = {
 
 /* ===== دکمه ===== */
 .jb-about-cta {
-  /* فقط وسط‌چین */
   display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 32px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #fff;
+  background: linear-gradient(90deg, #0e5a3a 0%, #1a7a50 50%, #0e5a3a 100%);
+  background-size: 200% auto;
+  box-shadow: 0 8px 22px rgba(14, 90, 58, 0.35);
+  transition: all 0.4s ease;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.jb-about-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.35) 50%, transparent 100%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.jb-about-cta:hover {
+  background-position: 100% center;
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(14, 90, 58, 0.5);
+}
+
+.jb-about-cta:hover::before {
+  transform: translateX(100%);
+}
+
+.jb-about-cta svg {
+  transition: transform 0.3s ease;
+}
+
+.jb-about-cta:hover svg {
+  transform: translateX(-5px);
 }
 
 /* =========================================================
@@ -217,7 +261,6 @@ const aboutData = {
     width: 54px;
     height: 54px;
     top: -24px;
-    font-size: 1.3rem;
     border-radius: 16px;
   }
 
@@ -242,9 +285,11 @@ const aboutData = {
   .jb-about-card {
     padding: 38px 18px 32px;
   }
+
   .jb-about-title {
     font-size: 0.98rem;
   }
+
   .jb-about-desc {
     font-size: 0.84rem;
     line-height: 1.95;
@@ -255,6 +300,7 @@ const aboutData = {
   .jb-about-title {
     font-size: 1.45rem;
   }
+
   .jb-about-desc {
     font-size: 1rem;
   }
