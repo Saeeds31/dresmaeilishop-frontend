@@ -17,6 +17,18 @@
 
         <!-- مزیت‌ها -->
         <div class="jb-advantages-grid">
+          <div class="jb-advantage-card">
+            <div class=" ">
+              <a referrerpolicy='origin' target='_blank'
+                href='https://trustseal.enamad.ir/?id=8733748&Code=sxt0MKzJwmSrYxHxWydz5kT1JKoCGYlO'><img
+                  referrerpolicy='origin'
+                  src='https://trustseal.enamad.ir/logo.aspx?id=8733748&Code=sxt0MKzJwmSrYxHxWydz5kT1JKoCGYlO' alt=''
+                  style='cursor:pointer' code='sxt0MKzJwmSrYxHxWydz5kT1JKoCGYlO'></a>
+
+            </div>
+            <h4 class="jb-advantage-title"> نماد الکترونیک </h4>
+            <p class="jb-advantage-subtitle"> اینماد </p>
+          </div>
           <div v-for="item in advantages" :key="item.title" class="jb-advantage-card">
             <div class="jb-advantage-icon">
               <img v-if="!item.enamad" :src="item.icon" :alt="item.title" />
@@ -161,7 +173,7 @@ const advantages = [
   { title: "پشتیبانی", subtitle: "در روزهای کاری", icon: "/icons/support.svg" },
   { title: "قیمت مناسب", subtitle: "خرید بدون واسطه", icon: "/icons/quality.svg" },
   { title: "پرداخت امن", subtitle: "درگاه بانکی", icon: "/icons/payment.svg" },
-  { title: "ضمانت کیفیت", subtitle: "خرید با اطمینان", icon: "/icons/quality.svg", enamad: true },
+  // { title: "ضمانت کیفیت", subtitle: "خرید با اطمینان", icon: "/icons/quality.svg", enamad: true },
 ];
 /* ============================================================
    دسترسی سریع - از منوها یا fallback
@@ -230,8 +242,8 @@ const socialLinks = computed(() => {
    اطلاعات تماس
 ============================================================ */
 const fallbackContacts = [
-  { label: "09210133186-09022072235", href: "tel:09375015769", icon: "/icons/phone.svg", dir: "ltr" },
-  { label: "گرگان، خیابان سرخواجه، مجتمع آفتاب، طبقه همکف", icon: "/icons/location.svg" },
+  { label: "09112788834", href: "tel:09375015769", icon: "/icons/phone.svg", dir: "ltr" },
+  { label: "گلستان - فاضل آباد خیابان رحمت آباد جنب درمانگاه شبانه روزی ابن سینا", icon: "/icons/location.svg" },
 ];
 
 const contactItems = computed(() => {
