@@ -337,7 +337,6 @@ useHead({
       { label: 'پرداخت', href: '/payment' },
     ]" />
     <CartProgressSteps :current-step="3" />
-
     <div class="jb-payment-card">
       <!-- هدر -->
       <div class="jb-payment-header">
@@ -423,7 +422,7 @@ useHead({
             <h3 class="jb-section-title">انتخاب درگاه پرداخت</h3>
 
             <div class="jb-gateway-grid">
-              <button type="button" aria-label="انتخاب درگاه زرین‌پال" class="jb-gateway-card"
+              <button type="button" aria-label="انتخاب درگاه زیبال" class="jb-gateway-card"
                 :class="{ 'is-selected': selected === 2 }" @click="selected = 2">
                 <span class="jb-gateway-logo">
                   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -439,7 +438,7 @@ useHead({
                   </svg>
                 </span>
               </button>
-              <button type="button" aria-label="انتخاب درگاه ترب پی" class="jb-gateway-card"
+              <!-- <button type="button" aria-label="انتخاب درگاه ترب پی" class="jb-gateway-card"
                 :class="{ 'is-selected': selected === 3 }" @click="selected = 3">
                 <span class="jb-gateway-logo">
                   <img width="48" height="48" class="rounded-full" src="/images/torobpaylogo.webp"
@@ -452,7 +451,7 @@ useHead({
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
                   </svg>
                 </span>
-              </button>
+              </button> -->
             </div>
 
             <!-- پیام توجه -->
